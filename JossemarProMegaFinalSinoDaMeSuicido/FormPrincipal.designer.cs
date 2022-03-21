@@ -1316,9 +1316,9 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             this.LblHistorialCompra.ForeColor = System.Drawing.Color.Black;
             this.LblHistorialCompra.Location = new System.Drawing.Point(12, 61);
             this.LblHistorialCompra.Name = "LblHistorialCompra";
-            this.LblHistorialCompra.Size = new System.Drawing.Size(40, 19);
+            this.LblHistorialCompra.Size = new System.Drawing.Size(63, 19);
             this.LblHistorialCompra.TabIndex = 8;
-            this.LblHistorialCompra.Text = "Editar";
+            this.LblHistorialCompra.Text = "Producto";
             // 
             // BtnHistorialCompra
             // 
@@ -1358,9 +1358,9 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             this.LblAgregarCompra.ForeColor = System.Drawing.Color.Black;
             this.LblAgregarCompra.Location = new System.Drawing.Point(11, 61);
             this.LblAgregarCompra.Name = "LblAgregarCompra";
-            this.LblAgregarCompra.Size = new System.Drawing.Size(55, 19);
+            this.LblAgregarCompra.Size = new System.Drawing.Size(63, 19);
             this.LblAgregarCompra.TabIndex = 8;
-            this.LblAgregarCompra.Text = "Agregar";
+            this.LblAgregarCompra.Text = "Producto";
             // 
             // BtnAgregarProducto
             // 

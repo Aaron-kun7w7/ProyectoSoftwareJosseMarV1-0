@@ -59,6 +59,7 @@
     <Compile Include="CDatosInicarSesion.cs" />
     <Compile Include="CDatosMovimientos.cs" />
     <Compile Include="CDatosRegistrar.cs" />
+    <Compile Include="CDatosRegistrarProducto.cs" />
     <Compile Include="CDatosValidarCedula.cs" />
     <Compile Include="CDatosVentas.cs" />
     <Compile Include="CDatosVentasCredito.cs" />

@@ -144,6 +144,12 @@
     <Compile Include="FrmAgregarCV.Designer.cs">
       <DependentUpon>FrmAgregarCV.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmAgregarProductoNuevo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmAgregarProductoNuevo.Designer.cs">
+      <DependentUpon>FrmAgregarProductoNuevo.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmCancelarFactura.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -320,6 +326,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmAgregarCV.resx">
       <DependentUpon>FrmAgregarCV.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmAgregarProductoNuevo.resx">
+      <DependentUpon>FrmAgregarProductoNuevo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmAgregarUsuarios.resx">
       <DependentUpon>FrmAgregarUsuarios.cs</DependentUpon>

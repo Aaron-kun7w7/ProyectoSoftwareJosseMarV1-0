@@ -64,6 +64,7 @@
     <Compile Include="CLogicaObtenerIP.cs" />
     <Compile Include="CLogicarecibirId.cs" />
     <Compile Include="CLogicaRegistrar.cs" />
+    <Compile Include="CLogicaRegistrarProducto.cs" />
     <Compile Include="CLogicaVentas.cs" />
     <Compile Include="CLogicaVentasCredito.cs" />
     <Compile Include="CLogicaVerSaldosAnuales.cs" />

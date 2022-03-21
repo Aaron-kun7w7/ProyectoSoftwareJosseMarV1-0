@@ -13,7 +13,7 @@ namespace Logica
         public DataTable cmbCategoria()
         {
 
-            String sql2 = "SELECT IdCategoria, DescripcionC FROM Categoria WHERE Categoria.IdEstadoCategoria = '1'";
+            String sql2 = "SELECT IdCategoria, DescripcionC FROM Categoria";
             CLogicaConsultas consult = new CLogicaConsultas();
             return consult.ConsultaTab(sql2);
 
@@ -31,7 +31,7 @@ namespace Logica
         public DataTable cmbUnidadM()
         {
 
-            String sql2 = "SELECT UnidadMedida.IdUnidadM, UnidadMedida.DescripcionTipoUM FROM UnidadMedida";
+            String sql2 = "SELECT UnidadMedidas.IdUnidadM, UnidadMedidas.DescripcionTipoUM FROM UnidadMedidas";
             CLogicaConsultas consult = new CLogicaConsultas();
             return consult.ConsultaTab(sql2);
 
