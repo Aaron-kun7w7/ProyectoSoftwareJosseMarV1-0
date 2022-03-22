@@ -63,6 +63,26 @@ namespace JossemarProMegaFinalSinoDaMeSuicido.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _8726066_image_plus_icon {
+            get {
+                object obj = ResourceManager.GetObject("8726066_image_plus_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _8726066_image_plus_icon__1_ {
+            get {
+                object obj = ResourceManager.GetObject("8726066_image_plus_icon (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap agregar_archivo {
             get {
                 object obj = ResourceManager.GetObject("agregar-archivo", resourceCulture);

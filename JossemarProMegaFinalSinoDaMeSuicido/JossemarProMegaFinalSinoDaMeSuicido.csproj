@@ -547,5 +547,11 @@
   <ItemGroup>
     <None Include="Resources\update_64px1.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\8726066_image_plus_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\8726066_image_plus_icon %281%29.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

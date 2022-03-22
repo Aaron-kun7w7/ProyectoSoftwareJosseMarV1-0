@@ -18,6 +18,7 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             id = a;
         }
         string id;
+        string imagen;
         CLogicaObtenerIP idS = new CLogicaObtenerIP();
         CLogicaRegistrarProducto save = new CLogicaRegistrarProducto();
         CLogicaLlenarCmb fill = new CLogicaLlenarCmb();
@@ -40,10 +41,7 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             string descrip = TxtDescripcion.Text;
             string marca = TxtMarca.Text;
             int IdCategoria = Convert.ToInt32(CmbCategoria.SelectedValue.ToString());
-            string fecha = DtpCaducidad.Value.ToString("yyy/MM/dd");
-            //string IdS = idS.ObtenerSede();
 
-            /*Obtener sede*/
             CLogicaConsultas c = new CLogicaConsultas();
             CLogicaObtenerIP b = new CLogicaObtenerIP();
             string localIP = b.ObtenerIp();
@@ -53,16 +51,7 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             string idU = c.ConsultaSimple("SELECT IpMaquina.IdUsuario FROM IpMaquina WHERE IpMaquina.IpMaquina = '" + localIP + "'");
             string IdSede = c.ConsultaSimple("SELECT Usuarios.IdSede FROM Usuarios WHERE Usuarios.IdUsuario = '" + idU + "'");
 
-            //MessageBox.Show("Nombre = " + nom);
-            //MessageBox.Show("UnidadM = " + IdUnidadM);
-            //MessageBox.Show("descrip = " + descrip);
-
-            //MessageBox.Show("marca = " + marca);
-            //MessageBox.Show("IdCategoria = " + IdCategoria);
-            //MessageBox.Show("fecha = " + fecha);
-            //MessageBox.Show("IdS = " + IdSede);
-
-            string result = save.AgregarProductos(nom,descrip,marca,0,IdUnidadM,IdCategoria,Convert.ToInt32(IdSede));
+            string result = save.AgregarProductos(nom,descrip,marca,0,IdUnidadM,IdCategoria,Convert.ToInt32(IdSede),imagen);
 
 
             MessageBox.Show("Res = " + result);
@@ -70,7 +59,16 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
 
         private void BtnGuardar_Click(object sender, EventArgs e)
         {
-            CapturarDatos();
+
+            if (MetodoValidar() == 3)
+            {
+                CapturarDatos();
+            }
+            else
+            {
+                MessageBox.Show("Uno o más campos se encuentran vacíos. :(", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
         }
 
         private void TxtNombreProducto_KeyPress(object sender, KeyPressEventArgs e)
@@ -83,10 +81,6 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             Validaciones.SoloLetrasONumeros(e);
         }
 
-        private void TxtDescripcion_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            Validaciones.SoloLetrasONumeros(e);
-        }
 
         void cmbCategorias()
         {
@@ -104,5 +98,59 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
 
         }
 
+        private void pbImagen_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofdSelectorImagen = new OpenFileDialog();
+
+            if (ofdSelectorImagen.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                pbImagen.Image = Image.FromFile(ofdSelectorImagen.FileName);
+            }
+
+            imagen = ofdSelectorImagen.FileName.ToString();
+            imagen = imagen.Replace('\\', '/');
+        }
+
+
+        //METODO PARA LIMPIAR LOS CAMPOS 
+        void Detele()
+        {
+            TxtNombreProducto.Text = "";
+            TxtMarca.Text = "";
+            TxtDescripcion.Text = "";
+            CmbUnidadMedida.SelectedValue = 1;
+            CmbCategoria.SelectedValue = 1;
+        }
+
+        //METODO PARA VALIDAR QUE LOS CAMPOS NO ESTEN VACIOS
+        int MetodoValidar()
+        {
+            int validation = 0;
+            if (TxtNombreProducto.Text != "")
+                validation++;
+
+            else
+                validation--;
+
+            if (TxtDescripcion.Text != "")
+                validation++;
+
+            else
+                validation--;
+
+            if (TxtMarca.Text != "")
+                validation++;
+            else
+                validation--;
+
+            if (validation < 0)
+                validation = 0;
+            return validation;
+        }
+
+        private void BtnLimpiar_Click(object sender, EventArgs e)
+        {
+            Detele();
+        }
     }
 }

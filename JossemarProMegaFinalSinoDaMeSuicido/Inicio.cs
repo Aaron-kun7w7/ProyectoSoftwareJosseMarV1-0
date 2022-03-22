@@ -122,7 +122,7 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
                 int contador = 0;
                 localIP = ip.ObtenerIp();
                 idp2 = sql.ConsultaSimple("SELECT IpMaquina.IdUsuario FROM IpMaquina WHERE IpMaquina ='" + localIP + "'");
-
+           // MessageBox.Show("SELECT IpMaquina.IdUsuario FROM IpMaquina WHERE IpMaquina ='" + localIP + "'");
                 //MessageBox.Show(idp2);
                 if (idp2 != "") { 
                 if (Convert.ToInt64(idp2) > 0)
