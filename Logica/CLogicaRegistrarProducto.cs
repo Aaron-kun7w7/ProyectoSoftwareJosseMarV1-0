@@ -11,9 +11,9 @@ namespace Logica
     public class CLogicaRegistrarProducto
     {
         CDatosRegistrarProducto add = new CDatosRegistrarProducto();
-        public string AgregarProductos(string Nombre, string Descripcion, string Marca, int Stock, int IdUnidadM, int IdCategoria, int IdSede)
+        public string AgregarProductos(string Nombre, string Descripcion, string Marca, int Stock, int IdUnidadM, int IdCategoria, int IdSede, string UrlImagen)
         {
-            string result = add.AgregarProductto(Nombre,Descripcion,Marca,Stock,IdUnidadM,IdCategoria,IdSede);
+            string result = add.AgregarProductto(Nombre,Descripcion,Marca,Stock,IdUnidadM,IdCategoria,IdSede, UrlImagen);
 
 
             if (result.Trim() == "0")

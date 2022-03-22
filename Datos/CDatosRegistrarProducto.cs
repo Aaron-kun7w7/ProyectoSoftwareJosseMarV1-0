@@ -14,7 +14,7 @@ namespace Datos
        //CLASE PARA COMUNICARNOS CON EL PROCESO DE ALMACENADO DE LA BDD
         SqlCommand comando = new SqlCommand();
         SqlParameter res;
-        public string AgregarProductto(string Nombre, string Descripcion, string Marca,int Stock, int IdUnidadM, int IdCategoria, int IdSede)
+        public string AgregarProductto(string Nombre, string Descripcion, string Marca,int Stock, int IdUnidadM, int IdCategoria, int IdSede, string UrlImagen)
         {
             //SqlParameter x;
             try
@@ -29,6 +29,7 @@ namespace Datos
                 comando.Parameters.AddWithValue("@IdUnidadM", IdUnidadM);
                 comando.Parameters.AddWithValue("@IdCategoria", IdCategoria);
                 comando.Parameters.AddWithValue("@IdSede", IdSede);
+                comando.Parameters.AddWithValue("@UrlImagen", UrlImagen);
 
                 res = comando.Parameters.AddWithValue("@Result", "");
                 comando.Parameters["@Result"].Direction = ParameterDirection.Output;
