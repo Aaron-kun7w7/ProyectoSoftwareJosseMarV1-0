@@ -52,6 +52,7 @@
     <Compile Include="CLogicaAgregarEmpleados.cs" />
     <Compile Include="CLogicaAgregarProveedor.cs" />
     <Compile Include="CLogicaCompraCreditoo.cs" />
+    <Compile Include="CLogicaCompraFINAL.cs" />
     <Compile Include="CLogicaConsultas.cs" />
     <Compile Include="CLogicaContadorCedula.cs" />
     <Compile Include="CLogicaHistorialU.cs" />

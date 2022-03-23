@@ -52,6 +52,7 @@
     <Compile Include="CDatosAgregarCompras.cs" />
     <Compile Include="CDatosAgregarEmpleados.cs" />
     <Compile Include="CDatosAgregarProveedor.cs" />
+    <Compile Include="CDatosCompraFINAL.cs" />
     <Compile Include="CDatosConsulta.cs" />
     <Compile Include="CDatosContadorCedula.cs" />
     <Compile Include="CDatosControlInventario.cs" />

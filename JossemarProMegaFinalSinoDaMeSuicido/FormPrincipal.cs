@@ -420,8 +420,13 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
 
         private void BtnHistorialCompra_Click(object sender, EventArgs e)
         {
-            FrmAgregarProductoNuevo f = new FrmAgregarProductoNuevo(a);
+            //FrmAgregarProductoNuevo f = new FrmAgregarProductoNuevo(a);
+            FormNuevaCompra f = new FormNuevaCompra();
             f.ShowDialog();
+
+            
+
+
         }
 
         private void BtnDevoluciones_Click(object sender, EventArgs e)
