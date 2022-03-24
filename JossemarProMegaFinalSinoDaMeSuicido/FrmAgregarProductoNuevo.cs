@@ -8,20 +8,36 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Logica;
+using CloudinaryDotNet;
+using CloudinaryDotNet.Actions;
+
+
+
 namespace JossemarProMegaFinalSinoDaMeSuicido
 {
     public partial class FrmAgregarProductoNuevo : Form
     {
+      
         public FrmAgregarProductoNuevo(string a)
         {
             InitializeComponent();
             id = a;
+            //En el inicializador se le asigna las credenciales del Servidor.
+            cloud = new Cloudinary(A);
         }
+
+        // se crea una variable estatica de cloudinary
+        public static Cloudinary cloud;
+
+        //Se crea una variable Account A que contendra todos las credenciales de nuestro servidor 
+        Account A = new Account("cubosix", "996516874565789", "sukPe7qfN7EsZ_qE0DG1z5T87Dg");
+
         string id;
         string imagen;
         CLogicaObtenerIP idS = new CLogicaObtenerIP();
         CLogicaRegistrarProducto save = new CLogicaRegistrarProducto();
         CLogicaLlenarCmb fill = new CLogicaLlenarCmb();
+
         private void BtnNuevo_Click(object sender, EventArgs e)
         {
 
@@ -33,6 +49,41 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             cmbCategorias();
             cmbUnidadMedida();
         }
+
+        private void CargarImagen(String ruta)
+        {
+            //metodo try para capturar los posibles errores
+
+            try
+            {
+
+                //funcion de peticion para subir una imagen A cloudinari
+                var uploadParams = new ImageUploadParams()
+                {
+                    //se el apsa la ruta de la ubicacion del archivo.
+                    File = new FileDescription(ruta)
+                };
+
+                //Funcion que obtiene resultado del la subida .
+                var uploadResult = cloud.Upload(uploadParams);
+
+                ruta = uploadResult.SecureUri.ToString();
+                MessageBox.Show("Imagen subida correctamente al servidor cloudinary");
+
+                
+
+                MessageBox.Show(@"" + ruta);
+                imagen = ruta;
+               
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+        }
+
 
         void CapturarDatos()
         {
@@ -51,7 +102,7 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             string idU = c.ConsultaSimple("SELECT IpMaquina.IdUsuario FROM IpMaquina WHERE IpMaquina.IpMaquina = '" + localIP + "'");
             string IdSede = c.ConsultaSimple("SELECT Usuarios.IdSede FROM Usuarios WHERE Usuarios.IdUsuario = '" + idU + "'");
 
-            string result = save.AgregarProductos(nom,descrip,marca,0,IdUnidadM,IdCategoria,Convert.ToInt32(IdSede),imagen);
+            string result = save.AgregarProductos(nom,descrip,marca,0,IdUnidadM,IdCategoria,Convert.ToInt32(IdSede), imagen);
 
 
             MessageBox.Show("Res = " + result);
@@ -59,10 +110,18 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
 
         private void BtnGuardar_Click(object sender, EventArgs e)
         {
-
             if (MetodoValidar() == 3)
             {
-                CapturarDatos();
+                if (imagen != "")
+                {
+                    CapturarDatos();
+                    CargarImagen(imagen);
+                }
+                else
+                {
+                    MessageBox.Show("Porfavor verifique la imagen seleccionada");
+                }
+  
             }
             else
             {
@@ -104,7 +163,7 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
 
             if (ofdSelectorImagen.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                pbImagen.Image = Image.FromFile(ofdSelectorImagen.FileName);
+                PtbImagen.Image = Image.FromFile(ofdSelectorImagen.FileName);
             }
 
             imagen = ofdSelectorImagen.FileName.ToString();
