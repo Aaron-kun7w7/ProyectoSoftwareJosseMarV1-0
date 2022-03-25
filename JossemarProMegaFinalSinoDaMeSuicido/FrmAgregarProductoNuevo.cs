@@ -93,14 +93,22 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             }
         }
 
+        void Limpiar2()
+        {
+            contador2--;
+            foreach (DataGridViewRow row in DgvCarrito.SelectedRows)
+            {
+                DgvCarrito.Rows.RemoveAt(row.Index);
+            }
+        }
 
         void CapturarDatos()
         {
-            string nom = TxtNombreProducto.Text;
-            int IdUnidadM = Convert.ToInt32(CmbUnidadMedida2.SelectedValue.ToString());
-            string descrip = TxtDescripcion.Text;
-            string marca = TxtMarca.Text;
-            int IdCategoria = Convert.ToInt32(CmbCategoria.SelectedValue.ToString());
+            //string nom = TxtNombreProducto.Text;
+            //int IdUnidadM = Convert.ToInt32(CmbUnidadMedida2.SelectedValue.ToString());
+           //string descrip = TxtDescripcion.Text;
+            //string marca = TxtMarca.Text;
+            //int IdCategoria = Convert.ToInt32(CmbCategoria.SelectedValue.ToString());
 
             CLogicaConsultas c = new CLogicaConsultas();
             CLogicaObtenerIP b = new CLogicaObtenerIP();
@@ -111,10 +119,22 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             string idU = c.ConsultaSimple("SELECT IpMaquina.IdUsuario FROM IpMaquina WHERE IpMaquina.IpMaquina = '" + localIP + "'");
             string IdSede = c.ConsultaSimple("SELECT Usuarios.IdSede FROM Usuarios WHERE Usuarios.IdUsuario = '" + idU + "'");
 
-            string result = save.AgregarProductos(nom,descrip,marca,0,IdUnidadM,IdCategoria,Convert.ToInt32(IdSede), imagen);
+            for (int i = 0; i < contador; i++)
+            {
+                //Obtenemos los ID de los combobox para pasarlos como parametros
 
+                string nom = Convert.ToString(DgvCarrito.Rows[i].Cells[1].Value).Trim();
+                string descrip = Convert.ToString(DgvCarrito.Rows[i].Cells[5].Value).Trim();
+                string marca = Convert.ToString(DgvCarrito.Rows[i].Cells[2].Value);
+                int IdUnidadM = Convert.ToInt32(DgvCarrito.Rows[i].Cells[7].Value);
+                int IdCategoria = Convert.ToInt32(DgvCarrito.Rows[i].Cells[6].Value);
+                imagen = Convert.ToString(DgvCarrito.Rows[i].Cells[8].Value).Trim();
 
-            MessageBox.Show("Res = " + result);
+                string result = save.AgregarProductos(nom, descrip, marca, 0, IdUnidadM, IdCategoria, Convert.ToInt32(IdSede), imagen);
+
+            }
+
+            //MessageBox.Show("Res = " + result);
         }
 
         private void BtnGuardar_Click(object sender, EventArgs e)
@@ -125,6 +145,7 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
                 {
                     CapturarDatos();
                     CargarImagen(imagen);
+                    Limpiar2();
                 }
                 else
                 {
