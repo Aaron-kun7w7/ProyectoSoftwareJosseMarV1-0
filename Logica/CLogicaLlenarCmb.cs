@@ -193,6 +193,15 @@ namespace Logica
 
         }
 
+        //NUEVOS METODOSSSSSSSSSSS
+
+        //METODO PARA LLENAR EL DATAGRIDCONPRODUCTOS
+        public DataTable MostrarProd(string a)
+        {
+            String sql2 = "SELECT vs_Productos.Nombre AS Producto, vs_Productos.Marca,vs_Productos.DescripcionC AS Categoría, vs_Productos.DescripcionTipoUM AS UndMedida, vs_Productos.IdProducto, vs_Productos.IdEstadoProducto FROM vs_Productos WHERE vs_Productos.Nombre LIKE'%"+a+"%' AND vs_Productos.IdEstadoProducto = 1";
+            CLogicaConsultas consult = new CLogicaConsultas();
+            return consult.ConsultaTab(sql2);
+        }
 
     }
 }

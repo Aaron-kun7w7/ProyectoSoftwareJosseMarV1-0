@@ -380,7 +380,8 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
 
         private void BtnAgregarProducto_Click(object sender, EventArgs e)
         {
-            ActivarFrm(new FrmAgregarProductoNuevo(a));
+            FormNuevaCompra b = new FormNuevaCompra(a);
+            b.ShowDialog();
         }
 
         private void BtnDevolucionCompra_Click(object sender, EventArgs e)
@@ -421,7 +422,7 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
         private void BtnHistorialCompra_Click(object sender, EventArgs e)
         {
             //FrmAgregarProductoNuevo f = new FrmAgregarProductoNuevo(a);
-            FormNuevaCompra f = new FormNuevaCompra();
+            FrmAgregarProductoNuevo f = new FrmAgregarProductoNuevo(a);
             f.ShowDialog();
 
             

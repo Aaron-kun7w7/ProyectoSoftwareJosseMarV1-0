@@ -17,7 +17,7 @@ namespace Datos
         SqlCommand comando = new SqlCommand();
         SqlParameter res;
 
-        public string AddSinFactura(string NFactura, int IdUsuario, int IdProveedor, string FechaIngreso, double Subtotal, double total, double Descuento, int Sede)
+        public string AddCompra(string NFactura, int IdUsuario, int IdProveedor, string FechaIngreso, double Subtotal, double total, double Descuento, int Sede)
         {
             //SqlParameter x;
             try
@@ -51,25 +51,103 @@ namespace Datos
                 return "ERROR3";
             }
 
+            //METODO PARA CONECTARME CON EL PROCESO DE ALMACENADO DE DETALLE DE COMPRA
+
+
+        }
+        //METODO PARA CONECTARME CON EL PROCESO DE ALMACENADO DE DETALLE DE COMPRA
+        public string AddDetalleCompra(int IdCompra, int IdProducto, double Cantidad, double PrecioCompra,double PrecioVenta)
+        {
+            //SqlParameter x;
+            try
+            {
+                comando.Connection = conexion.AbrirConexion();
+                comando.CommandText = "JSMDetalleCompra";
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.AddWithValue("@IdCompra", IdCompra);
+                comando.Parameters.AddWithValue("@IdProducto", IdProducto);
+                comando.Parameters.AddWithValue("@Cantidad", Cantidad);
+                comando.Parameters.AddWithValue("@PrecioCompra", PrecioCompra);
+                comando.Parameters.AddWithValue("@PrecioVenta", PrecioVenta);
+
+                res = comando.Parameters.AddWithValue("@Result", "");
+                comando.Parameters["@Result"].Direction = ParameterDirection.Output;
+
+
+
+                comando.ExecuteNonQuery();
+                comando.Parameters.Clear();
+
+                return res.Value.ToString();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex + "Error 404 ");
+                return "ERROR3";
+            }
         }
 
+        //METODO PARA CONECTARME CON EL METODO DE AGREGAR LOTES
+        public string AddLotes(int IdProducto, string FechaCaducidad, string NumeroLote, string FechaIngreso, double CantidadU, int IdCompra, int IdSede)
+        {
+            //SqlParameter x;
+            try
+            {
+                comando.Connection = conexion.AbrirConexion();
+                comando.CommandText = "JSMAgregarLotes";
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.AddWithValue("@IdProducto", IdProducto);
+                comando.Parameters.AddWithValue("@FechaCaducidad", FechaCaducidad);
+                comando.Parameters.AddWithValue("@NumeroLote", NumeroLote);
+                comando.Parameters.AddWithValue("@FechaIngreso", FechaIngreso);
+                comando.Parameters.AddWithValue("@CantidadU", CantidadU);
+                comando.Parameters.AddWithValue("@IdCompra", IdCompra);
+                comando.Parameters.AddWithValue("@IdSede", IdSede);
+
+                res = comando.Parameters.AddWithValue("@Result", "");
+                comando.Parameters["@Result"].Direction = ParameterDirection.Output;
 
 
 
+                comando.ExecuteNonQuery();
+                comando.Parameters.Clear();
+
+                return res.Value.ToString();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex + "Error 404 ");
+                return "ERROR3";
+            }
+        }
+        public string AddPrecioActual(double PrecioCompra, double PrecioVenta, int IdProducto, int IdSede)
+        {
+            //SqlParameter x;
+            try
+            {
+                comando.Connection = conexion.AbrirConexion();
+                comando.CommandText = "JSMAgregarPrecioActual";
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.AddWithValue("@PrecioCompra", PrecioCompra);
+                comando.Parameters.AddWithValue("@PrecioVenta", PrecioVenta);
+                comando.Parameters.AddWithValue("@IdProducto", IdProducto);
+                comando.Parameters.AddWithValue("@IdSede", IdSede);
+
+                res = comando.Parameters.AddWithValue("@Result", "");
+                comando.Parameters["@Result"].Direction = ParameterDirection.Output;
 
 
 
+                comando.ExecuteNonQuery();
+                comando.Parameters.Clear();
 
-
-
-
-
-
-
-
-
-
-
-
+                return res.Value.ToString();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex + "Error 404 ");
+                return "ERROR3";
+            }
+        }
     }
 }
