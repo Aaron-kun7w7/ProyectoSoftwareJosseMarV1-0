@@ -183,33 +183,33 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
 
         private void TxtInteres_Enter(object sender, EventArgs e)
         {
-            TxtInteres.Text = "";
-            TxtInteres.ForeColor = Color.Black;
+            //TxtInteres.Text = "";
+            //TxtInteres.ForeColor = Color.Black;
 
         }
 
         private void TxtInteres_Leave(object sender, EventArgs e)
         {
-            interess = TxtPVenta.Text;
-            if (interess.Equals("Interes (%)"))
-            {
-                TxtInteres.Text = "Interes (%)";
-                TxtInteres.ForeColor = Color.Gray;
+        //    interess = TxtPVenta.Text;
+        //    if (interess.Equals("Interes (%)"))
+        //    {
+        //        TxtInteres.Text = "Interes (%)";
+        //        TxtInteres.ForeColor = Color.Gray;
 
-            }
-            else
-            {
-                if (interess.Equals(""))
-                {
-                    TxtInteres.Text = "Interes(%)";
-                    TxtInteres.ForeColor = Color.Gray;
-                }
-                else
-                {
-                    TxtInteres.Text = cantidad;
-                    TxtInteres.ForeColor = Color.Black;
-                }
-            }
+        //    }
+        //    else
+        //    {
+        //        if (interess.Equals(""))
+        //        {
+        //            TxtInteres.Text = "Interes(%)";
+        //            TxtInteres.ForeColor = Color.Gray;
+        //        }
+        //        else
+        //        {
+        //            TxtInteres.Text = cantidad;
+        //            TxtInteres.ForeColor = Color.Black;
+        //        }
+        //    }
         }
 
         private void TxtCantidad_Enter(object sender, EventArgs e)
@@ -255,7 +255,7 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             TxtPVenta.Text = " Precio Venta";
             TxtLote.Text = "Tamaño Lote";
             TxtNumeroFactura.Text = "N° Factura";
-            TxtInteres.Text = "Interes (%)";
+            //TxtInteres.Text = "Interes (%)";
             TxtSubtotal.Text = "Subtotal";
             TxtSubInteres.Text = "Monto Interes";
             TxtDescuento.Text = "Descuento";
@@ -266,7 +266,7 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             TxtPVenta.ForeColor = Color.Gray;
             TxtLote.ForeColor = Color.Gray;
             TxtNumeroFactura.ForeColor = Color.Gray;
-            TxtInteres.ForeColor = Color.Gray;
+            //TxtInteres.ForeColor = Color.Gray;
             TxtSubtotal.ForeColor = Color.Gray;
             TxtSubInteres.ForeColor = Color.Gray;
             TxtDescuento.ForeColor = Color.Gray;
