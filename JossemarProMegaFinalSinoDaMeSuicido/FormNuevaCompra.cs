@@ -16,170 +16,37 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
         {
             InitializeComponent();
             id = a;
+            cmbCategorias();
+            cmbProveedores();
+            cmbUnidadMedida();
+
+            DgvCarrito.Columns[0].Width = 90;
+            DgvCarrito.Columns[1].Width = 90;
+            DgvCarrito.Columns[2].Width = 90;
+            DgvCarrito.Columns[3].Width = 90;
+            DgvCarrito.Columns[4].Width = 90;
+            DgvCarrito.Columns[5].Width = 90;
+            DgvCarrito.Columns[6].Width = 90;
+            DgvCarrito.Columns[7].Width = 90;
+            DgvCarrito.Columns[8].Width = 90;
+            DgvCarrito.Columns[9].Width = 90;
+            DgvCarrito.Columns[10].Width = 90;
+
         }
         string id;
         string idCompra;
         int IdProducto = 0;
         double PrecioC;
         double PrecioV;
+        int contador = 0, contador2 = 0;
+
         //Variables para diseño estetico del texbox
         string cantidad = "", lote = "", NFactura = "", pcompra="", pventas="", interess="", sub="",total="", desc="", subinteres="";
         CLogicaCompraFINAL buy = new CLogicaCompraFINAL();
         CLogicaLlenarCmb fill = new CLogicaLlenarCmb();
         CLogicaConsultas sql = new CLogicaConsultas();
         CLogicaObtenerIP ip = new CLogicaObtenerIP();
-        private void TxtCantidad_Leave(object sender, EventArgs e)
-        {
-            cantidad = TxtCantidad.Text;
-            if (cantidad.Equals("Cantidad"))
-            {
-                TxtCantidad.Text = "Cantidad";
-                TxtCantidad.ForeColor = Color.Gray;
-
-            }
-            else
-            {
-                if (cantidad.Equals(""))
-                {
-                    TxtCantidad.Text = "Cantidad";
-                    TxtCantidad.ForeColor = Color.Gray;
-                }
-                else
-                {
-                    TxtCantidad.Text = cantidad;
-                    TxtCantidad.ForeColor = Color.Black;
-                }
-            }
-
-        }
-
-        private void TxtPCompra_Enter(object sender, EventArgs e)
-        {
-            TxtPCompra.Text = "";
-            TxtPCompra.ForeColor = Color.Black;
-        }
-
-        private void TxtPCompra_Leave(object sender, EventArgs e)
-        {
-
-            pcompra = TxtPCompra.Text;
-            if (pcompra.Equals("Precio Compra"))
-            {
-                TxtPCompra.Text = "Precio Compra";
-                TxtPCompra.ForeColor = Color.Gray;
-
-            }
-            else
-            {
-                if (pcompra.Equals(""))
-                {
-                    TxtPCompra.Text = "Precio Compra";
-                    TxtPCompra.ForeColor = Color.Gray;
-                }
-                else
-                {
-                    TxtPCompra.Text = cantidad;
-                    TxtPCompra.ForeColor = Color.Black;
-                }
-            }
-
-        }
-
-        private void TxtPVenta_Enter(object sender, EventArgs e)
-        {
-            TxtPVenta.Text = "";
-            TxtPVenta.ForeColor = Color.Black;
-        }
-
-        private void TxtPVenta_Leave(object sender, EventArgs e)
-        {
-            pventas = TxtPVenta.Text;
-            if (pventas.Equals("Precio Venta"))
-            {
-                TxtPCompra.Text = "Precio Venta";
-                TxtPCompra.ForeColor = Color.Gray;
-
-            }
-            else
-            {
-                if (pventas.Equals(""))
-                {
-                    TxtPVenta.Text = "Precio Venta";
-                    TxtPVenta.ForeColor = Color.Gray;
-                }
-                else
-                {
-                    TxtPVenta.Text = cantidad;
-                    TxtPVenta.ForeColor = Color.Black;
-                }
-            }
-        }
-
-        private void TxtLote_Enter(object sender, EventArgs e)
-        {
-            TxtLote.Text = "";
-            TxtLote.ForeColor = Color.Black;
-        }
-
-        private void TxtLote_Leave(object sender, EventArgs e)
-        {
-             lote= TxtPVenta.Text;
-            if (lote.Equals("Tamaño Lote"))
-            {
-                TxtLote.Text = "Tamaño Lote";
-                TxtLote.ForeColor = Color.Gray;
-
-            }
-            else
-            {
-                if (lote.Equals(""))
-                {
-                    TxtLote.Text = "Tamaño Lote";
-                    TxtLote.ForeColor = Color.Gray;
-                }
-                else
-                {
-                    TxtLote.Text = cantidad;
-                    TxtLote.ForeColor = Color.Black;
-                }
-            }
-        }
-
-        private void TxtNumeroFactura_Enter(object sender, EventArgs e)
-        {
-            TxtNumeroFactura.Text = "";
-            TxtNumeroFactura.ForeColor = Color.Black;
-        }
-
-        private void TxtNumeroFactura_Leave(object sender, EventArgs e)
-        {
-            NFactura = TxtNumeroFactura.Text;
-            if (NFactura.Equals("N° Factura"))
-            {
-                TxtNumeroFactura.Text = "N° Factura";
-                TxtNumeroFactura.ForeColor = Color.Gray;
-
-            }
-            else
-            {
-                if (NFactura.Equals(""))
-                {
-                    TxtNumeroFactura.Text = "N° Factura";
-                    TxtNumeroFactura.ForeColor = Color.Gray;
-                }
-                else
-                {
-                    TxtNumeroFactura.Text = cantidad;
-                    TxtNumeroFactura.ForeColor = Color.Black;
-                }
-            }
-
-        }
-
-        private void TxtInteres_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+       
 
         private void TxtInteres_Enter(object sender, EventArgs e)
         {
@@ -212,47 +79,11 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
         //    }
         }
 
-        private void TxtCantidad_Enter(object sender, EventArgs e)
-        {
-            TxtCantidad.Text = "";
-            TxtCantidad.ForeColor = Color.Black;
-        }
-
-        private void TxtBuscar_Enter(object sender, EventArgs e)
-        {
-            TxtBuscar.Text = "";
-            TxtBuscar.ForeColor = Color.Black;
-        }
-
-        private void TxtBuscar_Leave(object sender, EventArgs e)
-        {
-            Buscar = TxtBuscar.Text;
-            if (Buscar.Equals("Buscar"))
-            {
-                TxtBuscar.Text = "Buscar";
-                TxtBuscar.ForeColor = Color.Gray;
-
-            }
-            else
-            {
-                if (interess.Equals(""))
-                {
-                    TxtBuscar.Text = "Buscar";
-                    TxtBuscar.ForeColor = Color.Gray;
-                }
-                else
-                {
-                    TxtBuscar.Text = cantidad;
-                    TxtBuscar.ForeColor = Color.Black;
-                }
-            }
-        }
-
         private void FormNuevaCompra_Load(object sender, EventArgs e)
         {
             TxtCantidad.Text = "Cantidad";
             TxtPCompra.Text = "Precio Compra";
-            TxtPVenta.Text = " Precio Venta";
+            TxtPVenta.Text = "Precio Venta";
             TxtLote.Text = "Tamaño Lote";
             TxtNumeroFactura.Text = "N° Factura";
             //TxtInteres.Text = "Interes (%)";
@@ -287,10 +118,7 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
         public double interes;
         public double MontoInt;
 
-        private void DgvProductos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            IdProducto = Convert.ToInt32(DgvProductos.CurrentRow.Cells[4].Value);
-        }
+       
 
         public double Subtotal;
 
@@ -298,6 +126,191 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
         public double TotalConIva;
         public string fecha;
         public int factura;
+
+        private void BtnAgregar_Click(object sender, EventArgs e)
+        {
+         AgregarDatosRestantes();
+
+        }
+
+        private void DgvProductos_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DgvCarrito.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            DgvCarrito.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            //DgvCarrito.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+
+            contador = 0 + contador2;
+            contador2++;
+            DgvCarrito.Rows.Add();
+
+            DgvCarrito.Rows[contador].Cells[1].Value = DgvProductos.Rows[e.RowIndex].Cells[0].Value;
+            DgvCarrito.Rows[contador].Cells[2].Value = DgvProductos.Rows[e.RowIndex].Cells[1].Value;
+            DgvCarrito.Rows[contador].Cells[3].Value = DgvProductos.Rows[e.RowIndex].Cells[2].Value;
+            DgvCarrito.Rows[contador].Cells[4].Value = DgvProductos.Rows[e.RowIndex].Cells[3].Value;
+
+        }
+
+        private void TxtNumeroFactura_Enter_1(object sender, EventArgs e)
+        {
+            if (TxtNumeroFactura.Text == "N° Factura")
+            {
+                TxtNumeroFactura.Text = "";
+                TxtNumeroFactura.ForeColor = Color.Black;
+            }
+            
+        }
+
+       
+        private void TxtLote_Enter_1(object sender, EventArgs e)
+        {
+            if (TxtLote.Text == "Tamaño Lote")
+            {
+                TxtLote.Text = "";
+                TxtLote.ForeColor = Color.Black;
+            }
+
+        }
+
+        private void TxtLote_Leave_1(object sender, EventArgs e)
+        {
+
+            if (TxtLote.Text == "")
+            {
+                TxtLote.Text = "Tamaño Lote";
+                TxtLote.ForeColor = Color.Gray;
+            }
+
+        }
+
+        private void TxtCantidad_Leave_1(object sender, EventArgs e)
+        {
+            if (TxtCantidad.Text == "")
+            {
+                TxtCantidad.Text = "Cantidad";
+                TxtCantidad.ForeColor = Color.Gray;
+            }
+
+        }
+
+        private void TxtCantidad_Enter_1(object sender, EventArgs e)
+        {
+
+            if (TxtCantidad.Text == "Cantidad")
+            {
+                TxtCantidad.Text = "";
+                TxtCantidad.ForeColor = Color.Black;
+            }
+
+            
+        }
+
+       
+        private void TxtPCompra_Enter_1(object sender, EventArgs e)
+        {
+
+            if (TxtPCompra.Text == "Precio Compra")
+            {
+                TxtPCompra.Text = "";
+                TxtPCompra.ForeColor = Color.Black;
+            }
+            
+        }
+
+        private void TxtPCompra_Leave_1(object sender, EventArgs e)
+        {
+            if (TxtPCompra.Text == "")
+            {
+                TxtPCompra.Text = "Precio Compra";
+                TxtPCompra.ForeColor = Color.Gray;
+            }
+        }
+
+        private void TxtPVenta_Enter_1(object sender, EventArgs e)
+        {
+            if (TxtPVenta.Text == "Precio Venta")
+            {
+                TxtPVenta.Text = "";
+                TxtPVenta.ForeColor = Color.Black;
+            }
+        }
+
+        private void TxtPVenta_Leave_1(object sender, EventArgs e)
+        {
+            if (TxtPVenta.Text == "")
+            {
+                TxtPVenta.Text = "Precio Venta";
+                TxtPVenta.ForeColor = Color.Gray;
+            }
+
+        }
+
+        private void TxtBuscar_Enter_1(object sender, EventArgs e)
+        {
+            if (TxtBuscar.Text == "Buscar")
+            {
+                TxtBuscar.Text = "";
+                TxtBuscar.ForeColor = Color.Black;
+            }
+
+            
+        }
+
+        private void TxtBuscar_Leave_1(object sender, EventArgs e)
+        {
+            if (TxtBuscar.Text == "")
+            {
+                TxtBuscar.Text = "Buscar";
+                TxtBuscar.ForeColor = Color.Gray;
+            }
+
+        }
+
+        private void TxtNumeroFactura_Leave_1(object sender, EventArgs e)
+        {
+            if (TxtNumeroFactura.Text=="")
+            {
+                TxtNumeroFactura.Text = "N° Factura";
+                TxtNumeroFactura.ForeColor = Color.Gray;
+            }
+
+
+
+            /*
+
+            NFactura = TxtNumeroFactura.Text;
+            if (NFactura.Equals("N° Factura"))
+            {
+                TxtNumeroFactura.Text = "N° Factura";
+                TxtNumeroFactura.ForeColor = Color.Gray;
+
+            }
+            else
+            {
+                if (NFactura.Equals(""))
+                {
+                    TxtNumeroFactura.Text = "N° Factura";
+                    TxtNumeroFactura.ForeColor = Color.Gray;
+                }
+                else
+                {
+                    TxtNumeroFactura.Text = cantidad;
+                    TxtNumeroFactura.ForeColor = Color.Black;
+                }
+            }
+            */
+        }
+
+        private void TxtNumeroFactura_Enter_2(object sender, EventArgs e)
+        {
+
+            if (TxtNumeroFactura.Text == "N° Factura")
+            {
+                TxtNumeroFactura.Text = "";
+                TxtNumeroFactura.ForeColor = Color.Black;
+            }
+            
+        }
+
         string Buscar;
 
         //METODO PARA MOSTRAR PRODUCTOS
@@ -317,7 +330,7 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             string Nfactura = TxtNumeroFactura.Text;
 
             int IdUsuario = Convert.ToInt32(id);
-            int IdProveedor = Convert.ToInt16(CmbProveedores.SelectedValue.ToString());
+            int IdProveedor = Convert.ToInt16(cmbProveedor.SelectedValue.ToString());
 
             string FechaIngreso = DtpIngreso.Value.ToString("yyy/MM/dd");
 
@@ -366,5 +379,65 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
 
             buy.LogicaAddPrecioActual(PrecioC, PrecioV, idProducto, idSede);
         }
+
+        void cmbCategorias()
+        {
+            CmbCategoria.DataSource = fill.cmbCategoria();
+            CmbCategoria.DisplayMember = "DescripcionC";
+            CmbCategoria.ValueMember = "IdCategoria";
+
+        }
+
+        void cmbUnidadMedida()
+        {
+            CmbUnidadMedida2.DataSource = fill.cmbUnidadM();
+            CmbUnidadMedida2.DisplayMember = "DescripcionTipoUM";
+            CmbUnidadMedida2.ValueMember = "IdUnidadM";
+
+        }
+
+        void cmbProveedores()
+        {
+            cmbProveedor.DataSource = fill.cmbProveedores();
+            cmbProveedor.DisplayMember = "NombreEmpresa";
+            cmbProveedor.ValueMember = "IdProveedor";
+
+        }
+
+        void AgregarDatosRestantes()
+        {
+            int Proveedor = Convert.ToInt32(cmbProveedor.SelectedValue.ToString());
+            string prov = sql.ConsultaSimple("SELECT NombreEmpresa FROM Proveedor where IdProveedor  = '" + Proveedor + "'");
+            string fecha1 = DtpCaducidad.Value.ToString("yyy/MM/dd");
+            string fecha2 = DtpIngreso.Value.ToString("yyy/MM/dd");
+
+            //Recorremos el data
+            for (int i = 0; i < DgvCarrito.RowCount; i++)
+            {
+                //Obtenemos la ultima fila creada
+                int ultimaFila = DgvCarrito.Rows.Count - 1;
+
+                //nos posicionamos en la ultimafila existente
+                DgvCarrito.CurrentCell = DgvCarrito.Rows[ultimaFila].Cells[0];
+
+                //si la fila seleccionada es la ultima entonces
+                if (DgvCarrito.Rows[ultimaFila].Selected==true)
+                {
+                    //agregamos los datos restantes al ultimo producto agregado
+                    DgvCarrito.Rows[ultimaFila].Cells[0].Value = TxtNumeroFactura.Text;
+                    DgvCarrito.Rows[ultimaFila].Cells[5].Value = Convert.ToString(TxtLote.Text);
+                    DgvCarrito.Rows[ultimaFila].Cells[6].Value = Convert.ToString(TxtPCompra.Text);
+                    DgvCarrito.Rows[ultimaFila].Cells[7].Value = Convert.ToString(TxtPVenta.Text);
+                    DgvCarrito.Rows[ultimaFila].Cells[8].Value = fecha1;
+                    DgvCarrito.Rows[ultimaFila].Cells[9].Value = fecha2;
+
+                    DgvCarrito.Rows[ultimaFila].Cells[10].Value = prov;
+                    DgvCarrito.Rows[ultimaFila].Cells[11].Value = Convert.ToInt32(CmbCategoria.SelectedValue.ToString());
+
+                }
+                
+            }
+        }
+
     }
 }
