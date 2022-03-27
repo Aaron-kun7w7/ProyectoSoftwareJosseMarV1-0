@@ -16,9 +16,9 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
         {
             InitializeComponent();
             id = a;
-            cmbCategorias();
+            
             cmbProveedores();
-            cmbUnidadMedida();
+            
 
             DgvCarrito.Columns[0].Width = 90;
             DgvCarrito.Columns[1].Width = 90;
@@ -32,13 +32,15 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             DgvCarrito.Columns[9].Width = 90;
             DgvCarrito.Columns[10].Width = 90;
 
+            TxtSubInteres.Visible = false;
+            
         }
         string id;
         string idCompra;
         int IdProducto = 0;
         double PrecioC;
         double PrecioV;
-        int contador = 0, contador2 = 0;
+        int contador = 0, contador2 = 0, suma=0, descuento=0, totalF=0;
 
         //Variables para diseño estetico del texbox
         string cantidad = "", lote = "", NFactura = "", pcompra="", pventas="", interess="", sub="",total="", desc="", subinteres="";
@@ -91,6 +93,8 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             TxtSubInteres.Text = "Monto Interes";
             TxtDescuento.Text = "Descuento";
             TxtTotal.Text = "Total a Pagar";
+            TxtDescuento.Text = "Descuento";
+            TxtSubtotal.Text = "SubTotal";
 
             TxtCantidad.ForeColor = Color.Gray;
             TxtPCompra.ForeColor = Color.Gray;
@@ -103,6 +107,7 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             TxtDescuento.ForeColor = Color.Gray;
             TxtTotal.ForeColor = Color.Gray;
             MostrarProd("");
+            
         }
 
         private void guna2Panel1_Paint(object sender, PaintEventArgs e)
@@ -130,11 +135,18 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
         private void BtnAgregar_Click(object sender, EventArgs e)
         {
          AgregarDatosRestantes();
+            sumaTotal();
 
         }
 
         private void DgvProductos_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (true)
+            {
+
+            }
+            
+            
             DgvCarrito.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
             DgvCarrito.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             //DgvCarrito.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
@@ -148,6 +160,7 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             DgvCarrito.Rows[contador].Cells[3].Value = DgvProductos.Rows[e.RowIndex].Cells[2].Value;
             DgvCarrito.Rows[contador].Cells[4].Value = DgvProductos.Rows[e.RowIndex].Cells[3].Value;
 
+            
         }
 
         private void TxtNumeroFactura_Enter_1(object sender, EventArgs e)
@@ -300,6 +313,52 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             */
         }
 
+        private void BtnDescuento_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                descuento = Convert.ToInt32(TxtDescuento.Text);
+
+                totalF = suma - descuento;
+
+                TxtTotal.Text = Convert.ToString(totalF);
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("No se puede aplicar el descuento debido a que no hay productos");
+            }
+            
+            
+        }
+
+        private void TxtDescuento_Enter(object sender, EventArgs e)
+        {
+            if (TxtDescuento.Text == "Descuento")
+            {
+                TxtDescuento.Text = "";
+                TxtDescuento.ForeColor = Color.Black;
+            }
+        }
+
+        private void TxtDescuento_Leave(object sender, EventArgs e)
+        {
+            if (TxtPVenta.Text == "")
+            {
+                TxtPVenta.Text = "Descuento";
+                TxtPVenta.ForeColor = Color.Gray;
+            }
+        }
+
+        private void TxtSubtotal_Leave(object sender, EventArgs e)
+        {
+            if (TxtSubtotal.Text == "")
+            {
+                TxtSubtotal.Text = "SubTotal";
+                TxtSubtotal.ForeColor = Color.Gray;
+            }
+        }
+
         private void TxtNumeroFactura_Enter_2(object sender, EventArgs e)
         {
 
@@ -309,6 +368,11 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
                 TxtNumeroFactura.ForeColor = Color.Black;
             }
             
+        }
+
+        private void BtnLimpiar_Click(object sender, EventArgs e)
+        {
+            Delete();
         }
 
         string Buscar;
@@ -380,22 +444,6 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             buy.LogicaAddPrecioActual(PrecioC, PrecioV, idProducto, idSede);
         }
 
-        void cmbCategorias()
-        {
-            CmbCategoria.DataSource = fill.cmbCategoria();
-            CmbCategoria.DisplayMember = "DescripcionC";
-            CmbCategoria.ValueMember = "IdCategoria";
-
-        }
-
-        void cmbUnidadMedida()
-        {
-            CmbUnidadMedida2.DataSource = fill.cmbUnidadM();
-            CmbUnidadMedida2.DisplayMember = "DescripcionTipoUM";
-            CmbUnidadMedida2.ValueMember = "IdUnidadM";
-
-        }
-
         void cmbProveedores()
         {
             cmbProveedor.DataSource = fill.cmbProveedores();
@@ -410,33 +458,99 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             string prov = sql.ConsultaSimple("SELECT NombreEmpresa FROM Proveedor where IdProveedor  = '" + Proveedor + "'");
             string fecha1 = DtpCaducidad.Value.ToString("yyy/MM/dd");
             string fecha2 = DtpIngreso.Value.ToString("yyy/MM/dd");
-
-            //Recorremos el data
-            for (int i = 0; i < DgvCarrito.RowCount; i++)
+            
+            if (TxtCantidad.Text == "Cantidad" && TxtLote.Text == "Tamaño Lote" && TxtNumeroFactura.Text == "N° Factura" && TxtPCompra.Text == "Precio Compra" && TxtPVenta.Text == "Precio Venta")
             {
-                //Obtenemos la ultima fila creada
-                int ultimaFila = DgvCarrito.Rows.Count - 1;
 
-                //nos posicionamos en la ultimafila existente
-                DgvCarrito.CurrentCell = DgvCarrito.Rows[ultimaFila].Cells[0];
-
-                //si la fila seleccionada es la ultima entonces
-                if (DgvCarrito.Rows[ultimaFila].Selected==true)
+                MessageBox.Show("Lo sentimos, porfavor rellene los campos solicitador");
+            }
+            else
+            {
+                //Recorremos el data
+                for (int i = 0; i < DgvCarrito.RowCount; i++)
                 {
-                    //agregamos los datos restantes al ultimo producto agregado
-                    DgvCarrito.Rows[ultimaFila].Cells[0].Value = TxtNumeroFactura.Text;
-                    DgvCarrito.Rows[ultimaFila].Cells[5].Value = Convert.ToString(TxtLote.Text);
-                    DgvCarrito.Rows[ultimaFila].Cells[6].Value = Convert.ToString(TxtPCompra.Text);
-                    DgvCarrito.Rows[ultimaFila].Cells[7].Value = Convert.ToString(TxtPVenta.Text);
-                    DgvCarrito.Rows[ultimaFila].Cells[8].Value = fecha1;
-                    DgvCarrito.Rows[ultimaFila].Cells[9].Value = fecha2;
+                    //Obtenemos la ultima fila creada
+                    int ultimaFila = DgvCarrito.Rows.Count - 1;
 
-                    DgvCarrito.Rows[ultimaFila].Cells[10].Value = prov;
-                    DgvCarrito.Rows[ultimaFila].Cells[11].Value = Convert.ToInt32(CmbCategoria.SelectedValue.ToString());
+                    //nos posicionamos en la ultimafila existente
+                    DgvCarrito.CurrentCell = DgvCarrito.Rows[ultimaFila].Cells[0];
+
+                    //si la fila seleccionada es la ultima entonces
+                    if (DgvCarrito.Rows[ultimaFila].Selected == true)
+                    {
+                        //agregamos los datos restantes al ultimo producto agregado
+                        DgvCarrito.Rows[ultimaFila].Cells[0].Value = TxtNumeroFactura.Text;
+                        DgvCarrito.Rows[ultimaFila].Cells[5].Value = Convert.ToString(TxtLote.Text);
+                        DgvCarrito.Rows[ultimaFila].Cells[6].Value = Convert.ToString(TxtPCompra.Text);
+                        DgvCarrito.Rows[ultimaFila].Cells[7].Value = Convert.ToString(TxtPVenta.Text);
+                        DgvCarrito.Rows[ultimaFila].Cells[8].Value = fecha1;
+                        DgvCarrito.Rows[ultimaFila].Cells[9].Value = fecha2;
+                        DgvCarrito.Rows[ultimaFila].Cells[10].Value = prov;
+                        DgvCarrito.Rows[ultimaFila].Cells[11].Value = Convert.ToString(TxtCantidad.Text);
+
+
+                    }
 
                 }
+
+               
+            }
+            
+            
+            
+        }
+
+        void Limpiar2()
+        {
+            contador2--;
+            foreach (DataGridViewRow row in DgvCarrito.SelectedRows)
+            {
+                DgvCarrito.Rows.RemoveAt(row.Index);
+            }
+            contador2 = 0;
+        }
+
+        void Delete()
+        {
+            TxtCantidad.Text = "Cantidad";
+            TxtPCompra.Text = "Precio Compra";
+            TxtPVenta.Text = "Precio Venta";
+            TxtLote.Text = "Tamaño Lote";
+            TxtNumeroFactura.Text = "N° Factura";
+            //TxtInteres.Text = "Interes (%)";
+            TxtSubtotal.Text = "Subtotal";
+            //TxtSubInteres.Text = "Monto Interes";
+            TxtDescuento.Text = "Descuento";
+            TxtTotal.Text = "Total a Pagar";
+            cmbProveedor.SelectedValue = 1;
+           
+
+        }
+
+        int sumaTotal()
+        {
+            try
+            {
+                int calculo = 0;
+
+                calculo = (Convert.ToInt32(DgvCarrito.Rows[DgvCarrito.RowCount - 1].Cells[6].Value) * (Convert.ToInt32(DgvCarrito.Rows[DgvCarrito.RowCount - 1].Cells[11].Value)));
+                suma = (suma + calculo);
+
+
+                TxtSubtotal.Text = Convert.ToString(suma);
+
+               
+            }
+            catch (System.ArgumentOutOfRangeException e)
+            {
+                MessageBox.Show("campos vacios");
                 
             }
+            catch (System.FormatException a)
+            {
+                MessageBox.Show("Algunos campos del producto en el carrito se encuentran vacios.");
+            }   
+            return suma;
         }
 
     }

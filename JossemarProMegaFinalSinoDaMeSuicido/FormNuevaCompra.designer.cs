@@ -50,11 +50,7 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             this.guna2GroupBox1 = new Guna.UI2.WinForms.Guna2GroupBox();
             this.DgvCarrito = new Guna.UI2.WinForms.Guna2DataGridView();
             this.cmbProveedor = new Guna.UI2.WinForms.Guna2ComboBox();
-            this.CmbUnidadMedida2 = new Guna.UI2.WinForms.Guna2ComboBox();
-            this.CmbCategoria = new Guna.UI2.WinForms.Guna2ComboBox();
-            this.guna2HtmlLabel6 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2HtmlLabel5 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.guna2HtmlLabel4 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.DtpIngreso = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.DtpCaducidad = new Guna.UI2.WinForms.Guna2DateTimePicker();
@@ -66,8 +62,6 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             this.TxtDescuento = new System.Windows.Forms.TextBox();
             this.guna2Panel6 = new Guna.UI2.WinForms.Guna2Panel();
             this.TxtSubtotal = new System.Windows.Forms.TextBox();
-            this.Credito = new Guna.UI2.WinForms.Guna2RadioButton();
-            this.guna2RadioButton1 = new Guna.UI2.WinForms.Guna2RadioButton();
             this.guna2Panel10 = new Guna.UI2.WinForms.Guna2Panel();
             this.TxtNumeroFactura = new System.Windows.Forms.TextBox();
             this.guna2Panel7 = new Guna.UI2.WinForms.Guna2Panel();
@@ -89,7 +83,9 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BtnDescuento = new Guna.UI2.WinForms.Guna2Button();
             this.PnlBarraSuperior.SuspendLayout();
             this.guna2Panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvProductos)).BeginInit();
@@ -145,8 +141,9 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             // 
             // guna2Panel1
             // 
-            this.guna2Panel1.Controls.Add(this.guna2Panel13);
+            this.guna2Panel1.Controls.Add(this.BtnDescuento);
             this.guna2Panel1.Controls.Add(this.TxtTotal);
+            this.guna2Panel1.Controls.Add(this.guna2Panel13);
             this.guna2Panel1.Controls.Add(this.BtnLimpiar);
             this.guna2Panel1.Controls.Add(this.BtnGuardar);
             this.guna2Panel1.Controls.Add(this.BtnAgregar);
@@ -180,9 +177,9 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             this.TxtTotal.Margin = new System.Windows.Forms.Padding(2);
             this.TxtTotal.MaxLength = 30;
             this.TxtTotal.Name = "TxtTotal";
+            this.TxtTotal.ReadOnly = true;
             this.TxtTotal.Size = new System.Drawing.Size(134, 20);
             this.TxtTotal.TabIndex = 86;
-            this.TxtTotal.Text = "Total";
             // 
             // BtnLimpiar
             // 
@@ -198,6 +195,7 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             this.BtnLimpiar.Size = new System.Drawing.Size(102, 37);
             this.BtnLimpiar.TabIndex = 85;
             this.BtnLimpiar.Text = "Limpiar";
+            this.BtnLimpiar.Click += new System.EventHandler(this.BtnLimpiar_Click);
             // 
             // BtnGuardar
             // 
@@ -319,11 +317,7 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             // 
             this.guna2GroupBox1.Controls.Add(this.DgvCarrito);
             this.guna2GroupBox1.Controls.Add(this.cmbProveedor);
-            this.guna2GroupBox1.Controls.Add(this.CmbUnidadMedida2);
-            this.guna2GroupBox1.Controls.Add(this.CmbCategoria);
-            this.guna2GroupBox1.Controls.Add(this.guna2HtmlLabel6);
             this.guna2GroupBox1.Controls.Add(this.guna2HtmlLabel5);
-            this.guna2GroupBox1.Controls.Add(this.guna2HtmlLabel4);
             this.guna2GroupBox1.Controls.Add(this.textBox1);
             this.guna2GroupBox1.Controls.Add(this.DtpIngreso);
             this.guna2GroupBox1.Controls.Add(this.DtpCaducidad);
@@ -335,8 +329,6 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             this.guna2GroupBox1.Controls.Add(this.TxtDescuento);
             this.guna2GroupBox1.Controls.Add(this.guna2Panel6);
             this.guna2GroupBox1.Controls.Add(this.TxtSubtotal);
-            this.guna2GroupBox1.Controls.Add(this.Credito);
-            this.guna2GroupBox1.Controls.Add(this.guna2RadioButton1);
             this.guna2GroupBox1.Controls.Add(this.guna2Panel10);
             this.guna2GroupBox1.Controls.Add(this.TxtNumeroFactura);
             this.guna2GroupBox1.Controls.Add(this.guna2Panel7);
@@ -390,6 +382,7 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             this.Column8,
             this.Column9,
             this.Column11,
+            this.Column13,
             this.Column12});
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
@@ -452,54 +445,6 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             this.cmbProveedor.Size = new System.Drawing.Size(140, 36);
             this.cmbProveedor.TabIndex = 108;
             // 
-            // CmbUnidadMedida2
-            // 
-            this.CmbUnidadMedida2.BackColor = System.Drawing.Color.Transparent;
-            this.CmbUnidadMedida2.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.CmbUnidadMedida2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CmbUnidadMedida2.FocusedColor = System.Drawing.Color.Empty;
-            this.CmbUnidadMedida2.FocusedState.Parent = this.CmbUnidadMedida2;
-            this.CmbUnidadMedida2.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.CmbUnidadMedida2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
-            this.CmbUnidadMedida2.FormattingEnabled = true;
-            this.CmbUnidadMedida2.HoverState.Parent = this.CmbUnidadMedida2;
-            this.CmbUnidadMedida2.ItemHeight = 30;
-            this.CmbUnidadMedida2.ItemsAppearance.Parent = this.CmbUnidadMedida2;
-            this.CmbUnidadMedida2.Location = new System.Drawing.Point(216, 176);
-            this.CmbUnidadMedida2.Name = "CmbUnidadMedida2";
-            this.CmbUnidadMedida2.ShadowDecoration.Parent = this.CmbUnidadMedida2;
-            this.CmbUnidadMedida2.Size = new System.Drawing.Size(140, 36);
-            this.CmbUnidadMedida2.TabIndex = 107;
-            // 
-            // CmbCategoria
-            // 
-            this.CmbCategoria.BackColor = System.Drawing.Color.Transparent;
-            this.CmbCategoria.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.CmbCategoria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CmbCategoria.FocusedColor = System.Drawing.Color.Empty;
-            this.CmbCategoria.FocusedState.Parent = this.CmbCategoria;
-            this.CmbCategoria.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.CmbCategoria.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
-            this.CmbCategoria.FormattingEnabled = true;
-            this.CmbCategoria.HoverState.Parent = this.CmbCategoria;
-            this.CmbCategoria.ItemHeight = 30;
-            this.CmbCategoria.ItemsAppearance.Parent = this.CmbCategoria;
-            this.CmbCategoria.Location = new System.Drawing.Point(421, 176);
-            this.CmbCategoria.Name = "CmbCategoria";
-            this.CmbCategoria.ShadowDecoration.Parent = this.CmbCategoria;
-            this.CmbCategoria.Size = new System.Drawing.Size(140, 36);
-            this.CmbCategoria.TabIndex = 106;
-            // 
-            // guna2HtmlLabel6
-            // 
-            this.guna2HtmlLabel6.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel6.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel6.Location = new System.Drawing.Point(231, 147);
-            this.guna2HtmlLabel6.Name = "guna2HtmlLabel6";
-            this.guna2HtmlLabel6.Size = new System.Drawing.Size(102, 19);
-            this.guna2HtmlLabel6.TabIndex = 102;
-            this.guna2HtmlLabel6.Text = "Unidad Medida";
-            // 
             // guna2HtmlLabel5
             // 
             this.guna2HtmlLabel5.BackColor = System.Drawing.Color.Transparent;
@@ -509,16 +454,6 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             this.guna2HtmlLabel5.Size = new System.Drawing.Size(83, 19);
             this.guna2HtmlLabel5.TabIndex = 101;
             this.guna2HtmlLabel5.Text = "Proveedores";
-            // 
-            // guna2HtmlLabel4
-            // 
-            this.guna2HtmlLabel4.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel4.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel4.Location = new System.Drawing.Point(454, 147);
-            this.guna2HtmlLabel4.Name = "guna2HtmlLabel4";
-            this.guna2HtmlLabel4.Size = new System.Drawing.Size(70, 19);
-            this.guna2HtmlLabel4.TabIndex = 100;
-            this.guna2HtmlLabel4.Text = "Categoria";
             // 
             // textBox1
             // 
@@ -604,6 +539,7 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             this.TxtSubInteres.Margin = new System.Windows.Forms.Padding(2);
             this.TxtSubInteres.MaxLength = 30;
             this.TxtSubInteres.Name = "TxtSubInteres";
+            this.TxtSubInteres.ReadOnly = true;
             this.TxtSubInteres.Size = new System.Drawing.Size(118, 16);
             this.TxtSubInteres.TabIndex = 91;
             this.TxtSubInteres.Text = "Interes";
@@ -630,7 +566,8 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             this.TxtDescuento.Name = "TxtDescuento";
             this.TxtDescuento.Size = new System.Drawing.Size(118, 16);
             this.TxtDescuento.TabIndex = 89;
-            this.TxtDescuento.Text = "Descuento";
+            this.TxtDescuento.Enter += new System.EventHandler(this.TxtDescuento_Enter);
+            this.TxtDescuento.Leave += new System.EventHandler(this.TxtDescuento_Leave);
             // 
             // guna2Panel6
             // 
@@ -652,55 +589,10 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             this.TxtSubtotal.Margin = new System.Windows.Forms.Padding(2);
             this.TxtSubtotal.MaxLength = 30;
             this.TxtSubtotal.Name = "TxtSubtotal";
+            this.TxtSubtotal.ReadOnly = true;
             this.TxtSubtotal.Size = new System.Drawing.Size(118, 16);
             this.TxtSubtotal.TabIndex = 87;
-            this.TxtSubtotal.Text = "Sub Total";
-            // 
-            // Credito
-            // 
-            this.Credito.AutoSize = true;
-            this.Credito.BackColor = System.Drawing.Color.White;
-            this.Credito.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.Credito.CheckedState.BorderThickness = 0;
-            this.Credito.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.Credito.CheckedState.InnerColor = System.Drawing.Color.White;
-            this.Credito.CheckedState.InnerOffset = -4;
-            this.Credito.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Credito.Location = new System.Drawing.Point(307, 216);
-            this.Credito.Name = "Credito";
-            this.Credito.Size = new System.Drawing.Size(75, 21);
-            this.Credito.TabIndex = 84;
-            this.Credito.TabStop = true;
-            this.Credito.Text = "Credito";
-            this.Credito.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
-            this.Credito.UncheckedState.BorderThickness = 2;
-            this.Credito.UncheckedState.FillColor = System.Drawing.Color.Transparent;
-            this.Credito.UncheckedState.InnerColor = System.Drawing.Color.Transparent;
-            this.Credito.UseVisualStyleBackColor = false;
-            this.Credito.Visible = false;
-            // 
-            // guna2RadioButton1
-            // 
-            this.guna2RadioButton1.AutoSize = true;
-            this.guna2RadioButton1.BackColor = System.Drawing.Color.White;
-            this.guna2RadioButton1.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2RadioButton1.CheckedState.BorderThickness = 0;
-            this.guna2RadioButton1.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2RadioButton1.CheckedState.InnerColor = System.Drawing.Color.White;
-            this.guna2RadioButton1.CheckedState.InnerOffset = -4;
-            this.guna2RadioButton1.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2RadioButton1.Location = new System.Drawing.Point(201, 216);
-            this.guna2RadioButton1.Name = "guna2RadioButton1";
-            this.guna2RadioButton1.Size = new System.Drawing.Size(86, 21);
-            this.guna2RadioButton1.TabIndex = 83;
-            this.guna2RadioButton1.TabStop = true;
-            this.guna2RadioButton1.Text = "Contado";
-            this.guna2RadioButton1.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
-            this.guna2RadioButton1.UncheckedState.BorderThickness = 2;
-            this.guna2RadioButton1.UncheckedState.FillColor = System.Drawing.Color.Transparent;
-            this.guna2RadioButton1.UncheckedState.InnerColor = System.Drawing.Color.Transparent;
-            this.guna2RadioButton1.UseVisualStyleBackColor = false;
-            this.guna2RadioButton1.Visible = false;
+            this.TxtSubtotal.Leave += new System.EventHandler(this.TxtSubtotal_Leave);
             // 
             // guna2Panel10
             // 
@@ -893,12 +785,34 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             this.Column11.Name = "Column11";
             this.Column11.ReadOnly = true;
             // 
+            // Column13
+            // 
+            this.Column13.HeaderText = "Cantidad";
+            this.Column13.Name = "Column13";
+            this.Column13.ReadOnly = true;
+            // 
             // Column12
             // 
             this.Column12.HeaderText = "IdProveedor";
             this.Column12.Name = "Column12";
             this.Column12.ReadOnly = true;
             this.Column12.Visible = false;
+            // 
+            // BtnDescuento
+            // 
+            this.BtnDescuento.CheckedState.Parent = this.BtnDescuento;
+            this.BtnDescuento.CustomImages.Parent = this.BtnDescuento;
+            this.BtnDescuento.FillColor = System.Drawing.Color.Silver;
+            this.BtnDescuento.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold);
+            this.BtnDescuento.ForeColor = System.Drawing.Color.Black;
+            this.BtnDescuento.HoverState.Parent = this.BtnDescuento;
+            this.BtnDescuento.Location = new System.Drawing.Point(609, 563);
+            this.BtnDescuento.Name = "BtnDescuento";
+            this.BtnDescuento.ShadowDecoration.Parent = this.BtnDescuento;
+            this.BtnDescuento.Size = new System.Drawing.Size(102, 37);
+            this.BtnDescuento.TabIndex = 88;
+            this.BtnDescuento.Text = "Aplicar Descuento";
+            this.BtnDescuento.Click += new System.EventHandler(this.BtnDescuento_Click);
             // 
             // FormNuevaCompra
             // 
@@ -941,11 +855,7 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
         private Guna.UI2.WinForms.Guna2GroupBox guna2GroupBox1;
         private Guna.UI2.WinForms.Guna2DataGridView DgvCarrito;
         private Guna.UI2.WinForms.Guna2ComboBox cmbProveedor;
-        private Guna.UI2.WinForms.Guna2ComboBox CmbUnidadMedida2;
-        private Guna.UI2.WinForms.Guna2ComboBox CmbCategoria;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel6;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel5;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel4;
         private System.Windows.Forms.TextBox textBox1;
         private Guna.UI2.WinForms.Guna2DateTimePicker DtpIngreso;
         private Guna.UI2.WinForms.Guna2DateTimePicker DtpCaducidad;
@@ -957,8 +867,6 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
         private System.Windows.Forms.TextBox TxtDescuento;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel6;
         private System.Windows.Forms.TextBox TxtSubtotal;
-        private Guna.UI2.WinForms.Guna2RadioButton Credito;
-        private Guna.UI2.WinForms.Guna2RadioButton guna2RadioButton1;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel10;
         private System.Windows.Forms.TextBox TxtNumeroFactura;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel7;
@@ -980,6 +888,8 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column13;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
+        private Guna.UI2.WinForms.Guna2Button BtnDescuento;
     }
 }
