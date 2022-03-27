@@ -78,12 +78,12 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
                 var uploadResult = cloud.Upload(uploadParams);
 
                 ruta = uploadResult.SecureUri.ToString();
-                MessageBox.Show("Imagen subida correctamente al servidor cloudinary");
+                //MessageBox.Show("Imagen subida correctamente al servidor cloudinary");
 
                 //MessageBox.Show(@"" + ruta);
                 imagen = ruta;
-                
-               
+
+
 
             }
             catch (Exception ex)
@@ -100,27 +100,30 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             {
                 DgvCarrito.Rows.RemoveAt(row.Index);
             }
+            contador2 = 0;
         }
 
         void CapturarDatos()
         {
             //string nom = TxtNombreProducto.Text;
             //int IdUnidadM = Convert.ToInt32(CmbUnidadMedida2.SelectedValue.ToString());
-           //string descrip = TxtDescripcion.Text;
+            //string descrip = TxtDescripcion.Text;
             //string marca = TxtMarca.Text;
             //int IdCategoria = Convert.ToInt32(CmbCategoria.SelectedValue.ToString());
 
-            CLogicaConsultas c = new CLogicaConsultas();
-            CLogicaObtenerIP b = new CLogicaObtenerIP();
-            string localIP = b.ObtenerIp();
-
-            MessageBox.Show("Local Ip = " + localIP);
-
-            string idU = c.ConsultaSimple("SELECT IpMaquina.IdUsuario FROM IpMaquina WHERE IpMaquina.IpMaquina = '" + localIP + "'");
-            string IdSede = c.ConsultaSimple("SELECT Usuarios.IdSede FROM Usuarios WHERE Usuarios.IdUsuario = '" + idU + "'");
-
+            //  MessageBox.Show("Local Ip = " + localIP);
+            contador = DgvCarrito.Rows.Count;
             for (int i = 0; i < contador; i++)
             {
+
+                CLogicaConsultas c = new CLogicaConsultas();
+                CLogicaObtenerIP b = new CLogicaObtenerIP();
+                string localIP = b.ObtenerIp();
+
+                string idU = c.ConsultaSimple("SELECT IpMaquina.IdUsuario FROM IpMaquina WHERE IpMaquina.IpMaquina = '" + localIP + "'");
+                string IdSede = c.ConsultaSimple("SELECT Usuarios.IdSede FROM Usuarios WHERE Usuarios.IdUsuario = '" + idU + "'");
+
+
                 //Obtenemos los ID de los combobox para pasarlos como parametros
 
                 string nom = Convert.ToString(DgvCarrito.Rows[i].Cells[1].Value).Trim();
@@ -130,34 +133,26 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
                 int IdCategoria = Convert.ToInt32(DgvCarrito.Rows[i].Cells[6].Value);
                 imagen = Convert.ToString(DgvCarrito.Rows[i].Cells[8].Value).Trim();
 
+                CargarImagen(imagen);
+
                 string result = save.AgregarProductos(nom, descrip, marca, 0, IdUnidadM, IdCategoria, Convert.ToInt32(IdSede), imagen);
 
+
+
+                //MessageBox.Show("Vuelta Numero"+i);
             }
+
+            Limpiar2();
+
 
             //MessageBox.Show("Res = " + result);
         }
 
         private void BtnGuardar_Click(object sender, EventArgs e)
         {
-            if (MetodoValidar() == 3)
-            {
-                if (imagen != "")
-                {
-                    CapturarDatos();
-                    CargarImagen(imagen);
-                    Limpiar2();
-                }
-                else
-                {
-                    MessageBox.Show("Porfavor verifique la imagen seleccionada");
-                }
-  
-            }
-            else
-            {
-                MessageBox.Show("Uno o más campos se encuentran vacíos. :(", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            
+            CapturarDatos();
+            Limpiar2();
+
         }
 
         private void TxtNombreProducto_KeyPress(object sender, KeyPressEventArgs e)
@@ -189,12 +184,12 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
 
         private void pbImagen_Click(object sender, EventArgs e)
         {
-            
+
             OpenFileDialog ofdSelectorImagen = new OpenFileDialog();
 
             if (ofdSelectorImagen.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-               PtbImagen.Image = Image.FromFile(ofdSelectorImagen.FileName);
+                PtbImagen.Image = Image.FromFile(ofdSelectorImagen.FileName);
             }
             imagen = ofdSelectorImagen.FileName.ToString();
             imagen = imagen.Replace('\\', '/');
@@ -249,7 +244,6 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
 
         void AñadirDatosAlCarrito()
         {
-
             DgvCarrito.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
             DgvCarrito.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             DgvCarrito.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
@@ -257,11 +251,12 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
 
             contador = 0 + contador2;
             contador2++;
+            DgvCarrito.Rows.Add();
 
             TxtTotalCompra.Text = Convert.ToString(contador2);
 
-            DgvCarrito.Rows.Add();
-         
+
+
             DgvCarrito.Rows[contador].Cells[0].Value = imagen2.ToString();
             DgvCarrito.Rows[contador].Cells[1].Value = TxtNombreProducto.Text;
             DgvCarrito.Rows[contador].Cells[2].Value = TxtMarca.Text;
@@ -279,7 +274,6 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
 
             DgvCarrito.Rows[contador].Cells[5].Value = TxtDescripcion.Text;
             DgvCarrito.Rows[contador].Cells[8].Value = rutaGuardar;
-            
 
         }
 
@@ -325,56 +319,56 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             MessageBox.Show("Especifique una ruta para guardar la nueva imagen");
 
             //Abrimos cuadro de dialogo para seleccionar ruta de guardado
-                FolderBrowserDialog dlg = new FolderBrowserDialog();
-                
-                if (dlg.ShowDialog() == DialogResult.OK)
-                {
-                    //Con esto seleccionamos la ruta en forma de string
-                    TxtNuevaImagen.Text = dlg.SelectedPath;
-                    BtnAjustar.Enabled = true;
-                }
+            FolderBrowserDialog dlg = new FolderBrowserDialog();
 
-                if (TxtNuevaImagen.Text == string.Empty)
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                //Con esto seleccionamos la ruta en forma de string
+                TxtNuevaImagen.Text = dlg.SelectedPath;
+                BtnAjustar.Enabled = true;
+            }
+
+            if (TxtNuevaImagen.Text == string.Empty)
+            {
+                MessageBox.Show("Por favor Ponga una ruta :)");
+            }
+            else
+            {
+                try
                 {
-                    MessageBox.Show("Por favor Ponga una ruta :)");
-                }
-                else
-                {
-                    try
+
+                    //Con esto seleccionamos la imagen a rediseñar
+                    using (MagickImage rediseño = new MagickImage(imagen))
                     {
-
-                        //Con esto seleccionamos la imagen a rediseñar
-                        using (MagickImage rediseño = new MagickImage(imagen))
-                        {
                         //Cambiamos el tamaño
-                            rediseño.Resize(150,150);
-                        
+                        rediseño.Resize(150, 150);
+
                         //Nombre del archivo a guardar
                         string nombre_copia = "ImagenModificada" + "-" + System.DateTime.Now.Minute.ToString() + "-" + System.DateTime.Now.Second.ToString();
 
                         //Variable donde se guardara la nueva imagen con su ubicacion y su nombre
                         //el nombre y el formato de guardado son editables a criterio propio
-                            imagen2 = @"" + TxtNuevaImagen.Text + "\\" + nombre_copia + ".jpg" ;
-                            
-                            //Con esto sobreescribimos en la varible y guardamos todo
-                            rediseño.Write(imagen2);
-                            BtnAjustar.Enabled = false;
+                        imagen2 = @"" + TxtNuevaImagen.Text + "\\" + nombre_copia + ".jpg";
+
+                        //Con esto sobreescribimos en la varible y guardamos todo
+                        rediseño.Write(imagen2);
+                        BtnAjustar.Enabled = false;
                         BtnAñadir.Enabled = true;
                         BtnGuardar.Enabled = true;
-                            //imagen2 = "";
+                        //imagen2 = "";
 
-                        }
-
-                    }
-                    catch (Exception ex)
-                    {
-
-                        MessageBox.Show(ex.ToString());
                     }
 
                 }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show(ex.ToString());
+                }
 
             }
+
         }
+    }
     }
 
