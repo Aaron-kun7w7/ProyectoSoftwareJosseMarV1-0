@@ -272,6 +272,10 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             TxtDescuento.ForeColor = Color.Gray;
             TxtTotal.ForeColor = Color.Gray;
             MostrarProd("");
+            //SetSede();
+            cmbUnidadMedida();
+            cmbCategorias();
+            cmbProveedores();
         }
 
         private void guna2Panel1_Paint(object sender, PaintEventArgs e)
@@ -365,6 +369,34 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             int idSede = Convert.ToInt32(ip.ObtenerSede());
 
             buy.LogicaAddPrecioActual(PrecioC, PrecioV, idProducto, idSede);
+        }
+
+        //METODO PARA OBTENER LA DIRECCION MAC
+        void SetSede()
+        {
+            fill.MostrarProveedores();
+        }
+        void cmbUnidadMedida()
+        {
+            CmbUnidadMedida.DataSource = fill.cmbUnidadM();
+            CmbUnidadMedida.DisplayMember = "DescripcionTipoUM";
+            CmbUnidadMedida.ValueMember = "IdUnidadM";
+
+        }
+        void cmbCategorias()
+        {
+            CmbCategoria.DataSource = fill.cmbCategoria();
+            CmbCategoria.DisplayMember = "DescripcionC";
+            CmbCategoria.ValueMember = "IdCategoria";
+
+        }
+
+        void cmbProveedores()
+        {
+            CmbProveedores.DataSource = fill.MostrarProveedores();
+            CmbProveedores.DisplayMember = "NombreEmpresa";
+            CmbProveedores.ValueMember = "IdProveedor";
+
         }
     }
 }
