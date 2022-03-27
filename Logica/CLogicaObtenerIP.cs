@@ -25,11 +25,9 @@ namespace Logica
         public string ObtenerSede()
         {
             CLogicaConsultas c = new CLogicaConsultas();
-
             string localIP = ObtenerIp();
-           string idp2 = c.ConsultaSimple("SELECT IpMaquina.IdUsuario FROM IpMaquina WHERE IpMaquina ='" + localIP + "'");
-            string idU = c.ConsultaSimple("SELECT IpMaquina.IdUsuario FROM IpMaquina WHERE IpMaquina.IpMaquina = '" + localIP + "'");
-            string IdSede = c.ConsultaSimple("SELECT Usuarios.IdSede FROM Usuarios WHERE Usuarios.IdSede = '" + idU + "'");
+            string idU = c.ConsultaSimple("SELECT IpMaquina.IdUsuario FROM IpMaquina WHERE IpMaquina.IpMaquina ='"+localIP+"'");
+            string IdSede = c.ConsultaSimple("SELECT Usuarios.IdSede FROM Usuarios WHERE Usuarios.IdUsuario ='" + idU+"'");
 
             return IdSede;
         }
