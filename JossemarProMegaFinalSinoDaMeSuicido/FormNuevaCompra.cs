@@ -8,6 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Logica;
+using System.Threading;
+
+
 namespace JossemarProMegaFinalSinoDaMeSuicido
 {
     public partial class FormNuevaCompra : Form
@@ -19,7 +22,7 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             
             cmbProveedores();
             
-
+            // tamaño de las columas personalizado
             DgvCarrito.Columns[0].Width = 90;
             DgvCarrito.Columns[1].Width = 90;
             DgvCarrito.Columns[2].Width = 90;
@@ -32,18 +35,27 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             DgvCarrito.Columns[9].Width = 90;
             DgvCarrito.Columns[10].Width = 90;
 
+            //Botones y txt que deben iniciar por defecto asi
             TxtSubInteres.Visible = false;
+            BtnDescuento.Enabled = false;
             
         }
         string id;
         string idCompra;
         int IdProducto = 0;
-        double PrecioC;
+        double PrecioC, suma = 0, descuento = 0, totalF = 0;
         double PrecioV;
-        int contador = 0, contador2 = 0, suma=0, descuento=0, totalF=0;
+        int contador = 0, contador2 = 0;
+
+        public double interes;
+        public double MontoInt;
+        public double Subtotal;
+        public double TotalConIva;
+        public string fecha;
+        public int factura;
 
         //Variables para diseño estetico del texbox
-        string cantidad = "", lote = "", NFactura = "", pcompra="", pventas="", interess="", sub="",total="", desc="", subinteres="";
+        //string cantidad = "", lote = "", NFactura = "", pcompra="", pventas="", interess="", sub="",total="", desc="", subinteres="";
         CLogicaCompraFINAL buy = new CLogicaCompraFINAL();
         CLogicaLlenarCmb fill = new CLogicaLlenarCmb();
         CLogicaConsultas sql = new CLogicaConsultas();
@@ -120,18 +132,6 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             MostrarProd(TxtBuscar.Text);
         }
 
-        public double interes;
-        public double MontoInt;
-
-       
-
-        public double Subtotal;
-
-
-        public double TotalConIva;
-        public string fecha;
-        public int factura;
-
         private void BtnAgregar_Click(object sender, EventArgs e)
         {
          AgregarDatosRestantes();
@@ -141,26 +141,81 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
 
         private void DgvProductos_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (true)
+            
+            int primeraValidacion = DgvCarrito.RowCount;
+            
+            if (primeraValidacion==0)
             {
+                //MessageBox.Show("Primera Validacion");
+
+                DgvCarrito.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+                DgvCarrito.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                //DgvCarrito.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+
+                contador = 0 + contador2;
+                contador2++;
+                DgvCarrito.Rows.Add();
+
+                DgvCarrito.Rows[contador].Cells[1].Value = DgvProductos.Rows[e.RowIndex].Cells[0].Value;
+                DgvCarrito.Rows[contador].Cells[2].Value = DgvProductos.Rows[e.RowIndex].Cells[1].Value;
+                DgvCarrito.Rows[contador].Cells[3].Value = DgvProductos.Rows[e.RowIndex].Cells[2].Value;
+                DgvCarrito.Rows[contador].Cells[4].Value = DgvProductos.Rows[e.RowIndex].Cells[3].Value;
+
+                string Categoria = Convert.ToString(DgvProductos.Rows[e.RowIndex].Cells[2].Value);
+                string categoriaa = sql.ConsultaSimple("SELECT IdCategoria as ID  FROM Categoria where DescripcionC  = '" + Categoria + "'");
+                DgvCarrito.Rows[contador].Cells[13].Value = Convert.ToInt32(categoriaa);
+
+                string UM = Convert.ToString(DgvProductos.Rows[e.RowIndex].Cells[3].Value);
+                string UMM = sql.ConsultaSimple("SELECT IdUnidadM as ID  FROM UnidadMedidas where DescripcionTipoUM  = '" + UM + "'");
+                DgvCarrito.Rows[contador].Cells[14].Value = Convert.ToInt32(UMM);
+
+                string ProductoID = Convert.ToString(DgvProductos.Rows[e.RowIndex].Cells[0].Value);
+                string ProductoID2 = Convert.ToString(DgvProductos.Rows[e.RowIndex].Cells[1].Value);
+                string ProductooID = sql.ConsultaSimple("SELECT IdProducto as ID  FROM Producto where Nombre  = '" + ProductoID + "'" + " and Marca = '" + ProductoID2 +"'");
+                DgvCarrito.Rows[contador].Cells[15].Value = Convert.ToInt32(ProductooID);
+
+
+
 
             }
-            
-            
-            DgvCarrito.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
-            DgvCarrito.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            //DgvCarrito.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            else if (primeraValidacion>=1)
+            {
+                //MessageBox.Show("Segunda Validacion");
 
-            contador = 0 + contador2;
-            contador2++;
-            DgvCarrito.Rows.Add();
+                if ((Convert.ToString(DgvCarrito.Rows[contador].Cells[0].Value))=="" && (Convert.ToString(DgvCarrito.Rows[contador].Cells[5].Value)) == "" 
+                    && (Convert.ToString(DgvCarrito.Rows[contador].Cells[6].Value)) == "" && (Convert.ToString(DgvCarrito.Rows[contador].Cells[7].Value)) == ""
+                    && (Convert.ToString(DgvCarrito.Rows[contador].Cells[8].Value)) == "" && (Convert.ToString(DgvCarrito.Rows[contador].Cells[9].Value)) == "" 
+                    && (Convert.ToString(DgvCarrito.Rows[contador].Cells[10].Value)) == "" && (Convert.ToString(DgvCarrito.Rows[contador].Cells[11].Value)) == "")
+                {
+                    MessageBox.Show("No se puede Agregar otro producto sin completar el anterior");
+                }
+                else
+                {
+                    DgvCarrito.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+                    DgvCarrito.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                    //DgvCarrito.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
 
-            DgvCarrito.Rows[contador].Cells[1].Value = DgvProductos.Rows[e.RowIndex].Cells[0].Value;
-            DgvCarrito.Rows[contador].Cells[2].Value = DgvProductos.Rows[e.RowIndex].Cells[1].Value;
-            DgvCarrito.Rows[contador].Cells[3].Value = DgvProductos.Rows[e.RowIndex].Cells[2].Value;
-            DgvCarrito.Rows[contador].Cells[4].Value = DgvProductos.Rows[e.RowIndex].Cells[3].Value;
+                    contador = 0 + contador2;
+                    contador2++;
+                    DgvCarrito.Rows.Add();
 
-            
+                    DgvCarrito.Rows[contador].Cells[1].Value = DgvProductos.Rows[e.RowIndex].Cells[0].Value;
+                    DgvCarrito.Rows[contador].Cells[2].Value = DgvProductos.Rows[e.RowIndex].Cells[1].Value;
+                    DgvCarrito.Rows[contador].Cells[3].Value = DgvProductos.Rows[e.RowIndex].Cells[2].Value;
+                    DgvCarrito.Rows[contador].Cells[4].Value = DgvProductos.Rows[e.RowIndex].Cells[3].Value;
+
+                    string Categoria = Convert.ToString(DgvProductos.Rows[e.RowIndex].Cells[2].Value);
+                    string categoriaa = sql.ConsultaSimple("SELECT IdCategoria as ID  FROM Categoria where DescripcionC  = '" + Categoria + "'");
+                    DgvCarrito.Rows[contador].Cells[13].Value = Convert.ToInt32(categoriaa);
+
+                    string UM = Convert.ToString(DgvProductos.Rows[e.RowIndex].Cells[3].Value);
+                    string UMM = sql.ConsultaSimple("SELECT IdUnidadM as ID  FROM UnidadMedidas where DescripcionTipoUM  = '" + UM + "'");
+                    DgvCarrito.Rows[contador].Cells[14].Value = Convert.ToInt32(UMM);
+
+                }
+
+            }
+
         }
 
         private void TxtNumeroFactura_Enter_1(object sender, EventArgs e)
@@ -321,7 +376,17 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
 
                 totalF = suma - descuento;
 
-                TxtTotal.Text = Convert.ToString(totalF);
+                if (totalF<suma)
+                {
+                    MessageBox.Show("El descuento asignado es mayor al producto comprado");
+                    TxtDescuento.Text = "Descuento";
+                }
+                else
+                {
+
+                    TxtTotal.Text = Convert.ToString(totalF);
+                }
+               
             }
             catch (Exception)
             {
@@ -338,15 +403,17 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             {
                 TxtDescuento.Text = "";
                 TxtDescuento.ForeColor = Color.Black;
-            }
+                BtnDescuento.Enabled = true;
+            } 
         }
 
         private void TxtDescuento_Leave(object sender, EventArgs e)
         {
-            if (TxtPVenta.Text == "")
+            if (TxtDescuento.Text == "")
             {
-                TxtPVenta.Text = "Descuento";
-                TxtPVenta.ForeColor = Color.Gray;
+                TxtDescuento.Text = "Descuento";
+                TxtDescuento.ForeColor = Color.Gray;
+                descuento = 0;
             }
         }
 
@@ -357,6 +424,31 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
                 TxtSubtotal.Text = "SubTotal";
                 TxtSubtotal.ForeColor = Color.Gray;
             }
+        }
+
+        private void TxtCantidad_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Validaciones.SoloNumeros(e);
+        }
+
+        private void TxtPCompra_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Validaciones.SoloNumerosPuntosyComas(e);
+        }
+
+        private void TxtPVenta_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Validaciones.SoloNumerosPuntosyComas(e);
+        }
+
+        private void TxtLote_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Validaciones.SoloLetrasONumeros(e);
+        }
+
+        private void TxtNumeroFactura_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Validaciones.SoloLetrasONumeros(e);
         }
 
         private void TxtNumeroFactura_Enter_2(object sender, EventArgs e)
@@ -375,7 +467,7 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             Delete();
         }
 
-        string Buscar;
+        
 
         //METODO PARA MOSTRAR PRODUCTOS
         void MostrarProd(string a)
@@ -391,47 +483,63 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
         //METODO PARA CAMPTURAR DATOS Y HACER QUE SE MANDEN A LOS METODOS EN LAS CLASES DE LA CAPA LOGICA
        void CapturarDatosCompra()
         {
-            string Nfactura = TxtNumeroFactura.Text;
+            MessageBox.Show("Primera fasede guardado");
+          
+            for (int i = 0; i < DgvCarrito.RowCount; i++)
+            {
+                string Nfactura = Convert.ToString(DgvCarrito.Rows[i].Cells[0].Value).Trim();
+                int IdUsuario = Convert.ToInt32(id);
+                int IdProveedor = Convert.ToInt32(DgvCarrito.Rows[i].Cells[12].Value);
+                string FechaIngreso =Convert.ToString(DgvCarrito.Rows[i].Cells[8].Value);
+                double SubT = Convert.ToDouble(suma);
+                double Total = Convert.ToDouble(totalF);
+                double Descuento = Convert.ToDouble(descuento);
 
-            int IdUsuario = Convert.ToInt32(id);
-            int IdProveedor = Convert.ToInt16(cmbProveedor.SelectedValue.ToString());
+                
+                string IdSede = Convert.ToString(ip.ObtenerSede());
+                MessageBox.Show("IDSEDE"+ IdSede);
 
-            string FechaIngreso = DtpIngreso.Value.ToString("yyy/MM/dd");
+                buy.LogicaAddCompra(Nfactura, IdUsuario, IdProveedor, FechaIngreso, SubT, Total, Descuento,Convert.ToInt32(IdSede));
+            }
 
-            double SubT = Convert.ToDouble(TxtSubtotal.Text);
-            double Descuento = Convert.ToDouble(TxtDescuento.Text);
-            double Total = Convert.ToDouble(TxtTotal.Text);
-
-            int IdSede = Convert.ToInt32(ip.ObtenerSede());
-
-            buy.LogicaAddCompra(Nfactura,IdUsuario,IdProveedor, FechaIngreso,SubT,Total,Descuento,IdSede);
-            
             idCompra = sql.ConsultaSimple("SELECT MAX(dbo.Compra.IdCompra)From Compra");
+
+            Thread Hilo1 = new Thread(CapturarDatosDetalleCompra);
+            Thread Hilo2 = new Thread(CapturarDatosLotes);
+
         }
 
         void CapturarDatosDetalleCompra()
         {
-            int IdCompra = Convert.ToInt32(idCompra);
-            int idProducto = IdProducto;
-            double cantidad = Convert.ToDouble(TxtCantidad.Text);
-             PrecioC = Convert.ToDouble(TxtPCompra.Text);
-             PrecioV = Convert.ToDouble(TxtPVenta.Text);
-
-            buy.LogicaAddDetalleCompra(IdCompra, idProducto, cantidad, PrecioC, PrecioV);
+            MessageBox.Show("Segunda fase");
+            for (int i = 0; i < DgvCarrito.RowCount; i++)
+            {
+                int IdCompra = Convert.ToInt32(idCompra);
+                int idProducto = Convert.ToInt32(DgvCarrito.Rows[contador].Cells[14].Value);
+                double cantidad = Convert.ToDouble(DgvCarrito.Rows[contador].Cells[11].Value);
+                PrecioC = Convert.ToDouble(DgvCarrito.Rows[contador].Cells[6].Value);
+                PrecioV = Convert.ToDouble(DgvCarrito.Rows[contador].Cells[7].Value);
+                buy.LogicaAddDetalleCompra(IdCompra, idProducto, cantidad, PrecioC, PrecioV);
+            }
         }
 
 
         void CapturarDatosLotes()
         {
-            int idProducto = IdProducto;
-            string FechaCaducidad = DtpCaducidad.Value.ToString("yyy/MM/dd");
-            string numeroLote = Convert.ToString(TxtLote.Text).Trim();
-            string FechaIngreso = DtpIngreso.Value.ToString("yyy/MM/dd");
-            double cantidadU = Convert.ToDouble(TxtCantidad.Text);
-            int IdCompra = Convert.ToInt32(idCompra);
-            int IdSede = Convert.ToInt32(ip.ObtenerSede());
+            MessageBox.Show("Tercera Fase");
+            for (int i = 0; i < DgvCarrito.RowCount; i++)
+            {
+                int idProducto = Convert.ToInt32(DgvCarrito.Rows[contador].Cells[14].Value);
+                string FechaCaducidad = Convert.ToString(DgvCarrito.Rows[contador].Cells[9].Value).Trim();
+                string numeroLote = Convert.ToString(DgvCarrito.Rows[contador].Cells[5].Value).Trim();
+                string FechaIngreso = Convert.ToString(DgvCarrito.Rows[contador].Cells[8].Value).Trim();
+                double cantidadU = Convert.ToDouble(DgvCarrito.Rows[contador].Cells[11].Value);
+                int IdCompra = Convert.ToInt32(idCompra);
+                int IdSede = Convert.ToInt32(ip.ObtenerSede());
 
-            buy.LogicaAddLotes(idProducto, FechaCaducidad, numeroLote, FechaIngreso, cantidadU, IdCompra, IdSede);
+                buy.LogicaAddLotes(idProducto, FechaCaducidad, numeroLote, FechaIngreso, cantidadU, IdCompra, IdSede);
+
+            }
         }
         
         void CapturarPrecioActual()
@@ -450,6 +558,11 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             cmbProveedor.DisplayMember = "NombreEmpresa";
             cmbProveedor.ValueMember = "IdProveedor";
 
+        }
+
+        private void BtnGuardar_Click(object sender, EventArgs e)
+        {
+            CapturarDatosCompra();
         }
 
         void AgregarDatosRestantes()
@@ -518,7 +631,7 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             TxtLote.Text = "Tamaño Lote";
             TxtNumeroFactura.Text = "N° Factura";
             //TxtInteres.Text = "Interes (%)";
-            TxtSubtotal.Text = "Subtotal";
+           // TxtSubtotal.Text = "Subtotal";
             //TxtSubInteres.Text = "Monto Interes";
             TxtDescuento.Text = "Descuento";
             TxtTotal.Text = "Total a Pagar";
@@ -527,13 +640,13 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
 
         }
 
-        int sumaTotal()
+        Double sumaTotal()
         {
             try
             {
-                int calculo = 0;
+                Double calculo = 0;
 
-                calculo = (Convert.ToInt32(DgvCarrito.Rows[DgvCarrito.RowCount - 1].Cells[6].Value) * (Convert.ToInt32(DgvCarrito.Rows[DgvCarrito.RowCount - 1].Cells[11].Value)));
+                calculo = (Convert.ToDouble(DgvCarrito.Rows[DgvCarrito.RowCount - 1].Cells[6].Value) * (Convert.ToDouble(DgvCarrito.Rows[DgvCarrito.RowCount - 1].Cells[11].Value)));
                 suma = (suma + calculo);
 
 

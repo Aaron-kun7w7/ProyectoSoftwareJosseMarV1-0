@@ -29,19 +29,20 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.PnlBarraSuperior = new Guna.UI2.WinForms.Guna2Panel();
             this.LblIdUsuario = new System.Windows.Forms.Label();
             this.BtnSalir = new Guna.UI2.WinForms.Guna2ControlBox();
             this.guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
-            this.guna2Panel13 = new Guna.UI2.WinForms.Guna2Panel();
+            this.BtnDescuento = new Guna.UI2.WinForms.Guna2Button();
             this.TxtTotal = new System.Windows.Forms.TextBox();
+            this.guna2Panel13 = new Guna.UI2.WinForms.Guna2Panel();
             this.BtnLimpiar = new Guna.UI2.WinForms.Guna2Button();
             this.BtnGuardar = new Guna.UI2.WinForms.Guna2Button();
             this.BtnAgregar = new Guna.UI2.WinForms.Guna2Button();
@@ -85,7 +86,9 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BtnDescuento = new Guna.UI2.WinForms.Guna2Button();
+            this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PnlBarraSuperior.SuspendLayout();
             this.guna2Panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvProductos)).BeginInit();
@@ -157,16 +160,21 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             this.guna2Panel1.Size = new System.Drawing.Size(1300, 626);
             this.guna2Panel1.TabIndex = 4;
             // 
-            // guna2Panel13
+            // BtnDescuento
             // 
-            this.guna2Panel13.BackColor = System.Drawing.Color.Black;
-            this.guna2Panel13.BorderRadius = 45;
-            this.guna2Panel13.BorderStyle = System.Drawing.Drawing2D.DashStyle.Dash;
-            this.guna2Panel13.Location = new System.Drawing.Point(12, 586);
-            this.guna2Panel13.Name = "guna2Panel13";
-            this.guna2Panel13.ShadowDecoration.Parent = this.guna2Panel13;
-            this.guna2Panel13.Size = new System.Drawing.Size(134, 2);
-            this.guna2Panel13.TabIndex = 87;
+            this.BtnDescuento.CheckedState.Parent = this.BtnDescuento;
+            this.BtnDescuento.CustomImages.Parent = this.BtnDescuento;
+            this.BtnDescuento.FillColor = System.Drawing.Color.Silver;
+            this.BtnDescuento.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold);
+            this.BtnDescuento.ForeColor = System.Drawing.Color.Black;
+            this.BtnDescuento.HoverState.Parent = this.BtnDescuento;
+            this.BtnDescuento.Location = new System.Drawing.Point(609, 563);
+            this.BtnDescuento.Name = "BtnDescuento";
+            this.BtnDescuento.ShadowDecoration.Parent = this.BtnDescuento;
+            this.BtnDescuento.Size = new System.Drawing.Size(102, 37);
+            this.BtnDescuento.TabIndex = 88;
+            this.BtnDescuento.Text = "Aplicar Descuento";
+            this.BtnDescuento.Click += new System.EventHandler(this.BtnDescuento_Click);
             // 
             // TxtTotal
             // 
@@ -180,6 +188,17 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             this.TxtTotal.ReadOnly = true;
             this.TxtTotal.Size = new System.Drawing.Size(134, 20);
             this.TxtTotal.TabIndex = 86;
+            // 
+            // guna2Panel13
+            // 
+            this.guna2Panel13.BackColor = System.Drawing.Color.Black;
+            this.guna2Panel13.BorderRadius = 45;
+            this.guna2Panel13.BorderStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+            this.guna2Panel13.Location = new System.Drawing.Point(12, 586);
+            this.guna2Panel13.Name = "guna2Panel13";
+            this.guna2Panel13.ShadowDecoration.Parent = this.guna2Panel13;
+            this.guna2Panel13.Size = new System.Drawing.Size(134, 2);
+            this.guna2Panel13.TabIndex = 87;
             // 
             // BtnLimpiar
             // 
@@ -211,6 +230,7 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             this.BtnGuardar.Size = new System.Drawing.Size(102, 37);
             this.BtnGuardar.TabIndex = 84;
             this.BtnGuardar.Text = "Guardar";
+            this.BtnGuardar.Click += new System.EventHandler(this.BtnGuardar_Click);
             // 
             // BtnAgregar
             // 
@@ -257,30 +277,30 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             // 
             // DgvProductos
             // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            this.DgvProductos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
+            this.DgvProductos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
             this.DgvProductos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DgvProductos.BackgroundColor = System.Drawing.Color.White;
             this.DgvProductos.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.DgvProductos.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.DgvProductos.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DgvProductos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DgvProductos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.DgvProductos.ColumnHeadersHeight = 32;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DgvProductos.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DgvProductos.DefaultCellStyle = dataGridViewCellStyle9;
             this.DgvProductos.EnableHeadersVisualStyles = false;
             this.DgvProductos.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.DgvProductos.Location = new System.Drawing.Point(935, 57);
@@ -351,8 +371,8 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             // DgvCarrito
             // 
             this.DgvCarrito.AllowUserToAddRows = false;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            this.DgvCarrito.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.White;
+            this.DgvCarrito.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
             this.DgvCarrito.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -361,14 +381,14 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             this.DgvCarrito.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.DgvCarrito.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.DgvCarrito.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(189)))), ((int)(((byte)(180)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DgvCarrito.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(189)))), ((int)(((byte)(180)))));
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DgvCarrito.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
             this.DgvCarrito.ColumnHeadersHeight = 40;
             this.DgvCarrito.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column10,
@@ -383,15 +403,18 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             this.Column9,
             this.Column11,
             this.Column13,
-            this.Column12});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DgvCarrito.DefaultCellStyle = dataGridViewCellStyle6;
+            this.Column12,
+            this.Column14,
+            this.Column15,
+            this.Column16});
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DgvCarrito.DefaultCellStyle = dataGridViewCellStyle12;
             this.DgvCarrito.EnableHeadersVisualStyles = false;
             this.DgvCarrito.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.DgvCarrito.Location = new System.Drawing.Point(5, 243);
@@ -617,6 +640,7 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             this.TxtNumeroFactura.Size = new System.Drawing.Size(118, 16);
             this.TxtNumeroFactura.TabIndex = 26;
             this.TxtNumeroFactura.Enter += new System.EventHandler(this.TxtNumeroFactura_Enter_2);
+            this.TxtNumeroFactura.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtNumeroFactura_KeyPress);
             this.TxtNumeroFactura.Leave += new System.EventHandler(this.TxtNumeroFactura_Leave_1);
             // 
             // guna2Panel7
@@ -642,6 +666,7 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             this.TxtLote.Size = new System.Drawing.Size(118, 16);
             this.TxtLote.TabIndex = 20;
             this.TxtLote.Enter += new System.EventHandler(this.TxtLote_Enter_1);
+            this.TxtLote.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtLote_KeyPress);
             this.TxtLote.Leave += new System.EventHandler(this.TxtLote_Leave_1);
             // 
             // guna2Panel4
@@ -667,6 +692,7 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             this.TxtPVenta.Size = new System.Drawing.Size(118, 16);
             this.TxtPVenta.TabIndex = 18;
             this.TxtPVenta.Enter += new System.EventHandler(this.TxtPVenta_Enter_1);
+            this.TxtPVenta.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtPVenta_KeyPress);
             this.TxtPVenta.Leave += new System.EventHandler(this.TxtPVenta_Leave_1);
             // 
             // guna2Panel3
@@ -692,6 +718,7 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             this.TxtPCompra.Size = new System.Drawing.Size(118, 16);
             this.TxtPCompra.TabIndex = 16;
             this.TxtPCompra.Enter += new System.EventHandler(this.TxtPCompra_Enter_1);
+            this.TxtPCompra.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtPCompra_KeyPress);
             this.TxtPCompra.Leave += new System.EventHandler(this.TxtPCompra_Leave_1);
             // 
             // guna2Panel2
@@ -717,6 +744,7 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             this.TxtCantidad.Size = new System.Drawing.Size(118, 16);
             this.TxtCantidad.TabIndex = 14;
             this.TxtCantidad.Enter += new System.EventHandler(this.TxtCantidad_Enter_1);
+            this.TxtCantidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtCantidad_KeyPress);
             this.TxtCantidad.Leave += new System.EventHandler(this.TxtCantidad_Leave_1);
             // 
             // Column10
@@ -798,21 +826,26 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             this.Column12.ReadOnly = true;
             this.Column12.Visible = false;
             // 
-            // BtnDescuento
+            // Column14
             // 
-            this.BtnDescuento.CheckedState.Parent = this.BtnDescuento;
-            this.BtnDescuento.CustomImages.Parent = this.BtnDescuento;
-            this.BtnDescuento.FillColor = System.Drawing.Color.Silver;
-            this.BtnDescuento.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold);
-            this.BtnDescuento.ForeColor = System.Drawing.Color.Black;
-            this.BtnDescuento.HoverState.Parent = this.BtnDescuento;
-            this.BtnDescuento.Location = new System.Drawing.Point(609, 563);
-            this.BtnDescuento.Name = "BtnDescuento";
-            this.BtnDescuento.ShadowDecoration.Parent = this.BtnDescuento;
-            this.BtnDescuento.Size = new System.Drawing.Size(102, 37);
-            this.BtnDescuento.TabIndex = 88;
-            this.BtnDescuento.Text = "Aplicar Descuento";
-            this.BtnDescuento.Click += new System.EventHandler(this.BtnDescuento_Click);
+            this.Column14.HeaderText = "idCategoria";
+            this.Column14.Name = "Column14";
+            this.Column14.ReadOnly = true;
+            this.Column14.Visible = false;
+            // 
+            // Column15
+            // 
+            this.Column15.HeaderText = "idUM";
+            this.Column15.Name = "Column15";
+            this.Column15.ReadOnly = true;
+            this.Column15.Visible = false;
+            // 
+            // Column16
+            // 
+            this.Column16.HeaderText = "IdProducto";
+            this.Column16.Name = "Column16";
+            this.Column16.ReadOnly = true;
+            this.Column16.Visible = false;
             // 
             // FormNuevaCompra
             // 
@@ -877,6 +910,7 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
         private System.Windows.Forms.TextBox TxtPCompra;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel2;
         private System.Windows.Forms.TextBox TxtCantidad;
+        private Guna.UI2.WinForms.Guna2Button BtnDescuento;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
@@ -890,6 +924,8 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
         private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column13;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
-        private Guna.UI2.WinForms.Guna2Button BtnDescuento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column14;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column15;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column16;
     }
 }
