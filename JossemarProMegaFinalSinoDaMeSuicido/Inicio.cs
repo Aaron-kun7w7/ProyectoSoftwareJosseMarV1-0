@@ -119,22 +119,33 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
 
         void SesionIniciada()
         {
+            try
+            {
                 int contador = 0;
                 localIP = ip.ObtenerIp();
                 idp2 = sql.ConsultaSimple("SELECT IpMaquina.IdUsuario FROM IpMaquina WHERE IpMaquina ='" + localIP + "'");
-           // MessageBox.Show("SELECT IpMaquina.IdUsuario FROM IpMaquina WHERE IpMaquina ='" + localIP + "'");
+                // MessageBox.Show("SELECT IpMaquina.IdUsuario FROM IpMaquina WHERE IpMaquina ='" + localIP + "'");
                 //MessageBox.Show(idp2);
-                if (idp2 != "") { 
-                if (Convert.ToInt64(idp2) > 0)
-                 {
-                    /*contador++;
-                    MessageBox.Show("Error, Ya tiene una sesión abierta. :(", "ERROR Login", MessageBoxButtons.OK, MessageBoxIcon.Error);*/
-                    p.Show();
-                    this.Close();
-                }
+                if (idp2 != "")
+                {
+                    if (Convert.ToInt64(idp2) > 0)
+                    {
+                        /*contador++;
+                        MessageBox.Show("Error, Ya tiene una sesión abierta. :(", "ERROR Login", MessageBoxButtons.OK, MessageBoxIcon.Error);*/
+                        p.Show();
+                        this.Close();
+                    }
 
-               
+
                 }
+            }
+            catch (System.FormatException e)
+            {
+
+                MessageBox.Show("ha ocurrido un error en la conexion del sistema. porfavor ingrese nuevamente");
+            }    
+            
+            
 
         }
 

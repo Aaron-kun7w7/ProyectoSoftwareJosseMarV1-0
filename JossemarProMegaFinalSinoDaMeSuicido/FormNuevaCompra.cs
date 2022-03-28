@@ -23,17 +23,17 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             cmbProveedores();
             
             // tamaño de las columas personalizado
-            DgvCarrito.Columns[0].Width = 90;
-            DgvCarrito.Columns[1].Width = 90;
-            DgvCarrito.Columns[2].Width = 90;
-            DgvCarrito.Columns[3].Width = 90;
-            DgvCarrito.Columns[4].Width = 90;
-            DgvCarrito.Columns[5].Width = 90;
-            DgvCarrito.Columns[6].Width = 90;
-            DgvCarrito.Columns[7].Width = 90;
-            DgvCarrito.Columns[8].Width = 90;
-            DgvCarrito.Columns[9].Width = 90;
-            DgvCarrito.Columns[10].Width = 90;
+            DgvCarrito.Columns[0].Width = 70;
+            DgvCarrito.Columns[1].Width = 70;
+            DgvCarrito.Columns[2].Width = 70;
+            DgvCarrito.Columns[3].Width = 70;
+            DgvCarrito.Columns[4].Width = 70;
+            DgvCarrito.Columns[5].Width = 70;
+            DgvCarrito.Columns[6].Width = 70;
+            DgvCarrito.Columns[7].Width = 70;
+            DgvCarrito.Columns[8].Width = 70;
+            DgvCarrito.Columns[9].Width = 70;
+            DgvCarrito.Columns[10].Width = 70;
 
             //Botones y txt que deben iniciar por defecto asi
             TxtSubInteres.Visible = false;
@@ -134,8 +134,8 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
 
         private void BtnAgregar_Click(object sender, EventArgs e)
         {
-         AgregarDatosRestantes();
-            sumaTotal();
+            AgregarDatosRestantes();
+            
 
         }
 
@@ -171,7 +171,7 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
 
                 string ProductoID = Convert.ToString(DgvProductos.Rows[e.RowIndex].Cells[0].Value);
                 string ProductoID2 = Convert.ToString(DgvProductos.Rows[e.RowIndex].Cells[1].Value);
-                string ProductooID = sql.ConsultaSimple("SELECT IdProducto as ID  FROM Producto where Nombre  = '" + ProductoID + "'" + " and Marca = '" + ProductoID2 +"'");
+                string ProductooID = sql.ConsultaSimple("SELECT Producto.IdProducto  FROM Producto where Producto.Nombre  = '" + ProductoID + "'" + " and Producto.Marca = '" + ProductoID2 +"'");
                 DgvCarrito.Rows[contador].Cells[15].Value = Convert.ToInt32(ProductooID);
 
 
@@ -185,7 +185,8 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
                 if ((Convert.ToString(DgvCarrito.Rows[contador].Cells[0].Value))=="" && (Convert.ToString(DgvCarrito.Rows[contador].Cells[5].Value)) == "" 
                     && (Convert.ToString(DgvCarrito.Rows[contador].Cells[6].Value)) == "" && (Convert.ToString(DgvCarrito.Rows[contador].Cells[7].Value)) == ""
                     && (Convert.ToString(DgvCarrito.Rows[contador].Cells[8].Value)) == "" && (Convert.ToString(DgvCarrito.Rows[contador].Cells[9].Value)) == "" 
-                    && (Convert.ToString(DgvCarrito.Rows[contador].Cells[10].Value)) == "" && (Convert.ToString(DgvCarrito.Rows[contador].Cells[11].Value)) == "")
+                    && (Convert.ToString(DgvCarrito.Rows[contador].Cells[10].Value)) == "" && (Convert.ToString(DgvCarrito.Rows[contador].Cells[11].Value)) == "" 
+                    && (Convert.ToString(DgvCarrito.Rows[contador].Cells[12].Value)) == "")
                 {
                     MessageBox.Show("No se puede Agregar otro producto sin completar el anterior");
                 }
@@ -211,6 +212,11 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
                     string UM = Convert.ToString(DgvProductos.Rows[e.RowIndex].Cells[3].Value);
                     string UMM = sql.ConsultaSimple("SELECT IdUnidadM as ID  FROM UnidadMedidas where DescripcionTipoUM  = '" + UM + "'");
                     DgvCarrito.Rows[contador].Cells[14].Value = Convert.ToInt32(UMM);
+
+                    string ProductoID = Convert.ToString(DgvProductos.Rows[e.RowIndex].Cells[0].Value);
+                    string ProductoID2 = Convert.ToString(DgvProductos.Rows[e.RowIndex].Cells[1].Value);
+                    string ProductooID = sql.ConsultaSimple("SELECT Producto.IdProducto  FROM Producto where Producto.Nombre  = '" + ProductoID + "'" + " and Producto.Marca = '" + ProductoID2 + "'");
+                    DgvCarrito.Rows[contador].Cells[15].Value = Convert.ToInt32(ProductooID);
 
                 }
 
@@ -372,18 +378,16 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
         {
             try
             {
-                descuento = Convert.ToInt32(TxtDescuento.Text);
+                descuento = Convert.ToDouble(TxtDescuento.Text);
 
-                totalF = suma - descuento;
-
-                if (totalF<suma)
+                if (descuento>=suma)
                 {
                     MessageBox.Show("El descuento asignado es mayor al producto comprado");
                     TxtDescuento.Text = "Descuento";
                 }
                 else
                 {
-
+                    totalF = suma - descuento;
                     TxtTotal.Text = Convert.ToString(totalF);
                 }
                
@@ -483,7 +487,7 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
         //METODO PARA CAMPTURAR DATOS Y HACER QUE SE MANDEN A LOS METODOS EN LAS CLASES DE LA CAPA LOGICA
        void CapturarDatosCompra()
         {
-            MessageBox.Show("Primera fasede guardado");
+            
           
             for (int i = 0; i < DgvCarrito.RowCount; i++)
             {
@@ -495,30 +499,26 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
                 double Total = Convert.ToDouble(totalF);
                 double Descuento = Convert.ToDouble(descuento);
 
-                
+
                 string IdSede = Convert.ToString(ip.ObtenerSede());
-                MessageBox.Show("IDSEDE"+ IdSede);
+                
 
                 buy.LogicaAddCompra(Nfactura, IdUsuario, IdProveedor, FechaIngreso, SubT, Total, Descuento,Convert.ToInt32(IdSede));
+               
             }
-
             idCompra = sql.ConsultaSimple("SELECT MAX(dbo.Compra.IdCompra)From Compra");
-
-            Thread Hilo1 = new Thread(CapturarDatosDetalleCompra);
-            Thread Hilo2 = new Thread(CapturarDatosLotes);
-
         }
 
         void CapturarDatosDetalleCompra()
         {
-            MessageBox.Show("Segunda fase");
+           
             for (int i = 0; i < DgvCarrito.RowCount; i++)
             {
                 int IdCompra = Convert.ToInt32(idCompra);
-                int idProducto = Convert.ToInt32(DgvCarrito.Rows[contador].Cells[14].Value);
-                double cantidad = Convert.ToDouble(DgvCarrito.Rows[contador].Cells[11].Value);
-                PrecioC = Convert.ToDouble(DgvCarrito.Rows[contador].Cells[6].Value);
-                PrecioV = Convert.ToDouble(DgvCarrito.Rows[contador].Cells[7].Value);
+                int idProducto = Convert.ToInt32(DgvCarrito.Rows[i].Cells[15].Value);
+                double cantidad = Convert.ToDouble(DgvCarrito.Rows[i].Cells[11].Value);
+                PrecioC = Convert.ToDouble(DgvCarrito.Rows[i].Cells[6].Value);
+                PrecioV = Convert.ToDouble(DgvCarrito.Rows[i].Cells[7].Value);
                 buy.LogicaAddDetalleCompra(IdCompra, idProducto, cantidad, PrecioC, PrecioV);
             }
         }
@@ -526,30 +526,39 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
 
         void CapturarDatosLotes()
         {
-            MessageBox.Show("Tercera Fase");
+            
+
             for (int i = 0; i < DgvCarrito.RowCount; i++)
             {
-                int idProducto = Convert.ToInt32(DgvCarrito.Rows[contador].Cells[14].Value);
-                string FechaCaducidad = Convert.ToString(DgvCarrito.Rows[contador].Cells[9].Value).Trim();
-                string numeroLote = Convert.ToString(DgvCarrito.Rows[contador].Cells[5].Value).Trim();
-                string FechaIngreso = Convert.ToString(DgvCarrito.Rows[contador].Cells[8].Value).Trim();
-                double cantidadU = Convert.ToDouble(DgvCarrito.Rows[contador].Cells[11].Value);
+  
+                int idProducto = Convert.ToInt32(DgvCarrito.Rows[i].Cells[15].Value);
+                string FechaCaducidad = Convert.ToString(DgvCarrito.Rows[i].Cells[9].Value).Trim();
+                string numeroLote = Convert.ToString(DgvCarrito.Rows[i].Cells[5].Value).Trim();
+                string FechaIngreso = Convert.ToString(DgvCarrito.Rows[i].Cells[8].Value).Trim();
+                double cantidadU = Convert.ToDouble(DgvCarrito.Rows[i].Cells[11].Value);
                 int IdCompra = Convert.ToInt32(idCompra);
-                int IdSede = Convert.ToInt32(ip.ObtenerSede());
 
-                buy.LogicaAddLotes(idProducto, FechaCaducidad, numeroLote, FechaIngreso, cantidadU, IdCompra, IdSede);
+                string IdSede = Convert.ToString(ip.ObtenerSede());
+                
+
+                buy.LogicaAddLotes(idProducto, FechaCaducidad, numeroLote, FechaIngreso, cantidadU, IdCompra, Convert.ToInt32(IdSede));
 
             }
         }
         
         void CapturarPrecioActual()
         {
-            PrecioC = Convert.ToDouble(TxtPCompra.Text);
-            PrecioV = Convert.ToDouble(TxtPVenta.Text);
-            int idProducto = IdProducto;
-            int idSede = Convert.ToInt32(ip.ObtenerSede());
+            for (int i = 0; i < DgvCarrito.RowCount; i++)
+            {
+                PrecioC = Convert.ToDouble(DgvCarrito.Rows[i].Cells[6].Value);
+                PrecioV = Convert.ToDouble(DgvCarrito.Rows[i].Cells[7].Value);
+                int idProducto = Convert.ToInt32(DgvCarrito.Rows[i].Cells[15].Value);
+                string IdSede = Convert.ToString(ip.ObtenerSede());
 
-            buy.LogicaAddPrecioActual(PrecioC, PrecioV, idProducto, idSede);
+                buy.LogicaAddPrecioActual(PrecioC, PrecioV, idProducto, Convert.ToInt32(IdSede));
+            }
+
+            
         }
 
         void cmbProveedores()
@@ -563,12 +572,24 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
         private void BtnGuardar_Click(object sender, EventArgs e)
         {
             CapturarDatosCompra();
+
+            Thread Hilo1 = new Thread(CapturarDatosDetalleCompra);
+            Thread Hilo2 = new Thread(CapturarDatosLotes);
+            Thread Hilo3 = new Thread(CapturarPrecioActual);
+
+            Hilo1.Start();
+            Hilo2.Start();
+            Hilo3.Start();
+
+            
+            
         }
 
         void AgregarDatosRestantes()
         {
             int Proveedor = Convert.ToInt32(cmbProveedor.SelectedValue.ToString());
             string prov = sql.ConsultaSimple("SELECT NombreEmpresa FROM Proveedor where IdProveedor  = '" + Proveedor + "'");
+
             string fecha1 = DtpCaducidad.Value.ToString("yyy/MM/dd");
             string fecha2 = DtpIngreso.Value.ToString("yyy/MM/dd");
             
@@ -588,25 +609,53 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
                     //nos posicionamos en la ultimafila existente
                     DgvCarrito.CurrentCell = DgvCarrito.Rows[ultimaFila].Cells[0];
 
-                    //si la fila seleccionada es la ultima entonces
-                    if (DgvCarrito.Rows[ultimaFila].Selected == true)
+                    if (((Convert.ToString(DgvCarrito.Rows[ultimaFila].Cells[0].Value)) != "" && (Convert.ToString(DgvCarrito.Rows[ultimaFila].Cells[5].Value)) != ""
+                        && (Convert.ToString(DgvCarrito.Rows[ultimaFila].Cells[6].Value)) != "" && (Convert.ToString(DgvCarrito.Rows[ultimaFila].Cells[7].Value)) != ""
+                        && (Convert.ToString(DgvCarrito.Rows[ultimaFila].Cells[8].Value)) != "" && (Convert.ToString(DgvCarrito.Rows[ultimaFila].Cells[9].Value)) != ""
+                        && (Convert.ToString(DgvCarrito.Rows[ultimaFila].Cells[10].Value)) != "" && (Convert.ToString(DgvCarrito.Rows[ultimaFila].Cells[11].Value)) != ""
+                        && (Convert.ToString(DgvCarrito.Rows[ultimaFila].Cells[12].Value)) != ""))
                     {
-                        //agregamos los datos restantes al ultimo producto agregado
-                        DgvCarrito.Rows[ultimaFila].Cells[0].Value = TxtNumeroFactura.Text;
-                        DgvCarrito.Rows[ultimaFila].Cells[5].Value = Convert.ToString(TxtLote.Text);
-                        DgvCarrito.Rows[ultimaFila].Cells[6].Value = Convert.ToString(TxtPCompra.Text);
-                        DgvCarrito.Rows[ultimaFila].Cells[7].Value = Convert.ToString(TxtPVenta.Text);
-                        DgvCarrito.Rows[ultimaFila].Cells[8].Value = fecha1;
-                        DgvCarrito.Rows[ultimaFila].Cells[9].Value = fecha2;
-                        DgvCarrito.Rows[ultimaFila].Cells[10].Value = prov;
-                        DgvCarrito.Rows[ultimaFila].Cells[11].Value = Convert.ToString(TxtCantidad.Text);
+                        MessageBox.Show("No se pueden agregar estos datos porque no ha ingresado otro producto");
 
 
+                    }
+                    else
+                    {
+                        //si la fila seleccionada es la ultima entonces
+                        if (DgvCarrito.Rows[i].Selected == DgvCarrito.Rows[ultimaFila].Selected)
+                        {
+
+                            if (TxtCantidad.Text == "Cantidad" && TxtPCompra.Text == "Precio Compra" && TxtPVenta.Text == "Precio Venta" &&
+                               TxtLote.Text == "Tamaño Lote" && TxtNumeroFactura.Text == "N° Factura")
+                            {
+                                MessageBox.Show("Rellene todos los campos restantes");
+                            }
+                            else
+                            {
+                                //agregamos los datos restantes al ultimo producto agregado
+                                DgvCarrito.Rows[ultimaFila].Cells[0].Value = TxtNumeroFactura.Text;
+                                DgvCarrito.Rows[ultimaFila].Cells[5].Value = Convert.ToString(TxtLote.Text);
+                                DgvCarrito.Rows[ultimaFila].Cells[6].Value = Convert.ToString(TxtPCompra.Text);
+                                DgvCarrito.Rows[ultimaFila].Cells[7].Value = Convert.ToString(TxtPVenta.Text);
+                                DgvCarrito.Rows[ultimaFila].Cells[8].Value = fecha1;
+                                DgvCarrito.Rows[ultimaFila].Cells[9].Value = fecha2;
+                                DgvCarrito.Rows[ultimaFila].Cells[10].Value = prov;
+                                DgvCarrito.Rows[ultimaFila].Cells[11].Value = Convert.ToString(TxtCantidad.Text);
+                                DgvCarrito.Rows[ultimaFila].Cells[12].Value = Convert.ToInt32(cmbProveedor.SelectedValue);
+
+                                sumaTotal();
+
+                                Delete();
+                            }
+
+                        }
                     }
 
                 }
 
-               
+                
+                TxtTotal.Text = Convert.ToString(suma);
+
             }
             
             
@@ -630,11 +679,6 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             TxtPVenta.Text = "Precio Venta";
             TxtLote.Text = "Tamaño Lote";
             TxtNumeroFactura.Text = "N° Factura";
-            //TxtInteres.Text = "Interes (%)";
-           // TxtSubtotal.Text = "Subtotal";
-            //TxtSubInteres.Text = "Monto Interes";
-            TxtDescuento.Text = "Descuento";
-            TxtTotal.Text = "Total a Pagar";
             cmbProveedor.SelectedValue = 1;
            
 
@@ -646,13 +690,11 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             {
                 Double calculo = 0;
 
-                calculo = (Convert.ToDouble(DgvCarrito.Rows[DgvCarrito.RowCount - 1].Cells[6].Value) * (Convert.ToDouble(DgvCarrito.Rows[DgvCarrito.RowCount - 1].Cells[11].Value)));
-                suma = (suma + calculo);
+               calculo = (Convert.ToDouble(DgvCarrito.Rows[DgvCarrito.RowCount - 1].Cells[6].Value) * (Convert.ToDouble(DgvCarrito.Rows[DgvCarrito.RowCount - 1].Cells[11].Value)));
+               suma = (suma + calculo);
+               TxtSubtotal.Text = Convert.ToString(suma);
 
 
-                TxtSubtotal.Text = Convert.ToString(suma);
-
-               
             }
             catch (System.ArgumentOutOfRangeException e)
             {

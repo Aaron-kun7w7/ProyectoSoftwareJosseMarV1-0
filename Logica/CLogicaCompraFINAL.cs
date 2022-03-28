@@ -23,7 +23,7 @@ namespace Logica
 
             if (result.Trim() == Convert.ToString(0))
             {
-                MessageBox.Show("Lo sentimos. La compra no se puedo agregar. :(");
+                MessageBox.Show("La compra  se pudo agregar.");
                 return result;
             }
             else
