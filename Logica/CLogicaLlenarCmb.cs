@@ -10,6 +10,7 @@ namespace Logica
 {
     public class CLogicaLlenarCmb
     {
+        CLogicaObtenerIP ip = new CLogicaObtenerIP();
         public DataTable cmbCategoria()
         {
 
@@ -199,6 +200,28 @@ namespace Logica
         public DataTable MostrarProd(string a)
         {
             String sql2 = "SELECT vs_Productos.Nombre AS Producto, vs_Productos.Marca,vs_Productos.DescripcionC AS Categoría, vs_Productos.DescripcionTipoUM AS UndMedida, vs_Productos.IdProducto, vs_Productos.IdEstadoProducto FROM vs_Productos WHERE vs_Productos.Nombre LIKE'%"+a+"%' AND vs_Productos.IdEstadoProducto = 1";
+            CLogicaConsultas consult = new CLogicaConsultas();
+            return consult.ConsultaTab(sql2);
+        }
+
+        public DataTable MostrarUndMedida()
+        {
+            String sql2 = "SELECT UnidadMedidas.IdUnidadM, UnidadMedidas.DescripcionTipoUM FROM UnidadMedidas";
+            CLogicaConsultas consult = new CLogicaConsultas();
+            return consult.ConsultaTab(sql2);
+        }
+
+        public DataTable MostrarProveedores()
+        {
+            string a = ip.ObtenerSede();
+            String sql2 = "SELECT Proveedor.IdProveedor, Proveedor.NombreEmpresa FROM Proveedor";
+            CLogicaConsultas consult = new CLogicaConsultas();
+            return consult.ConsultaTab(sql2);
+        }
+
+        public DataTable MostrarCategorias()
+        {
+            String sql2 = "SELECT Categoria.IdCategoria, Categoria.DescripcionC FROM Categoria";
             CLogicaConsultas consult = new CLogicaConsultas();
             return consult.ConsultaTab(sql2);
         }
