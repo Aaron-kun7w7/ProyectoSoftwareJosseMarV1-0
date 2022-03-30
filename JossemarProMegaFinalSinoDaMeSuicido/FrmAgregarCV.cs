@@ -604,9 +604,9 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
                 idnombresProd[i] = Convert.ToInt32(DgvCarrito.Rows[i].Cells[0].Value);
                 cantidad[i] = Convert.ToDouble(DgvCarrito.Rows[i].Cells[5].Value);
                 cantidadInv[i] = Convert.ToDouble(DgvCarrito.Rows[i].Cells[6].Value);
-
+                int id = 0;
                 string res = vc.AgregarVentasCreditoProd(Convert.ToInt32(idVenta), idnombresProd[i], cantidad[Convert.ToInt32(i)]);
-                string res2 = vtc.RestInventario(idnombresProd[i], cantidadInv[Convert.ToInt32(i)], cantidad[Convert.ToInt32(i)]);
+                string res2 = vtc.RestInventario(id,idnombresProd[i], cantidadInv[Convert.ToInt32(i)], cantidad[Convert.ToInt32(i)]);
 
 
                // MessageBox.Show("resProd -"+res);

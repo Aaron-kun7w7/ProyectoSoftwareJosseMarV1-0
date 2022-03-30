@@ -66,8 +66,6 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             this.DgvInventario.Columns["FechaCaducidad"].Visible = false;
         }
 
-        
-
         private void TxtBuscar_TextChanged(object sender, EventArgs e)
         {
             InventarioUnificado(TxtBuscar.Text);
@@ -100,21 +98,15 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
         {
             if (this.DgvInventario.Columns[e.ColumnIndex].Name =="Add")
             {
-                //foreach (DataGridViewRow row in DgvInventario.SelectedRows)
-                //{
-                    string nomProd = Convert.ToString(DgvInventario.CurrentRow.Cells[1].Value).Trim();
+                string nomProd = Convert.ToString(DgvInventario.CurrentRow.Cells[1].Value).Trim();
                 FrmProductosAlls prod = new FrmProductosAlls(nomProd);
                 prod.ShowDialog();
-                //}
-               
             }
         }
 
         private void DgvInventario_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-
-            
- 
+           
         }
 
         private void IBtnProductosCaducados_Click(object sender, EventArgs e)

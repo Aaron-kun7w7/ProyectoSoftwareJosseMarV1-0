@@ -39,10 +39,15 @@
             this.GbxAgregarProv = new Guna.UI2.WinForms.Guna2GroupBox();
             this.DgvProductos = new Guna.UI2.WinForms.Guna2DataGridView();
             this.DgvCaducidad = new Guna.UI2.WinForms.Guna2DataGridView();
+            this.GbxNum = new System.Windows.Forms.GroupBox();
+            this.LblNombreFull = new System.Windows.Forms.Label();
+            this.TxtCantidad = new System.Windows.Forms.TextBox();
+            this.BtnListo = new Guna.UI2.WinForms.Guna2Button();
             this.PnlBarraSuperior.SuspendLayout();
             this.GbxAgregarProv.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvProductos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgvCaducidad)).BeginInit();
+            this.GbxNum.SuspendLayout();
             this.SuspendLayout();
             // 
             // PnlBarraSuperior
@@ -51,9 +56,10 @@
             this.PnlBarraSuperior.Dock = System.Windows.Forms.DockStyle.Top;
             this.PnlBarraSuperior.FillColor = System.Drawing.Color.Transparent;
             this.PnlBarraSuperior.Location = new System.Drawing.Point(0, 0);
+            this.PnlBarraSuperior.Margin = new System.Windows.Forms.Padding(4);
             this.PnlBarraSuperior.Name = "PnlBarraSuperior";
             this.PnlBarraSuperior.ShadowDecoration.Parent = this.PnlBarraSuperior;
-            this.PnlBarraSuperior.Size = new System.Drawing.Size(1386, 31);
+            this.PnlBarraSuperior.Size = new System.Drawing.Size(1260, 38);
             this.PnlBarraSuperior.TabIndex = 2;
             // 
             // BtnSalir
@@ -62,11 +68,13 @@
             this.BtnSalir.FillColor = System.Drawing.Color.Red;
             this.BtnSalir.HoverState.Parent = this.BtnSalir;
             this.BtnSalir.IconColor = System.Drawing.Color.White;
-            this.BtnSalir.Location = new System.Drawing.Point(1341, 0);
+            this.BtnSalir.Location = new System.Drawing.Point(1200, 0);
+            this.BtnSalir.Margin = new System.Windows.Forms.Padding(4);
             this.BtnSalir.Name = "BtnSalir";
             this.BtnSalir.ShadowDecoration.Parent = this.BtnSalir;
-            this.BtnSalir.Size = new System.Drawing.Size(45, 31);
+            this.BtnSalir.Size = new System.Drawing.Size(60, 38);
             this.BtnSalir.TabIndex = 0;
+            this.BtnSalir.Click += new System.EventHandler(this.BtnSalir_Click);
             // 
             // GbxAgregarProv
             // 
@@ -74,12 +82,13 @@
             this.GbxAgregarProv.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(189)))), ((int)(((byte)(180)))));
             this.GbxAgregarProv.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.GbxAgregarProv.ForeColor = System.Drawing.Color.Black;
-            this.GbxAgregarProv.Location = new System.Drawing.Point(0, 37);
+            this.GbxAgregarProv.Location = new System.Drawing.Point(0, 46);
+            this.GbxAgregarProv.Margin = new System.Windows.Forms.Padding(4);
             this.GbxAgregarProv.Name = "GbxAgregarProv";
             this.GbxAgregarProv.ShadowDecoration.Parent = this.GbxAgregarProv;
-            this.GbxAgregarProv.Size = new System.Drawing.Size(1452, 460);
+            this.GbxAgregarProv.Size = new System.Drawing.Size(1936, 510);
             this.GbxAgregarProv.TabIndex = 7;
-            this.GbxAgregarProv.Text = "Productos";
+            this.GbxAgregarProv.Text = "Lotes";
             // 
             // DgvProductos
             // 
@@ -111,13 +120,15 @@
             this.DgvProductos.DefaultCellStyle = dataGridViewCellStyle3;
             this.DgvProductos.EnableHeadersVisualStyles = false;
             this.DgvProductos.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            this.DgvProductos.Location = new System.Drawing.Point(3, 40);
+            this.DgvProductos.Location = new System.Drawing.Point(0, 44);
+            this.DgvProductos.Margin = new System.Windows.Forms.Padding(4);
             this.DgvProductos.MultiSelect = false;
             this.DgvProductos.Name = "DgvProductos";
             this.DgvProductos.ReadOnly = true;
             this.DgvProductos.RowHeadersVisible = false;
+            this.DgvProductos.RowHeadersWidth = 51;
             this.DgvProductos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DgvProductos.Size = new System.Drawing.Size(1449, 420);
+            this.DgvProductos.Size = new System.Drawing.Size(1260, 462);
             this.DgvProductos.TabIndex = 68;
             this.DgvProductos.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.Default;
             this.DgvProductos.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
@@ -141,8 +152,8 @@
             this.DgvProductos.ThemeStyle.RowsStyle.Height = 22;
             this.DgvProductos.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.DgvProductos.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            this.DgvProductos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvProductos_CellClick);
             this.DgvProductos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvProductos_CellDoubleClick);
-            this.DgvProductos.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DgvProductos_CellFormatting);
             // 
             // DgvCaducidad
             // 
@@ -173,11 +184,13 @@
             this.DgvCaducidad.DefaultCellStyle = dataGridViewCellStyle6;
             this.DgvCaducidad.EnableHeadersVisualStyles = false;
             this.DgvCaducidad.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            this.DgvCaducidad.Location = new System.Drawing.Point(410, 514);
+            this.DgvCaducidad.Location = new System.Drawing.Point(4, 564);
+            this.DgvCaducidad.Margin = new System.Windows.Forms.Padding(4);
             this.DgvCaducidad.Name = "DgvCaducidad";
             this.DgvCaducidad.RowHeadersVisible = false;
+            this.DgvCaducidad.RowHeadersWidth = 51;
             this.DgvCaducidad.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DgvCaducidad.Size = new System.Drawing.Size(240, 37);
+            this.DgvCaducidad.Size = new System.Drawing.Size(320, 46);
             this.DgvCaducidad.TabIndex = 8;
             this.DgvCaducidad.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.Default;
             this.DgvCaducidad.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
@@ -203,15 +216,67 @@
             this.DgvCaducidad.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
             this.DgvCaducidad.Visible = false;
             // 
+            // GbxNum
+            // 
+            this.GbxNum.Controls.Add(this.BtnListo);
+            this.GbxNum.Controls.Add(this.LblNombreFull);
+            this.GbxNum.Controls.Add(this.TxtCantidad);
+            this.GbxNum.Location = new System.Drawing.Point(379, 581);
+            this.GbxNum.Name = "GbxNum";
+            this.GbxNum.Size = new System.Drawing.Size(462, 100);
+            this.GbxNum.TabIndex = 9;
+            this.GbxNum.TabStop = false;
+            this.GbxNum.Visible = false;
+            // 
+            // LblNombreFull
+            // 
+            this.LblNombreFull.AutoSize = true;
+            this.LblNombreFull.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblNombreFull.Location = new System.Drawing.Point(71, 22);
+            this.LblNombreFull.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblNombreFull.Name = "LblNombreFull";
+            this.LblNombreFull.Size = new System.Drawing.Size(139, 20);
+            this.LblNombreFull.TabIndex = 57;
+            this.LblNombreFull.Text = "Digite Cantidad";
+            // 
+            // TxtCantidad
+            // 
+            this.TxtCantidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtCantidad.Location = new System.Drawing.Point(51, 46);
+            this.TxtCantidad.Margin = new System.Windows.Forms.Padding(4);
+            this.TxtCantidad.MaxLength = 30;
+            this.TxtCantidad.Name = "TxtCantidad";
+            this.TxtCantidad.Size = new System.Drawing.Size(177, 26);
+            this.TxtCantidad.TabIndex = 58;
+            this.TxtCantidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtNombreFull_KeyPress);
+            // 
+            // BtnListo
+            // 
+            this.BtnListo.CheckedState.Parent = this.BtnListo;
+            this.BtnListo.CustomImages.Parent = this.BtnListo;
+            this.BtnListo.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.BtnListo.ForeColor = System.Drawing.Color.White;
+            this.BtnListo.HoverState.Parent = this.BtnListo;
+            this.BtnListo.Location = new System.Drawing.Point(247, 27);
+            this.BtnListo.Name = "BtnListo";
+            this.BtnListo.ShadowDecoration.Parent = this.BtnListo;
+            this.BtnListo.Size = new System.Drawing.Size(175, 45);
+            this.BtnListo.TabIndex = 59;
+            this.BtnListo.Text = "Listo";
+            this.BtnListo.Click += new System.EventHandler(this.BtnListo_Click);
+            // 
             // FrmProductosAlls
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1386, 563);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(1260, 693);
+            this.Controls.Add(this.GbxNum);
             this.Controls.Add(this.DgvCaducidad);
             this.Controls.Add(this.GbxAgregarProv);
             this.Controls.Add(this.PnlBarraSuperior);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmProductosAlls";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmProductosAlls";
@@ -220,6 +285,8 @@
             this.GbxAgregarProv.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DgvProductos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgvCaducidad)).EndInit();
+            this.GbxNum.ResumeLayout(false);
+            this.GbxNum.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -231,5 +298,9 @@
         private Guna.UI2.WinForms.Guna2GroupBox GbxAgregarProv;
         private Guna.UI2.WinForms.Guna2DataGridView DgvProductos;
         private Guna.UI2.WinForms.Guna2DataGridView DgvCaducidad;
+        private System.Windows.Forms.GroupBox GbxNum;
+        private System.Windows.Forms.Label LblNombreFull;
+        private System.Windows.Forms.TextBox TxtCantidad;
+        private Guna.UI2.WinForms.Guna2Button BtnListo;
     }
 }

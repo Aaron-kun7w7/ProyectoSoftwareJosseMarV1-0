@@ -398,7 +398,7 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
 
         private void BtnNuevaVenta_Click(object sender, EventArgs e)
         {
-            ActivarFrm(new FormVentas(a));
+            ActivarFrm(new FrmVentasNuevo(a));
         }
 
         private void BtnMovimientos_Click(object sender, EventArgs e)

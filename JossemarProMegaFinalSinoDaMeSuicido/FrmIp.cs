@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.IO;
 namespace JossemarProMegaFinalSinoDaMeSuicido
 {
     public partial class FrmIp : Form
@@ -35,6 +35,29 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
                 Inicio l = new Inicio();
                 l.ShowDialog();
                 this.Close();
+            }
+            
+        }
+
+        //METODO DELETE
+        void Delete()
+        {
+            string ruta = @"D:\dev\proyCs\archivos\archivo.txt";
+            try
+            {
+                File.Delete(ruta);
+                if (File.Exists(ruta))
+                {
+                    Console.WriteLine("El archivo sigue existiendo.");
+                }
+                else
+                {
+                    Console.WriteLine("El archivo ya no existe.");
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error al borrar archivo: {0}", e.ToString());
             }
         }
     }

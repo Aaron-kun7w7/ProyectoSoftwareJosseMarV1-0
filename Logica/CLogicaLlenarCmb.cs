@@ -226,5 +226,22 @@ namespace Logica
             return consult.ConsultaTab(sql2);
         }
 
+        //METODO PARA LA CONSULTA QUE TRAE LOS PRODUCTOS
+        public DataTable MostrarProductos(string a)
+        {
+            string sede = ip.ObtenerSede();
+            String sql2 = "SELECT vs_Productos.IdProducto as ID, vs_Productos.Nombre AS Producto, vs_Productos.Marca,vs_Productos.DescripcionC AS Categoría, vs_Productos.DescripcionTipoUM AS UndMedida, vs_Productos.IdEstadoProducto FROM vs_Productos WHERE vs_Productos.Nombre LIKE'%%' AND vs_Productos.IdEstadoProducto = 1 AND vs_Productos.IdSede ='"+sede+"'";
+            CLogicaConsultas consult = new CLogicaConsultas();
+            return consult.ConsultaTab(sql2);
+        }
+
+        //METODO PARA MOSTRAR DATOS DE LA TABLA TEMPORAL
+        public DataTable Temporal()
+        {
+            String sql2 = "SELECT Temporal.IdTemp, Temporal.IdLote, Temporal.IdProducto, Temporal.Cantidad FROM Temporal";
+            CLogicaConsultas consult = new CLogicaConsultas();
+            return consult.ConsultaTab(sql2);
+        }
+
     }
 }
