@@ -161,7 +161,7 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             }
             else
                  BtnInventario.Location = new System.Drawing.Point(10, 2);
-            MostrarMenu(PnlSubInventario);
+            //MostrarMenu(PnlSubInventario);
         }
 
         private void BtnInventario_MouseEnter(object sender, EventArgs e)
@@ -221,7 +221,7 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             }
             else
                 BtnCaja.Location = new System.Drawing.Point(10, 2);
-            MostrarMenu(PnlSubCaja);
+           // MostrarMenu(PnlSubCaja);
         }
 
         private void BtnCaja_MouseEnter(object sender, EventArgs e)
@@ -257,7 +257,7 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             }
             else
                 BtnCredito.Location = new System.Drawing.Point(10, 2);
-            MostrarMenu(PnlSubCredito);
+            //MostrarMenu(PnlSubCredito);
         }
 
         private void BtnCredito_MouseEnter(object sender, EventArgs e)
@@ -287,7 +287,7 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             }
             else
                 BtnPersona.Location = new System.Drawing.Point(10, 2);
-            MostrarMenu(PnlSubPersona);
+           // MostrarMenu(PnlSubPersona);
         }
 
         private void BtnPersona_MouseEnter(object sender, EventArgs e)
@@ -370,12 +370,12 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
 
         private void BtnProveedor_Click(object sender, EventArgs e)
         {
-            ActivarFrm(new FormProveedor());
+            //ActivarFrm(new FormProveedor());
         }
 
         private void BtnPersonal_Click(object sender, EventArgs e)
         {
-            ActivarFrm(new FormEmpleado());
+            //ActivarFrm(new FormEmpleado());
         }
 
         private void BtnAgregarProducto_Click(object sender, EventArgs e)
@@ -386,14 +386,14 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
 
         private void BtnDevolucionCompra_Click(object sender, EventArgs e)
         {
-            // ActivarFrm(new AñadirEstante());
+            //ActivarFrm(new AñadirEstante());
             AñadirEstante a = new AñadirEstante();
             a.ShowDialog();
         }
 
         private void BtnMostarInventario_Click(object sender, EventArgs e)
         {
-            ActivarFrm(new FrmInventario());
+            //ActivarFrm(new FrmInventario());
         }
 
         private void BtnNuevaVenta_Click(object sender, EventArgs e)
@@ -415,8 +415,8 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
         private void BtnAgregarInventario_Click(object sender, EventArgs e)
         {
             //ActivarFrm(new AñadirSinFactura());
-            AñadirSinFactura sf = new AñadirSinFactura();
-            sf.ShowDialog();
+            //AñadirSinFactura sf = new AñadirSinFactura();
+            //sf.ShowDialog();
         }
 
         private void BtnHistorialCompra_Click(object sender, EventArgs e)
@@ -432,17 +432,17 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
 
         private void BtnDevoluciones_Click(object sender, EventArgs e)
         {
-            ActivarFrm(new FrmDevolverVenta());
+            //ActivarFrm(new FrmDevolverVenta());
         }
 
         private void BtnHistorialVentas_Click(object sender, EventArgs e)
         {
-            ActivarFrm(new FrmHistorialVentas(a));
+            //ActivarFrm(new FrmHistorialVentas(a));
         }
 
         private void BtnProductosSinfactura_Click(object sender, EventArgs e)
         {
-            ActivarFrm(new FrmInventarioSinFactura());
+            //ActivarFrm(new FrmInventarioSinFactura());
         }
 
         private void PnlMostarFrames_Paint(object sender, PaintEventArgs e)
@@ -469,7 +469,7 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
 
         private void BtnCliente_Click(object sender, EventArgs e)
         {
-            ActivarFrm(new FormCliente());
+            //ActivarFrm(new FormCliente());
         }
     }
 }

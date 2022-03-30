@@ -42,11 +42,15 @@
             this.BtnIniciarSesion = new Guna.UI2.WinForms.Guna2Button();
             this.guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.TxtNombre = new Guna.UI2.WinForms.Guna2TextBox();
+            this.guna2HtmlLabel7 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.cmbSede = new Guna.UI2.WinForms.Guna2ComboBox();
             this.PanelLoginDerecho.SuspendLayout();
             this.SuspendLayout();
             // 
             // PanelLoginDerecho
             // 
+            this.PanelLoginDerecho.Controls.Add(this.guna2HtmlLabel7);
+            this.PanelLoginDerecho.Controls.Add(this.cmbSede);
             this.PanelLoginDerecho.Controls.Add(this.guna2Button1);
             this.PanelLoginDerecho.Controls.Add(this.guna2HtmlLabel6);
             this.PanelLoginDerecho.Controls.Add(this.TxtConfirmarContraseña);
@@ -64,7 +68,7 @@
             this.PanelLoginDerecho.Location = new System.Drawing.Point(0, 0);
             this.PanelLoginDerecho.Name = "PanelLoginDerecho";
             this.PanelLoginDerecho.ShadowDecoration.Parent = this.PanelLoginDerecho;
-            this.PanelLoginDerecho.Size = new System.Drawing.Size(337, 437);
+            this.PanelLoginDerecho.Size = new System.Drawing.Size(343, 468);
             this.PanelLoginDerecho.TabIndex = 2;
             // 
             // guna2Button1
@@ -111,7 +115,7 @@
             this.TxtConfirmarContraseña.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.TxtConfirmarContraseña.HoverState.Parent = this.TxtConfirmarContraseña;
             this.TxtConfirmarContraseña.Location = new System.Drawing.Point(17, 305);
-            this.TxtConfirmarContraseña.MaxLength = 30;
+            this.TxtConfirmarContraseña.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TxtConfirmarContraseña.Name = "TxtConfirmarContraseña";
             this.TxtConfirmarContraseña.PasswordChar = '\0';
             this.TxtConfirmarContraseña.PlaceholderText = "";
@@ -148,7 +152,7 @@
             this.TxtContraseña.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.TxtContraseña.HoverState.Parent = this.TxtContraseña;
             this.TxtContraseña.Location = new System.Drawing.Point(17, 251);
-            this.TxtContraseña.MaxLength = 30;
+            this.TxtContraseña.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TxtContraseña.Name = "TxtContraseña";
             this.TxtContraseña.PasswordChar = '\0';
             this.TxtContraseña.PlaceholderText = "";
@@ -185,7 +189,7 @@
             this.TxtNameUsuario.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.TxtNameUsuario.HoverState.Parent = this.TxtNameUsuario;
             this.TxtNameUsuario.Location = new System.Drawing.Point(17, 186);
-            this.TxtNameUsuario.MaxLength = 30;
+            this.TxtNameUsuario.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TxtNameUsuario.Name = "TxtNameUsuario";
             this.TxtNameUsuario.PasswordChar = '\0';
             this.TxtNameUsuario.PlaceholderText = "";
@@ -222,7 +226,7 @@
             this.TxtApellido.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.TxtApellido.HoverState.Parent = this.TxtApellido;
             this.TxtApellido.Location = new System.Drawing.Point(17, 126);
-            this.TxtApellido.MaxLength = 30;
+            this.TxtApellido.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TxtApellido.Name = "TxtApellido";
             this.TxtApellido.PasswordChar = '\0';
             this.TxtApellido.PlaceholderText = "";
@@ -249,7 +253,7 @@
             this.BtnIniciarSesion.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnIniciarSesion.ForeColor = System.Drawing.Color.White;
             this.BtnIniciarSesion.HoverState.Parent = this.BtnIniciarSesion;
-            this.BtnIniciarSesion.Location = new System.Drawing.Point(87, 358);
+            this.BtnIniciarSesion.Location = new System.Drawing.Point(102, 420);
             this.BtnIniciarSesion.Name = "BtnIniciarSesion";
             this.BtnIniciarSesion.ShadowDecoration.Parent = this.BtnIniciarSesion;
             this.BtnIniciarSesion.Size = new System.Drawing.Size(133, 36);
@@ -285,7 +289,7 @@
             this.TxtNombre.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.TxtNombre.HoverState.Parent = this.TxtNombre;
             this.TxtNombre.Location = new System.Drawing.Point(17, 70);
-            this.TxtNombre.MaxLength = 30;
+            this.TxtNombre.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TxtNombre.Name = "TxtNombre";
             this.TxtNombre.PasswordChar = '\0';
             this.TxtNombre.PlaceholderText = "";
@@ -294,11 +298,40 @@
             this.TxtNombre.Size = new System.Drawing.Size(311, 21);
             this.TxtNombre.TabIndex = 6;
             // 
+            // guna2HtmlLabel7
+            // 
+            this.guna2HtmlLabel7.BackColor = System.Drawing.Color.Transparent;
+            this.guna2HtmlLabel7.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2HtmlLabel7.Location = new System.Drawing.Point(19, 336);
+            this.guna2HtmlLabel7.Name = "guna2HtmlLabel7";
+            this.guna2HtmlLabel7.Size = new System.Drawing.Size(35, 18);
+            this.guna2HtmlLabel7.TabIndex = 113;
+            this.guna2HtmlLabel7.Text = "Sede";
+            // 
+            // cmbSede
+            // 
+            this.cmbSede.BackColor = System.Drawing.Color.Transparent;
+            this.cmbSede.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cmbSede.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSede.FocusedColor = System.Drawing.Color.Empty;
+            this.cmbSede.FocusedState.Parent = this.cmbSede;
+            this.cmbSede.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.cmbSede.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.cmbSede.FormattingEnabled = true;
+            this.cmbSede.HoverState.Parent = this.cmbSede;
+            this.cmbSede.ItemHeight = 30;
+            this.cmbSede.ItemsAppearance.Parent = this.cmbSede;
+            this.cmbSede.Location = new System.Drawing.Point(12, 360);
+            this.cmbSede.Name = "cmbSede";
+            this.cmbSede.ShadowDecoration.Parent = this.cmbSede;
+            this.cmbSede.Size = new System.Drawing.Size(140, 36);
+            this.cmbSede.TabIndex = 112;
+            // 
             // Registro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(339, 437);
+            this.ClientSize = new System.Drawing.Size(344, 468);
             this.Controls.Add(this.PanelLoginDerecho);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Registro";
@@ -325,5 +358,7 @@
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel3;
         private Guna.UI2.WinForms.Guna2TextBox TxtApellido;
         private Guna.UI2.WinForms.Guna2Button guna2Button1;
+        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel7;
+        private Guna.UI2.WinForms.Guna2ComboBox cmbSede;
     }
 }

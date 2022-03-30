@@ -44,11 +44,7 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
 
         }
 
-        void LlenarGridEstante()
-        {
-            DgvEstante.DataSource = sql.ConsultaTab("SELECT Estanteria.IdEstante as ID, Estanteria.DescripcionEstante as Descripcion, Categoria.DescripcionC as Categoria FROM Estanteria, Categoria WHERE Estanteria.IdCategoria = Categoria.IdCategoria");
-
-        }
+       
 
         void LlenarGridCategoria()
         {
@@ -61,19 +57,13 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
         {
             //CapturarDatosE();
             LlenarGridCategoria();
-            LlenarGridEstante();
-            //cmbCategorias();
+            CapturarDatosC();
         }
 
         private void AñadirEstante_Load(object sender, EventArgs e)
         {
             DgvCategoria.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
             DgvCategoria.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-
-            DgvEstante.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
-            DgvEstante.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            //cmbCategorias();
-            LlenarGridEstante();
             LlenarGridCategoria();
         }
 
@@ -82,7 +72,6 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             CapturarDatosC();
             // CapturarDatosC();
             LlenarGridCategoria();
-            LlenarGridEstante();
             //cmbCategorias();
         }
 
@@ -96,7 +85,7 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
                 {
                     add.EliminarCategoria(Convert.ToInt32(DgvCategoria.CurrentRow.Cells[0].Value));
                     LlenarGridCategoria();
-                    LlenarGridEstante();
+
                 }
             }
             else if (result == DialogResult.Cancel)

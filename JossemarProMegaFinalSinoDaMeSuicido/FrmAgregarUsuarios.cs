@@ -15,6 +15,7 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
         public FrmAgregarUsuarios(FormAdmin d)
         {
             InitializeComponent();
+          
         }
 
         public delegate void UpdateDelegate(object sender, UpdateEventArgs args);
@@ -84,5 +85,9 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
         {
             this.Close();
         }
+
+       
+
+
     }
 }

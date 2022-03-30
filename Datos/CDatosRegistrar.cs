@@ -25,7 +25,7 @@ namespace Datos
                 comando.Parameters.AddWithValue("@Apellido", Apellido);
                 comando.Parameters.AddWithValue("@UserName", UserName);
                 comando.Parameters.AddWithValue("@Password", @Password);
-                comando.Parameters.AddWithValue("Password", IdSede);
+                comando.Parameters.AddWithValue("@IdSede", IdSede);
 
                 res = comando.Parameters.AddWithValue("@Result", "");
                 comando.Parameters["@Result"].Direction = ParameterDirection.Output;

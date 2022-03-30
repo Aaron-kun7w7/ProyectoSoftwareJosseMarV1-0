@@ -250,7 +250,7 @@
             this.BtnIniciarSesion.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnIniciarSesion.ForeColor = System.Drawing.Color.White;
             this.BtnIniciarSesion.HoverState.Parent = this.BtnIniciarSesion;
-            this.BtnIniciarSesion.Location = new System.Drawing.Point(87, 358);
+            this.BtnIniciarSesion.Location = new System.Drawing.Point(99, 398);
             this.BtnIniciarSesion.Name = "BtnIniciarSesion";
             this.BtnIniciarSesion.ShadowDecoration.Parent = this.BtnIniciarSesion;
             this.BtnIniciarSesion.Size = new System.Drawing.Size(133, 36);
