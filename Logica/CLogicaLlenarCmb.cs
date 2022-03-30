@@ -226,5 +226,14 @@ namespace Logica
             return consult.ConsultaTab(sql2);
         }
 
+        public DataTable cmbSede()
+        {
+
+            String sql2 = "SELECT Sede.IdSede, Sede.NombreEmpresa FROM Sede";
+            CLogicaConsultas consult = new CLogicaConsultas();
+            return consult.ConsultaTab(sql2);
+
+        }
+
     }
 }

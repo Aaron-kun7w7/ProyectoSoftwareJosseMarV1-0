@@ -15,11 +15,13 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
         public Registro()
         {
             InitializeComponent();
+            cmbSEDE();
         }
 
         CLogicaConsultas consultas = new CLogicaConsultas();
 
         string result = "";
+        CLogicaLlenarCmb fill = new CLogicaLlenarCmb();
         void capturarDatos()
         {
             string nombre = TxtNombre.Text;
@@ -44,8 +46,8 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
 
                 string idp2 = consultas.ConsultaSimple("SELECT IpMaquina.IdUsuario FROM IpMaquina WHERE IpMaquina ='" + localIP + "'");
                 string idU = consultas.ConsultaSimple("SELECT IpMaquina.IdUsuario FROM IpMaquina WHERE IpMaquina.IpMaquina = '" + localIP + "'");
-                string IdSede = consultas.ConsultaSimple("SELECT Usuarios.IdSede FROM Usuarios WHERE Usuarios.IdUsuario ='" + idU + "'");
-
+                int IdSede = Convert.ToInt32(cmbSede.SelectedValue);
+                MessageBox.Show("Id Sede"+ IdSede);
                 string msg = a.register(nombre, apellido, nombreUsuario, pass, Convert.ToInt32(IdSede));
 
                 result = "Ta bien";
@@ -70,5 +72,15 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             a.Show();
             this.Close();
         }
+
+    
+        void cmbSEDE()
+        {
+            cmbSede.DataSource = fill.cmbSede();
+            cmbSede.DisplayMember = "NombreEmpresa";
+            cmbSede.ValueMember = "IdSede";
+
+        }
+
     }
 }

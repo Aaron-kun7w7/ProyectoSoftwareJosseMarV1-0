@@ -386,9 +386,9 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
 
         private void BtnDevolucionCompra_Click(object sender, EventArgs e)
         {
-            // ActivarFrm(new AñadirEstante());
-            AñadirEstante a = new AñadirEstante();
-            a.ShowDialog();
+            //ActivarFrm(new AñadirEstante());
+            //AñadirEstante a = new AñadirEstante();
+            //a.ShowDialog();
         }
 
         private void BtnMostarInventario_Click(object sender, EventArgs e)
