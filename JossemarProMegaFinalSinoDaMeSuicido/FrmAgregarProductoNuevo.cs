@@ -232,6 +232,7 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             TxtNombreProducto.Text = "";
             TxtMarca.Text = "";
             TxtDescripcion.Text = "";
+            TxtNuevaImagen.Text = "";
             CmbUnidadMedida2.SelectedValue = 1;
             CmbCategoria.SelectedValue = 1;
             
@@ -275,7 +276,7 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             DgvCarrito.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             DgvCarrito.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
 
-            if (TxtMarca.Text == "" && TxtNombreProducto.Text == "" && TxtDescripcion.Text == "")
+            if (TxtMarca.Text == "" && TxtNombreProducto.Text == "" && TxtDescripcion.Text == "" && TxtNuevaImagen.Text=="")
             {
                 MessageBox.Show("Porfavor rellene los campos restantes del producto");
             }
@@ -425,6 +426,11 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
         private void BtnEliminar_Click(object sender, EventArgs e)
         {
             Limpiar2();
+            if (DgvCarrito.RowCount==0)
+            {
+                BtnGuardar.Enabled = false;
+            }
+
         }
 
         private void TxtDescripcion_KeyPress(object sender, KeyPressEventArgs e)
