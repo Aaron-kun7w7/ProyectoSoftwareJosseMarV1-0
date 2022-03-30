@@ -89,6 +89,7 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             this.TxtPCompra = new System.Windows.Forms.TextBox();
             this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
             this.TxtCantidad = new System.Windows.Forms.TextBox();
+            this.BtnEliminar = new Guna.UI2.WinForms.Guna2Button();
             this.PnlBarraSuperior.SuspendLayout();
             this.guna2Panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvProductos)).BeginInit();
@@ -144,6 +145,7 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             // 
             // guna2Panel1
             // 
+            this.guna2Panel1.Controls.Add(this.BtnEliminar);
             this.guna2Panel1.Controls.Add(this.BtnDescuento);
             this.guna2Panel1.Controls.Add(this.TxtTotal);
             this.guna2Panel1.Controls.Add(this.guna2Panel13);
@@ -848,6 +850,22 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             this.TxtCantidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtCantidad_KeyPress);
             this.TxtCantidad.Leave += new System.EventHandler(this.TxtCantidad_Leave_1);
             // 
+            // BtnEliminar
+            // 
+            this.BtnEliminar.CheckedState.Parent = this.BtnEliminar;
+            this.BtnEliminar.CustomImages.Parent = this.BtnEliminar;
+            this.BtnEliminar.FillColor = System.Drawing.Color.Silver;
+            this.BtnEliminar.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold);
+            this.BtnEliminar.ForeColor = System.Drawing.Color.Black;
+            this.BtnEliminar.HoverState.Parent = this.BtnEliminar;
+            this.BtnEliminar.Location = new System.Drawing.Point(731, 563);
+            this.BtnEliminar.Name = "BtnEliminar";
+            this.BtnEliminar.ShadowDecoration.Parent = this.BtnEliminar;
+            this.BtnEliminar.Size = new System.Drawing.Size(102, 37);
+            this.BtnEliminar.TabIndex = 89;
+            this.BtnEliminar.Text = "Eliminar del Carrito";
+            this.BtnEliminar.Click += new System.EventHandler(this.BtnEliminar_Click);
+            // 
             // FormNuevaCompra
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -928,5 +946,6 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
         private System.Windows.Forms.DataGridViewTextBoxColumn Column14;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column15;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column16;
+        private Guna.UI2.WinForms.Guna2Button BtnEliminar;
     }
 }

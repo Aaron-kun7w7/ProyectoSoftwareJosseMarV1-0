@@ -26,6 +26,7 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             cloud = new Cloudinary(A);
             BtnAñadir.Enabled = false;
             BtnGuardar.Enabled = false;
+            
         }
 
         // se crea una variable estatica de cloudinary
@@ -57,6 +58,32 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             LblIdUsuario.Text = id;
             cmbCategorias();
             cmbUnidadMedida();
+           
+        }
+
+        void Habilitar()
+        {
+            if (TxtMarca.Text == "" && TxtNombreProducto.Text == "" && TxtDescripcion.Text == "")
+            {
+                MessageBox.Show("Porfavor rellene los campos restantes del producto");
+            }
+            else
+            {
+                
+                BtnAñadir.Enabled = true;
+                BtnGuardar.Enabled = true;
+                //imagen2 = "";
+            }
+        }
+        void Habilitar2()
+        {
+            if (TxtMarca.Text != "" && TxtNombreProducto.Text != "" && TxtDescripcion.Text != "" && TxtNuevaImagen.Text!="")
+            {
+                
+                BtnAñadir.Enabled = true;
+                BtnGuardar.Enabled = true;
+
+            }
         }
 
         private void CargarImagen(String ruta)
@@ -158,11 +185,13 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
         private void TxtNombreProducto_KeyPress(object sender, KeyPressEventArgs e)
         {
             Validaciones.SoloLetrasONumeros(e);
+            Habilitar2();
         }
 
         private void TxtMarca_KeyPress(object sender, KeyPressEventArgs e)
         {
             Validaciones.SoloLetrasONumeros(e);
+            Habilitar2();
         }
 
 
@@ -184,17 +213,15 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
 
         private void pbImagen_Click(object sender, EventArgs e)
         {
-
             OpenFileDialog ofdSelectorImagen = new OpenFileDialog();
-
             if (ofdSelectorImagen.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 PtbImagen.Image = Image.FromFile(ofdSelectorImagen.FileName);
             }
+
             imagen = ofdSelectorImagen.FileName.ToString();
             imagen = imagen.Replace('\\', '/');
             rutaGuardar = imagen;
-
 
         }
 
@@ -248,32 +275,41 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             DgvCarrito.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             DgvCarrito.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
 
+            if (TxtMarca.Text == "" && TxtNombreProducto.Text == "" && TxtDescripcion.Text == "")
+            {
+                MessageBox.Show("Porfavor rellene los campos restantes del producto");
+            }
+            else
+            {
 
-            contador = 0 + contador2;
-            contador2++;
-            DgvCarrito.Rows.Add();
+                    contador = 0 + contador2;
+                    contador2++;
+                    DgvCarrito.Rows.Add();
 
-            TxtTotalCompra.Text = Convert.ToString(contador2);
-
-
-
-            DgvCarrito.Rows[contador].Cells[0].Value = imagen2.ToString();
-            DgvCarrito.Rows[contador].Cells[1].Value = TxtNombreProducto.Text;
-            DgvCarrito.Rows[contador].Cells[2].Value = TxtMarca.Text;
+                    TxtTotalCompra.Text = Convert.ToString(contador2);
 
 
-            int Categoria = Convert.ToInt32(CmbCategoria.SelectedValue.ToString());
-            string categoriaa = sql.ConsultaSimple("SELECT DescripcionC as Categoria, IdCategoria as ID FROM Categoria where IdCategoria  = '" + Categoria + "'");
-            DgvCarrito.Rows[contador].Cells[3].Value = categoriaa;
-            DgvCarrito.Rows[contador].Cells[6].Value = Convert.ToInt32(CmbCategoria.SelectedValue.ToString());
+                    DgvCarrito.Rows[contador].Cells[0].Value = imagen2.ToString();
+                
+                    DgvCarrito.Rows[contador].Cells[1].Value = TxtNombreProducto.Text;
+                    DgvCarrito.Rows[contador].Cells[2].Value = TxtMarca.Text;
 
-            int UnidadMedida = Convert.ToInt32(CmbUnidadMedida2.SelectedValue.ToString());
-            string medidaa = sql.ConsultaSimple("SELECT  DescripcionTipoUM as Medida, IdUnidadM as ID FROM UnidadMedidas where IdUnidadM  = '" + UnidadMedida + "'");
-            DgvCarrito.Rows[contador].Cells[4].Value = medidaa;
-            DgvCarrito.Rows[contador].Cells[7].Value = Convert.ToInt32(CmbUnidadMedida2.SelectedValue.ToString());
 
-            DgvCarrito.Rows[contador].Cells[5].Value = TxtDescripcion.Text;
-            DgvCarrito.Rows[contador].Cells[8].Value = rutaGuardar;
+                    int Categoria = Convert.ToInt32(CmbCategoria.SelectedValue.ToString());
+                    string categoriaa = sql.ConsultaSimple("SELECT DescripcionC as Categoria, IdCategoria as ID FROM Categoria where IdCategoria  = '" + Categoria + "'");
+                    DgvCarrito.Rows[contador].Cells[3].Value = categoriaa;
+                    DgvCarrito.Rows[contador].Cells[6].Value = Convert.ToInt32(CmbCategoria.SelectedValue.ToString());
+
+                    int UnidadMedida = Convert.ToInt32(CmbUnidadMedida2.SelectedValue.ToString());
+                    string medidaa = sql.ConsultaSimple("SELECT  DescripcionTipoUM as Medida, IdUnidadM as ID FROM UnidadMedidas where IdUnidadM  = '" + UnidadMedida + "'");
+                    DgvCarrito.Rows[contador].Cells[4].Value = medidaa;
+                    DgvCarrito.Rows[contador].Cells[7].Value = Convert.ToInt32(CmbUnidadMedida2.SelectedValue.ToString());
+
+                    DgvCarrito.Rows[contador].Cells[5].Value = TxtDescripcion.Text;
+                    DgvCarrito.Rows[contador].Cells[8].Value = rutaGuardar;
+               
+              
+            }
 
         }
 
@@ -316,58 +352,85 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
 
         private void BtnAjustar_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Especifique una ruta para guardar la nueva imagen");
 
-            //Abrimos cuadro de dialogo para seleccionar ruta de guardado
-            FolderBrowserDialog dlg = new FolderBrowserDialog();
+            try
+            {
+                MessageBox.Show("Especifique una ruta para guardar la nueva imagen");
 
-            if (dlg.ShowDialog() == DialogResult.OK)
-            {
-                //Con esto seleccionamos la ruta en forma de string
-                TxtNuevaImagen.Text = dlg.SelectedPath;
-                BtnAjustar.Enabled = true;
-            }
+                //Abrimos cuadro de dialogo para seleccionar ruta de guardado
+                FolderBrowserDialog dlg = new FolderBrowserDialog();
 
-            if (TxtNuevaImagen.Text == string.Empty)
-            {
-                MessageBox.Show("Por favor Ponga una ruta :)");
-            }
-            else
-            {
-                try
+                if (dlg.ShowDialog() == DialogResult.OK)
                 {
+                    //Con esto seleccionamos la ruta en forma de string
+                    TxtNuevaImagen.Text = dlg.SelectedPath;
+                    BtnAjustar.Enabled = true;
+                }
 
-                    //Con esto seleccionamos la imagen a rediseñar
-                    using (MagickImage rediseño = new MagickImage(imagen))
+                if (TxtNuevaImagen.Text == string.Empty)
+                {
+                    MessageBox.Show("Por favor Ponga una ruta :)");
+                }
+                else
+                {
+                    try
                     {
-                        //Cambiamos el tamaño
-                        rediseño.Resize(150, 150);
+                       
+                            //Con esto seleccionamos la imagen a rediseñar
+                            using (MagickImage rediseño = new MagickImage(imagen))
+                            {
+                                //Cambiamos el tamaño
+                                rediseño.Resize(150, 150);
 
-                        //Nombre del archivo a guardar
-                        string nombre_copia = "ImagenModificada" + "-" + System.DateTime.Now.Minute.ToString() + "-" + System.DateTime.Now.Second.ToString();
+                                //Nombre del archivo a guardar
+                                string nombre_copia = "ImagenModificada" + "-" + System.DateTime.Now.Minute.ToString() + "-" + System.DateTime.Now.Second.ToString();
 
-                        //Variable donde se guardara la nueva imagen con su ubicacion y su nombre
-                        //el nombre y el formato de guardado son editables a criterio propio
-                        imagen2 = @"" + TxtNuevaImagen.Text + "\\" + nombre_copia + ".jpg";
+                                //Variable donde se guardara la nueva imagen con su ubicacion y su nombre
+                                //el nombre y el formato de guardado son editables a criterio propio
+                                imagen2 = @"" + TxtNuevaImagen.Text + "\\" + nombre_copia + ".jpg";
 
-                        //Con esto sobreescribimos en la varible y guardamos todo
-                        rediseño.Write(imagen2);
-                        BtnAjustar.Enabled = false;
-                        BtnAñadir.Enabled = true;
-                        BtnGuardar.Enabled = true;
-                        //imagen2 = "";
+                                //Con esto sobreescribimos en la varible y guardamos todo
+                                rediseño.Write(imagen2);
+                                Habilitar();
+                            }
+
+                        
+                        
+                        
+
 
                     }
+                    catch (Exception ex)
+                    {
+
+                        MessageBox.Show("Porfavor selecciona una imagen antes de ajustar");
+                    }
+
 
                 }
-                catch (Exception ex)
-                {
-
-                    MessageBox.Show(ex.ToString());
-                }
-
             }
+            catch (ArgumentNullException ane)
+            {
 
+                MessageBox.Show("Porfavor selecciona una imagen antes de ajustar");
+            }
+            
+
+
+
+
+
+        }
+
+        private void BtnEliminar_Click(object sender, EventArgs e)
+        {
+            Limpiar2();
+        }
+
+        private void TxtDescripcion_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Habilitar2();
+            Validaciones.SoloLetrasONumeros(e);
         }
     }
     }

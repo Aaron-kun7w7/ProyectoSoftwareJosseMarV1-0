@@ -571,18 +571,36 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
 
         private void BtnGuardar_Click(object sender, EventArgs e)
         {
-            CapturarDatosCompra();
+            if ((Convert.ToString(DgvCarrito.Rows[contador].Cells[0].Value)) == "" && (Convert.ToString(DgvCarrito.Rows[contador].Cells[5].Value)) == ""
+                    && (Convert.ToString(DgvCarrito.Rows[contador].Cells[6].Value)) == "" && (Convert.ToString(DgvCarrito.Rows[contador].Cells[7].Value)) == ""
+                    && (Convert.ToString(DgvCarrito.Rows[contador].Cells[8].Value)) == "" && (Convert.ToString(DgvCarrito.Rows[contador].Cells[9].Value)) == ""
+                    && (Convert.ToString(DgvCarrito.Rows[contador].Cells[10].Value)) == "" && (Convert.ToString(DgvCarrito.Rows[contador].Cells[11].Value)) == ""
+                    && (Convert.ToString(DgvCarrito.Rows[contador].Cells[12].Value)) == "")
+            {
+                MessageBox.Show("No se puede Guardar sin completar todos los campos");
+            }
+            else
+            {
+                CapturarDatosCompra();
 
-            Thread Hilo1 = new Thread(CapturarDatosDetalleCompra);
-            Thread Hilo2 = new Thread(CapturarDatosLotes);
-            Thread Hilo3 = new Thread(CapturarPrecioActual);
+                Thread Hilo1 = new Thread(CapturarDatosDetalleCompra);
+                Thread Hilo2 = new Thread(CapturarDatosLotes);
+                Thread Hilo3 = new Thread(CapturarPrecioActual);
 
-            Hilo1.Start();
-            Hilo2.Start();
-            Hilo3.Start();
+                Hilo1.Start();
+                Hilo2.Start();
+                Hilo3.Start();
+            }
+
+            
 
             
             
+        }
+
+        private void BtnEliminar_Click(object sender, EventArgs e)
+        {
+            Limpiar2();
         }
 
         void AgregarDatosRestantes()

@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAgregarProductoNuevo));
             this.PnlBarraSuperior = new Guna.UI2.WinForms.Guna2Panel();
             this.LblIdUsuario = new System.Windows.Forms.Label();
@@ -68,6 +68,7 @@
             this.CmbUnidadMedida2 = new Guna.UI2.WinForms.Guna2ComboBox();
             this.BtnAjustar = new Guna.UI2.WinForms.Guna2Button();
             this.TxtNuevaImagen = new Guna.UI2.WinForms.Guna2TextBox();
+            this.BtnEliminar = new Guna.UI2.WinForms.Guna2Button();
             this.PnlBarraSuperior.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvCarrito)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PtbImagen)).BeginInit();
@@ -189,6 +190,7 @@
             this.TxtDescripcion.ShadowDecoration.Parent = this.TxtDescripcion;
             this.TxtDescripcion.Size = new System.Drawing.Size(151, 59);
             this.TxtDescripcion.TabIndex = 16;
+            this.TxtDescripcion.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtDescripcion_KeyPress);
             // 
             // guna2HtmlLabel8
             // 
@@ -268,8 +270,8 @@
             // DgvCarrito
             // 
             this.DgvCarrito.AllowUserToAddRows = false;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            this.DgvCarrito.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
+            this.DgvCarrito.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
             this.DgvCarrito.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -278,14 +280,14 @@
             this.DgvCarrito.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.DgvCarrito.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.DgvCarrito.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(189)))), ((int)(((byte)(180)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DgvCarrito.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(189)))), ((int)(((byte)(180)))));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DgvCarrito.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.DgvCarrito.ColumnHeadersHeight = 40;
             this.DgvCarrito.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CIMAGEN,
@@ -297,14 +299,14 @@
             this.Column1,
             this.Column7,
             this.Column8});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DgvCarrito.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DgvCarrito.DefaultCellStyle = dataGridViewCellStyle9;
             this.DgvCarrito.EnableHeadersVisualStyles = false;
             this.DgvCarrito.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.DgvCarrito.Location = new System.Drawing.Point(52, 282);
@@ -461,7 +463,7 @@
             this.Editar.CheckedState.BorderRadius = 2;
             this.Editar.CheckedState.BorderThickness = 0;
             this.Editar.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.Editar.Location = new System.Drawing.Point(634, 596);
+            this.Editar.Location = new System.Drawing.Point(743, 598);
             this.Editar.Name = "Editar";
             this.Editar.Size = new System.Drawing.Size(53, 17);
             this.Editar.TabIndex = 98;
@@ -471,6 +473,7 @@
             this.Editar.UncheckedState.BorderThickness = 0;
             this.Editar.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
             this.Editar.UseVisualStyleBackColor = true;
+            this.Editar.Visible = false;
             // 
             // guna2ImageButton1
             // 
@@ -484,6 +487,7 @@
             this.guna2ImageButton1.PressedState.Parent = this.guna2ImageButton1;
             this.guna2ImageButton1.Size = new System.Drawing.Size(28, 35);
             this.guna2ImageButton1.TabIndex = 100;
+            this.guna2ImageButton1.Visible = false;
             // 
             // TxtBuscarCompras
             // 
@@ -507,6 +511,7 @@
             this.TxtBuscarCompras.ShadowDecoration.Parent = this.TxtBuscarCompras;
             this.TxtBuscarCompras.Size = new System.Drawing.Size(288, 35);
             this.TxtBuscarCompras.TabIndex = 101;
+            this.TxtBuscarCompras.Visible = false;
             // 
             // PtbImagen
             // 
@@ -621,6 +626,23 @@
             this.TxtNuevaImagen.ShadowDecoration.Parent = this.TxtNuevaImagen;
             this.TxtNuevaImagen.Size = new System.Drawing.Size(288, 35);
             this.TxtNuevaImagen.TabIndex = 107;
+            this.TxtNuevaImagen.Visible = false;
+            // 
+            // BtnEliminar
+            // 
+            this.BtnEliminar.CheckedState.Parent = this.BtnEliminar;
+            this.BtnEliminar.CustomImages.Parent = this.BtnEliminar;
+            this.BtnEliminar.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(189)))), ((int)(((byte)(180)))));
+            this.BtnEliminar.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold);
+            this.BtnEliminar.ForeColor = System.Drawing.Color.Black;
+            this.BtnEliminar.HoverState.Parent = this.BtnEliminar;
+            this.BtnEliminar.Location = new System.Drawing.Point(601, 580);
+            this.BtnEliminar.Name = "BtnEliminar";
+            this.BtnEliminar.ShadowDecoration.Parent = this.BtnEliminar;
+            this.BtnEliminar.Size = new System.Drawing.Size(75, 37);
+            this.BtnEliminar.TabIndex = 108;
+            this.BtnEliminar.Text = "Eliminar ";
+            this.BtnEliminar.Click += new System.EventHandler(this.BtnEliminar_Click);
             // 
             // FrmAgregarProductoNuevo
             // 
@@ -628,13 +650,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(816, 625);
+            this.Controls.Add(this.BtnEliminar);
             this.Controls.Add(this.BtnAjustar);
             this.Controls.Add(this.CmbUnidadMedida2);
             this.Controls.Add(this.BtnAñadir);
             this.Controls.Add(this.BtnGuardar);
             this.Controls.Add(this.guna2HtmlLabel4);
             this.Controls.Add(this.PtbImagen);
-            this.Controls.Add(this.TxtBuscarCompras);
             this.Controls.Add(this.guna2ImageButton1);
             this.Controls.Add(this.Editar);
             this.Controls.Add(this.guna2HtmlLabel16);
@@ -651,6 +673,7 @@
             this.Controls.Add(this.PnlBarraSuperior);
             this.Controls.Add(this.TxtNombreProducto);
             this.Controls.Add(this.guna2HtmlLabel1);
+            this.Controls.Add(this.TxtBuscarCompras);
             this.Controls.Add(this.TxtNuevaImagen);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmAgregarProductoNuevo";
@@ -703,5 +726,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
+        private Guna.UI2.WinForms.Guna2Button BtnEliminar;
     }
 }
