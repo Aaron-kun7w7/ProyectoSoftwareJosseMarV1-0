@@ -47,7 +47,7 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
                 string idp2 = consultas.ConsultaSimple("SELECT IpMaquina.IdUsuario FROM IpMaquina WHERE IpMaquina ='" + localIP + "'");
                 string idU = consultas.ConsultaSimple("SELECT IpMaquina.IdUsuario FROM IpMaquina WHERE IpMaquina.IpMaquina = '" + localIP + "'");
                 int IdSede = Convert.ToInt32(cmbSede.SelectedValue);
-                MessageBox.Show("Id Sede"+ IdSede);
+                //MessageBox.Show("Id Sede"+ IdSede);
                 string msg = a.register(nombre, apellido, nombreUsuario, pass, Convert.ToInt32(IdSede));
 
                 result = "Ta bien";

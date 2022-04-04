@@ -42,11 +42,15 @@
             this.BtnIniciarSesion = new Guna.UI2.WinForms.Guna2Button();
             this.guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.TxtNombre = new Guna.UI2.WinForms.Guna2TextBox();
+            this.guna2HtmlLabel7 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.cmbSede = new Guna.UI2.WinForms.Guna2ComboBox();
             this.PanelLoginDerecho.SuspendLayout();
             this.SuspendLayout();
             // 
             // PanelLoginDerecho
             // 
+            this.PanelLoginDerecho.Controls.Add(this.guna2HtmlLabel7);
+            this.PanelLoginDerecho.Controls.Add(this.cmbSede);
             this.PanelLoginDerecho.Controls.Add(this.guna2Button1);
             this.PanelLoginDerecho.Controls.Add(this.guna2HtmlLabel6);
             this.PanelLoginDerecho.Controls.Add(this.TxtConfirmarContraseña);
@@ -295,6 +299,35 @@
             this.TxtNombre.Size = new System.Drawing.Size(311, 21);
             this.TxtNombre.TabIndex = 6;
             // 
+            // guna2HtmlLabel7
+            // 
+            this.guna2HtmlLabel7.BackColor = System.Drawing.Color.Transparent;
+            this.guna2HtmlLabel7.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2HtmlLabel7.Location = new System.Drawing.Point(19, 332);
+            this.guna2HtmlLabel7.Name = "guna2HtmlLabel7";
+            this.guna2HtmlLabel7.Size = new System.Drawing.Size(35, 18);
+            this.guna2HtmlLabel7.TabIndex = 115;
+            this.guna2HtmlLabel7.Text = "Sede";
+            // 
+            // cmbSede
+            // 
+            this.cmbSede.BackColor = System.Drawing.Color.Transparent;
+            this.cmbSede.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cmbSede.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSede.FocusedColor = System.Drawing.Color.Empty;
+            this.cmbSede.FocusedState.Parent = this.cmbSede;
+            this.cmbSede.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.cmbSede.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.cmbSede.FormattingEnabled = true;
+            this.cmbSede.HoverState.Parent = this.cmbSede;
+            this.cmbSede.ItemHeight = 30;
+            this.cmbSede.ItemsAppearance.Parent = this.cmbSede;
+            this.cmbSede.Location = new System.Drawing.Point(12, 356);
+            this.cmbSede.Name = "cmbSede";
+            this.cmbSede.ShadowDecoration.Parent = this.cmbSede;
+            this.cmbSede.Size = new System.Drawing.Size(140, 36);
+            this.cmbSede.TabIndex = 114;
+            // 
             // FrmAgregarUsuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -327,5 +360,7 @@
         private Guna.UI2.WinForms.Guna2Button BtnIniciarSesion;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel1;
         private Guna.UI2.WinForms.Guna2TextBox TxtNombre;
+        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel7;
+        private Guna.UI2.WinForms.Guna2ComboBox cmbSede;
     }
 }

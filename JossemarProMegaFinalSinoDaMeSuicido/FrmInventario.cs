@@ -19,32 +19,49 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
         CLogicaConsultas sql = new CLogicaConsultas();
         CLogicaLlenarCmb Fil = new CLogicaLlenarCmb();
         CLogicaObtenerFecha zzz = new CLogicaObtenerFecha();
+        
+
+        void PersonalizarDGV()
+        {
+            this.DgvInventario.Columns["IdProducto"].Visible = false;
+            this.DgvInventario.Columns["Descripcion"].Visible = false;
+            this.DgvInventario.Columns["IdCaducidad"].Visible = false;
+            this.DgvInventario.Columns["IdCompra"].Visible = false;
+            this.DgvInventario.Columns["IdSede"].Visible = false;
+            this.DgvInventario.Columns["CATEGORIA"].Visible = false;
+            this.DgvInventario.Columns["UM"].Visible = false;
+            this.DgvInventario.Columns["CANTIDAD"].Visible = false;
+
+        }
          void InventarioUnificado(string a)
          {
-            DgvInventario.DataSource = sql.ConsultaTab("SELECT vs_BtnViewInventario.Nombre AS Producto, vs_BtnViewInventario.Marca AS Marca, vs_BtnViewInventario.DescripcionC AS Categoria,vs_BtnViewInventario.DescripcionTipoUM as UMedida,vs_BtnViewInventario.Descripcion,vs_BtnViewInventario.FechaCaducidad FROM vs_BtnViewInventario, Lotes WHERE vs_BtnViewInventario.Nombre LIKE '%" + a + "%' OR vs_BtnViewInventario.Marca LIKE '%" + a + "%' OR vs_BtnViewInventario.DescripcionC LIKE'%" + a + "%' AND Lotes.FechaCaducidad = '%" + a + "%' GROUP BY vs_BtnViewInventario.Nombre, vs_BtnViewInventario.Marca, vs_BtnViewInventario.DescripcionC, vs_BtnViewInventario.DescripcionTipoUM, vs_BtnViewInventario.Descripcion,vs_BtnViewInventario.FechaCaducidad ");
+            DgvInventario.DataSource = sql.ConsultaTab("SELECT * FROM vs_InventarioCOMPRA ");
             
          }
 
         void MostrarISF()
         {
-           // DgvPsf.DataSource = sql.ConsultaTab("SELECT vs_InventarioProductosSF.NombreProducto AS Producto, vs_InventarioProductosSF.DescripcionPSNF as Descripcion, vs_InventarioProductosSF.DescripcionC as Categoria, vs_InventarioProductosSF.DescripcionTipoUM AS UMedida, vs_InventarioProductosSF.DescripcionEstante AS Estante, vs_InventarioProductosSF.FechaCaducidad AS Caducidad, vs_InventarioProductosSF.PrecioVenta as PVenta,vs_InventarioProductosSF.Stock as Existencia FROM vs_InventarioProductosSF");
+           //DgvPsf.DataSource = sql.ConsultaTab("SELECT vs_InventarioProductosSF.NombreProducto AS Producto, vs_InventarioProductosSF.DescripcionPSNF as Descripcion, vs_InventarioProductosSF.DescripcionC as Categoria, vs_InventarioProductosSF.DescripcionTipoUM AS UMedida, vs_InventarioProductosSF.DescripcionEstante AS Estante, vs_InventarioProductosSF.FechaCaducidad AS Caducidad, vs_InventarioProductosSF.PrecioVenta as PVenta,vs_InventarioProductosSF.Stock as Existencia FROM vs_InventarioProductosSF");
+           DgvPsf.DataSource = sql.ConsultaTab("SELECT * FROM vs_InventarioCOMPRA");
         }
         //METODO PARA CAPTURAR TODAS LAS FECHAS DE CADUCIDAD
         void FechasCaducidad()
         {
-            DgvCaducidad.DataSource = sql.ConsultaTab("SELECT Lotes.FechaCaducidad FROM Compra,Lotes,Producto WHERE Producto.Stock <> '.00' AND Lotes.FechaCaducidad <> '0000-00-00'");
+            //DgvCaducidad.DataSource = sql.ConsultaTab("SELECT Lotes.FechaCaducidad FROM Compra,Lotes,Producto WHERE Producto.Stock <> '.00' AND Lotes.FechaCaducidad <> '0000-00-00'");
+            DgvCaducidad.DataSource = sql.ConsultaTab("SELECT * FROM vs_InventarioCOMPRA");
         }
         void ViewProdAndCantInventario()
         {
-            LblTotalProductos.Text = sql.ConsultaSimple("SELECT COUNT(*) FROM Producto WHERE Producto.Stock <> '.00'");
-            string precioInv = sql.ConsultaSimple("SELECT SUM(DetalleCompra.PrecioVenta) FROM DetalleCompra,Producto WHERE Producto.Stock <> '.00'");
-            double PreInv = Convert.ToDouble(precioInv);
-            string format = String.Format("{0:#,##0.00}", PreInv);
-            LblTotalInventario.Text = format;
+            //LblTotalProductos.Text = sql.ConsultaSimple("SELECT COUNT(*) FROM Producto WHERE Producto.Stock <> '.00'");
+            //string precioInv = sql.ConsultaSimple("SELECT SUM(DetalleCompra.PrecioVenta) FROM DetalleCompra,Producto WHERE Producto.Stock <> '.00'");
+            //double PreInv = Convert.ToDouble(precioInv);
+            //string format = String.Format("{0:#,##0.00}", PreInv);
+            //LblTotalInventario.Text = format;
         }
 
         private void FrmInventario_Load(object sender, EventArgs e)
         {
+
             DgvInventario.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
             DgvInventario.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
@@ -63,7 +80,9 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             //MessageBox.Show("Cantidad de Productos = "+conteo);
             ViewProdAndCantInventario();
             FechasCaducidad();
-            this.DgvInventario.Columns["FechaCaducidad"].Visible = false;
+            PersonalizarDGV();
+
+
         }
 
         
@@ -122,6 +141,28 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             this.Close();
             FrmProductosVencidos vc = new FrmProductosVencidos();
             vc.ShowDialog();
+        }
+
+        private void DgvInventario_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            FrmDetalleINVENTARIO vista = new FrmDetalleINVENTARIO();
+
+            string Categoria = Convert.ToString(DgvInventario.Rows[e.RowIndex].Cells[4].Value);
+            string categoriaa = sql.ConsultaSimple("SELECT IdCategoria as ID  FROM Categoria where DescripcionC  = '" + Categoria + "'");
+            
+
+
+            int IdProducto = Convert.ToInt32(DgvInventario.Rows[e.RowIndex].Cells[1].Value);
+            vista.TxtNombre.Text= Convert.ToString(DgvInventario.Rows[e.RowIndex].Cells[2].Value);
+            vista.TxtMarca.Text = Convert.ToString(DgvInventario.Rows[e.RowIndex].Cells[3].Value);
+            
+            vista.TxtLote.Text = Convert.ToString(DgvInventario.Rows[e.RowIndex].Cells[5].Value);
+            vista.TxtDescripcion.Text = Convert.ToString(DgvInventario.Rows[e.RowIndex].Cells[6].Value);
+            
+
+            
+            vista.Show();
+
         }
     }
 }

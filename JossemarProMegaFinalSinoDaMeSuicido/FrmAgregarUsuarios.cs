@@ -15,12 +15,13 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
         public FrmAgregarUsuarios(FormAdmin d)
         {
             InitializeComponent();
-          
+            cmbSEDE();
         }
 
         public delegate void UpdateDelegate(object sender, UpdateEventArgs args);
         public event UpdateDelegate UpdateEventHanler;
         CLogicaConsultas consultas = new CLogicaConsultas();
+        CLogicaLlenarCmb fill = new CLogicaLlenarCmb();
 
         public class UpdateEventArgs : EventArgs
         {
@@ -58,11 +59,12 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
 
                 string localIP = ip.ObtenerIp();
 
+
                 string idp2 = consultas.ConsultaSimple("SELECT IpMaquina.IdUsuario FROM IpMaquina WHERE IpMaquina ='" + localIP + "'");
                 string idU = consultas.ConsultaSimple("SELECT IpMaquina.IdUsuario FROM IpMaquina WHERE IpMaquina.IpMaquina = '" + localIP + "'");
-                string IdSede = consultas.ConsultaSimple("SELECT Usuarios.IdSede FROM Usuarios WHERE Usuarios.IdUsuario ='" + idU+ "'");
+                int IdSede = Convert.ToInt32(cmbSede.SelectedValue);
 
-                string msg = a.register(nombre, apellido, nombreUsuario, pass,Convert.ToInt32(IdSede));
+                string msg = a.register(nombre, apellido, nombreUsuario, pass, Convert.ToInt32(IdSede));
 
                 result = "Ta bien";
 
@@ -86,7 +88,13 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             this.Close();
         }
 
-       
+        void cmbSEDE()
+        {
+            cmbSede.DataSource = fill.cmbSede();
+            cmbSede.DisplayMember = "NombreEmpresa";
+            cmbSede.ValueMember = "IdSede";
+
+        }
 
 
     }

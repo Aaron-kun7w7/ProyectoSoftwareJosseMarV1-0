@@ -152,6 +152,7 @@
             this.guna2Button1.BorderColor = System.Drawing.Color.White;
             this.guna2Button1.CheckedState.Parent = this.guna2Button1;
             this.guna2Button1.CustomImages.Parent = this.guna2Button1;
+            this.guna2Button1.Enabled = false;
             this.guna2Button1.FillColor = System.Drawing.Color.White;
             this.guna2Button1.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2Button1.ForeColor = System.Drawing.Color.Blue;
@@ -213,7 +214,7 @@
             this.ChbRecordar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ChbRecordar.Location = new System.Drawing.Point(106, 531);
             this.ChbRecordar.Name = "ChbRecordar";
-            this.ChbRecordar.Size = new System.Drawing.Size(92, 20);
+            this.ChbRecordar.Size = new System.Drawing.Size(91, 20);
             this.ChbRecordar.TabIndex = 12;
             this.ChbRecordar.Text = "Recordar";
             this.ChbRecordar.UseVisualStyleBackColor = true;
@@ -262,7 +263,7 @@
             this.OlvidasteContraseña.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.OlvidasteContraseña.Location = new System.Drawing.Point(204, 533);
             this.OlvidasteContraseña.Name = "OlvidasteContraseña";
-            this.OlvidasteContraseña.Size = new System.Drawing.Size(164, 16);
+            this.OlvidasteContraseña.Size = new System.Drawing.Size(163, 16);
             this.OlvidasteContraseña.TabIndex = 7;
             this.OlvidasteContraseña.TabStop = true;
             this.OlvidasteContraseña.Text = "¿Olvidaste tu Contraseña?";
