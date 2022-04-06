@@ -15,10 +15,15 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
         public FrmInventario()
         {
             InitializeComponent();
+            Colorear();
         }
         CLogicaConsultas sql = new CLogicaConsultas();
         CLogicaLlenarCmb Fil = new CLogicaLlenarCmb();
         CLogicaObtenerFecha zzz = new CLogicaObtenerFecha();
+
+
+
+        DateTime FechaCaducidad;
         
 
         void PersonalizarDGV()
@@ -31,6 +36,7 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             this.DgvInventario.Columns["CATEGORIA"].Visible = false;
             this.DgvInventario.Columns["UM"].Visible = false;
             this.DgvInventario.Columns["CANTIDAD"].Visible = false;
+            this.DgvInventario.Columns["UrlImagen"].Visible = false;
 
         }
          void InventarioUnificado(string a)
@@ -142,27 +148,58 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             FrmProductosVencidos vc = new FrmProductosVencidos();
             vc.ShowDialog();
         }
+       
 
         private void DgvInventario_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             FrmDetalleINVENTARIO vista = new FrmDetalleINVENTARIO();
 
-            string Categoria = Convert.ToString(DgvInventario.Rows[e.RowIndex].Cells[4].Value);
-            string categoriaa = sql.ConsultaSimple("SELECT IdCategoria as ID  FROM Categoria where DescripcionC  = '" + Categoria + "'");
-            
-
-
             int IdProducto = Convert.ToInt32(DgvInventario.Rows[e.RowIndex].Cells[1].Value);
             vista.TxtNombre.Text= Convert.ToString(DgvInventario.Rows[e.RowIndex].Cells[2].Value);
             vista.TxtMarca.Text = Convert.ToString(DgvInventario.Rows[e.RowIndex].Cells[3].Value);
-            
+            vista.TxtCantidad.Text = Convert.ToString(DgvInventario.Rows[e.RowIndex].Cells[11].Value);
             vista.TxtLote.Text = Convert.ToString(DgvInventario.Rows[e.RowIndex].Cells[5].Value);
+            
             vista.TxtDescripcion.Text = Convert.ToString(DgvInventario.Rows[e.RowIndex].Cells[6].Value);
-            
+            string valorComboCategoria = DgvInventario.CurrentRow.Cells["CATEGORIA"].Value.ToString();
+            string valorComboUM = DgvInventario.CurrentRow.Cells["UM"].Value.ToString();
+            vista.moverCategoriaCombo(valorComboCategoria, valorComboUM);
+            vista.PtbImagen.ImageLocation = Convert.ToString(DgvInventario.Rows[e.RowIndex].Cells[14].Value);
 
-            
+            FechaCaducidad = DateTime.Parse(Convert.ToString(DgvInventario.CurrentRow.Cells[9].Value));
+            var dias = (FechaCaducidad - DateTime.Now).Days;
+
+            if (FechaCaducidad < DateTime.Now)
+            {
+                int r = Convert.ToInt32(dias) * (-1);
+                vista.LblAdvertencia.Visible = true;
+                vista.LblFechaVencido.Visible = true;
+                vista.LblFechaVencido.Text = Convert.ToString(r + " DIAS");
+
+            }
+            if (FechaCaducidad > DateTime.Now)
+            {
+
+                vista.LblNota.Visible = true;
+                vista.LblDiasCantidad.Visible = true;
+                vista.LblDiasCantidad.Text = Convert.ToString(dias + " DIAS");
+            }
             vista.Show();
 
+
         }
+
+        void Colorear()
+        {
+            //for (int i = 0; i < DgvInventario.RowCount; i++)
+            //{
+            //    if (Convert.ToDateTime(DgvInventario.Rows[i].Cells[9].Value)<DateTime.Now)
+            //    {
+            //        DgvInventario.Rows[i].DefaultCellStyle.BackColor = Color.Red;
+            //    }
+            //}
+
+        }
+      
     }
 }
