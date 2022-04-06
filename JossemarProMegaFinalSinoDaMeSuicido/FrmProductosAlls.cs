@@ -15,13 +15,32 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
         public FrmProductosAlls(string nom)
         {
             InitializeComponent();
-            nomProd = nom;
+            IdProd = nom;
         }
-        string nomProd;
+        string IdProd;
         CLogicaConsultas sql = new CLogicaConsultas();
+        CLogicaObtenerIP idsede = new CLogicaObtenerIP();
+        CLogicaVentas vtc = new CLogicaVentas();
+
+        public delegate void UpdateDelegate(object sender, UpdateEventArgs args);
+        public event UpdateDelegate UpdateEventHanler;
+
+        public class UpdateEventArgs : EventArgs
+        {
+            public string Data { get; set; }
+
+        }
+
+        protected void Actualizar()
+        {
+            UpdateEventArgs args = new UpdateEventArgs();
+            UpdateEventHanler.Invoke(this, args);
+        }
+
         void ProductosAlls()
         {
-            DgvProductos.DataSource = sql.ConsultaTab("SELECT vs_BtnViewInventario.IdCompra AS ID, vs_BtnViewInventario.NumeroFactura AS NFactura, vs_BtnViewInventario.NombreProducto AS Producto, vs_BtnViewInventario.Marca AS Marca,vs_BtnViewInventario.DescripcionC AS Categoría, vs_BtnViewInventario.Descripcion, vs_BtnViewInventario.DescripcionTipoUM AS UMedida, vs_BtnViewInventario.FechaIngreso AS FechaIngreso,vs_BtnViewInventario.FechaCaducidad AS FechaCaducidad, vs_BtnViewInventario.NombreEmpresa AS Proveedor, vs_BtnViewInventario.PrecioVenta AS PVenta,vs_BtnViewInventario.Stock FROM vs_BtnViewInventario WHERE vs_BtnViewInventario.NombreProducto = '" + nomProd+ "' AND vs_BtnViewInventario.IdEstado =1");
+            string sede = idsede.ObtenerSede();
+            DgvProductos.DataSource = sql.ConsultaTab("SELECT vs_BtnViewInventario.IdCaducidad AS IdLote,vs_BtnViewInventario.IdProducto, vs_BtnViewInventario.NumeroLote as NroLote, vs_BtnViewInventario.FechaIngreso as Ingreso, vs_BtnViewInventario.FechaCaducidad AS Caducidad, vs_BtnViewInventario.CantidadU AS Cantidad FROM vs_BtnViewInventario WHERE vs_BtnViewInventario.IdProducto= '" + IdProd+"' AND vs_BtnViewInventario.IdSede ='"+sede+"'");
         }
 
         void FechasCaducidad()
@@ -33,26 +52,53 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             DgvProductos.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
             DgvProductos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             ProductosAlls();
-            FechasCaducidad();
-            DgvProductos.Columns["ID"].Visible = false;
-            DgvProductos.Columns["NFactura"].Visible = false;
+        }
+
+        private void TxtNombreFull_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Validaciones.SoloNumerosPuntosyComas(e);
         }
 
         private void DgvProductos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            //FrmVentas v = new FrmVentas("");
-            
-            //foreach (DataGridViewRow row in DgvProductos.SelectedRows)
-            //{
-            //    v.Datasave(Convert.ToString(DgvProductos.CurrentRow.Cells[0].Value).Trim());
-            //    v.CapturarDatosExternos(Convert.ToString(DgvProductos.CurrentRow.Cells[2].Value).Trim(), Convert.ToString(DgvProductos.CurrentRow.Cells[5].Value).Trim(), Convert.ToString(DgvProductos.CurrentRow.Cells[10].Value).Trim());
-            //}
-
+            GbxNum.Visible = true;
         }
 
-        private void DgvProductos_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        private void DgvProductos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            GbxNum.Visible = false;
+        }
 
+        private void BtnListo_Click(object sender, EventArgs e)
+        {
+            if(TxtCantidad.Text != "")
+            {
+                int IdLote = Convert.ToInt32(DgvProductos.CurrentRow.Cells[0].Value.ToString());
+                int IdProd = Convert.ToInt32(DgvProductos.CurrentRow.Cells[1].Value.ToString());
+                double Cantidad = Convert.ToDouble(DgvProductos.CurrentRow.Cells[5].Value.ToString());
+                double cant = Convert.ToDouble(TxtCantidad.Text);
+                if (Cantidad < cant)
+                {
+                    MessageBox.Show("La cantidad supera a la que hay en inventario.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    TxtCantidad.Text = "";
+                }
+                else if (Cantidad >= cant)
+                {
+                    string result = vtc.Temporal(IdLote, IdProd, Cantidad);
+                    MessageBox.Show("Producto agregado con éxito.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Rellene el campo de cantidadad.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
+        }
+
+        private void BtnSalir_Click(object sender, EventArgs e)
+        {
+            //Actualizar();
+            this.Close();
         }
     }
 }

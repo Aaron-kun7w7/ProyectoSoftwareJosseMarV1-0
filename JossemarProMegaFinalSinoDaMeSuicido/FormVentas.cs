@@ -162,9 +162,6 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
 
         void validadStock() //Valida que la cantidad no supere al stock en inventario
         {
-
-            //int stock = Convert.ToInt32(DgvProductos.CurrentRow.Cells[11].Value);
-            //int canti = Convert.ToInt32(DgvCarrito.CurrentRow.Cells[5].Value);
             int stock = stock2;
             int canti = canti2;
             if (stock >= canti)
@@ -177,33 +174,6 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
                
             }
                
-        }
-
-        private void DgvCarrito_CellValueChanged(object sender, DataGridViewCellEventArgs e)
-        {
-            //int x = 0;
-            ////Validaciones.SoloNumeros(DgvCarrito.Rows[e.RowIndex].Cells[10].Value);
-            //int a = DgvCarrito.RowCount;
-            //if (a > 0)
-            //{
-            //    for (int i = 0; i < x; i++)
-            //    {
-            //        stock2 = Convert.ToInt32(DgvProductos.CurrentRow.Cells[11].Value);
-            //        MessageBox.Show("stock = " + stock2);
-            //        canti2 = Convert.ToInt32(DgvCarrito.CurrentRow.Cells[5].Value);
-            //        if (canti2 > stock2)
-            //        {
-            //            MessageBox.Show("Lo sentimos la cantidad estableciida del producto supera la que hay en existencia.", "Avíso", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //            DgvCarrito.Rows.RemoveAt(DgvCarrito.CurrentRow.Index);
-
-            //        }
-            //    }
-
-            //}
-
-
-
-
         }
 
         //METODO PARA BUSCAR LOS PRODUCTOS
@@ -371,7 +341,7 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
         }
         void AgregarVentaProducto()
         {
-                idVenta = Convert.ToInt32(sql.ConsultaSimple("SELECT MAX(Ventass.IdFacturaVenta) FROM Ventass"));
+           idVenta = Convert.ToInt32(sql.ConsultaSimple("SELECT MAX(Ventas.IdFacturaVenta) FROM Ventas"));
            // MessageBox.Show(Convert.ToString(idVenta));
             
             int idprodmax = DgvCarrito.Rows.Count;
@@ -386,11 +356,10 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
                 idnombresProd[i] = Convert.ToInt32(DgvCarrito.Rows[i].Cells[0].Value);
                 cantidad[i] = Convert.ToDouble(DgvCarrito.Rows[i].Cells[5].Value);
                 cantidadInv[i] = Convert.ToDouble(DgvCarrito.Rows[i].Cells[6].Value);
-                //vtc.AddVentasProd(Convert.ToInt32(idVenta), Convert.ToInt32(DgvCarrito.Rows[i].Cells[0].Value), Convert.ToDouble(DgvCarrito.Rows[i].Cells[5].Value));
-                //MessageBox.Show(Convert.ToString(i));
-
-                string res =  vtc.AddVentasProd(Convert.ToInt32(idVenta), idnombresProd[i], cantidad[Convert.ToInt32(i)]);
-                string res2 = vtc.RestInventario(idnombresProd[i], cantidadInv[Convert.ToInt32(i)], cantidad[Convert.ToInt32(i)]);
+              
+                //string res =  vtc.AddVentasProd(Convert.ToInt32(idVenta), idnombresProd[i], cantidad[Convert.ToInt32(i)]);
+                //string res2 = vtc.RestInventario(idnombresProd[i], cantidadInv[Convert.ToInt32(i)], cantidad[Convert.ToInt32(i)]);
+ 
                 //MessageBox.Show("res -"+res);
                 //MessageBox.Show("res2 -"+res2);
             }
@@ -783,6 +752,112 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             }
 
         }
+
+        private void LblUsuario_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LblNombreFull_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TxtNombreFull_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TxtApellido_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DtpFechaFact_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TxtNumFactura_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LblNumFactura_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DgvUnidadM_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void guna2GroupBox4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DgvCarrito_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void LblTotal_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TxtTotal_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TxtSubTotal_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void guna2GroupBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void guna2Separator1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DgvProductos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PnlBarraSuperior_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnBuscar_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void DgvCarrito_EditingControlShowing_1(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
             if (DgvCarrito.CurrentCell.ColumnIndex == 5)

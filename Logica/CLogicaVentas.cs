@@ -27,14 +27,14 @@ namespace Logica
 
         }
 
-        public string AddVentasProd(int idV, int idProd, double cantidad)
+        public string AddVentasProd(int idV, int idProd, double cantidad, int IdLote)
         {
-            string result = add.AgregarVentaProducto(idV, idProd, cantidad);
+            string result = add.AgregarVentaProducto(idV, idProd, cantidad, IdLote);
             return result;
         }
-        public string RestInventario(int idProd, double stock, double cantidad)
+        public string RestInventario(int idLote,int idProd, double stock, double cantidad)
         {
-            string result = add.RestarInventario(idProd, stock, cantidad);
+            string result = add.RestarInventario(idLote,idProd, stock, cantidad);
             return result;
         }
 
@@ -53,6 +53,12 @@ namespace Logica
         public string CancelarAllNFact(int idV, int idvp, int idU, int Tipo)
         {
             string result = add.CancelarAllFactura(idV,idvp,idU,Tipo);
+            return result;
+        }
+
+        public string Temporal(int IdLote, int IdProducto, double Cantidad)
+        {
+            string result = add.Temporal(IdLote, IdProducto, Cantidad);
             return result;
         }
     }

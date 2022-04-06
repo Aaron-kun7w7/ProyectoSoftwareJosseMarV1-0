@@ -53,7 +53,7 @@ namespace Datos
 
         }
 
-        public string AgregarVentaProducto(int idV, int idProd, double cantidad)
+        public string AgregarVentaProducto(int idV, int idProd, double cantidad, int IdLote)
         {
             //SqlParameter x;
             conexion.CerrarConexion();
@@ -66,6 +66,7 @@ namespace Datos
                 comando.Parameters.AddWithValue("@idv", idV);
                 comando.Parameters.AddWithValue("@idProducto", idProd);
                 comando.Parameters.AddWithValue("@Cantidad", cantidad);
+                comando.Parameters.AddWithValue("@IdLote", IdLote);
 
                 res = comando.Parameters.AddWithValue("@Result", "");
                 comando.Parameters["@Result"].Direction = ParameterDirection.Output;
@@ -84,7 +85,7 @@ namespace Datos
             }
 
         }
-        public string RestarInventario(int idProd, double stock, double cantidad)
+        public string RestarInventario(int idLote, int idProd, double stock, double cantidad)
         {
             //SqlParameter x;
             conexion.CerrarConexion();
@@ -94,6 +95,7 @@ namespace Datos
                 comando.CommandText = "JSMRestarInventario";
                 comando.CommandType = CommandType.StoredProcedure;
 
+                comando.Parameters.AddWithValue("@IdLote", idLote);
                 comando.Parameters.AddWithValue("@IdProducto", idProd);
                 comando.Parameters.AddWithValue("@Stock", stock);
                 comando.Parameters.AddWithValue("@Cantidad", cantidad);
@@ -115,6 +117,40 @@ namespace Datos
             }
 
         }
+
+        //METODO PARA COMUNICARME CON EL PROCESO DE ALMACENADO TEMPORAL
+        public string Temporal(int idLote, int idProd, double cantidad)
+        {
+            //SqlParameter x;
+            conexion.CerrarConexion();
+            try
+            {
+                comando.Connection = conexion.AbrirConexion();
+                comando.CommandText = "JSMAgregarTemporal";
+                comando.CommandType = CommandType.StoredProcedure;
+
+                comando.Parameters.AddWithValue("@IdLote", idLote);
+                comando.Parameters.AddWithValue("@IdProducto", idProd);
+                comando.Parameters.AddWithValue("@Cantidad", cantidad);
+
+                res = comando.Parameters.AddWithValue("@Result", "");
+                comando.Parameters["@Result"].Direction = ParameterDirection.Output;
+
+                comando.ExecuteNonQuery();
+                comando.Parameters.Clear();
+
+                return res.Value.ToString();
+            }
+            catch (Exception ex)
+            {
+                //Console.WriteLine(ex + "Eroror");
+                return Convert.ToString(ex);
+
+
+            }
+
+        }
+
         public string DevolucionProdV(int nf, int idp, string estado,int idU,int idvp)
         {
             //SqlParameter x;

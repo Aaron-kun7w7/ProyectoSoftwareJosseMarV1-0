@@ -17,7 +17,7 @@ namespace Datos
         //Console.WriteLine(server);
         //public SqlConnection conexion = new SqlConnection("Data Source =" + server + "; Initial Catalog = BddJossemar1.3; Integrated Security = True");
         //public SqlConnection conexion = new SqlConnection("Data Source =.; Initial Catalog = prueba; Integrated Security = True");
-        public SqlConnection conexion = new SqlConnection("Data Source =" + server + "; Initial Catalog = db_a8475e_bddjossemar123; User ID = db_a8475e_bddjossemar123_admin; Password = duke2020F;");
+        public SqlConnection conexion = new SqlConnection("Data Source = sql5107.site4now.net; Initial Catalog = db_a8475e_bddjossemar123; User ID = db_a8475e_bddjossemar123_admin; Password = duke2020F;");
        // public SqlConnection conexion = new SqlConnection("Data Source =" + server + "; Initial Catalog = BddJossemar1.3; User ID = User1; Password = root;");
 
         public SqlConnection AbrirConexion()
