@@ -31,7 +31,10 @@
             this.PnlBarraSuperior = new Guna.UI2.WinForms.Guna2Panel();
             this.BtnSalir = new Guna.UI2.WinForms.Guna2ControlBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+<<<<<<< HEAD
             this.LblFechaVencido = new Guna.UI2.WinForms.Guna2HtmlLabel();
+=======
+>>>>>>> e1888bfb7b92922b345264f6b469638968ed1985
             this.LblDiasCantidad = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.LblNota = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.guna2HtmlLabel7 = new Guna.UI2.WinForms.Guna2HtmlLabel();
@@ -50,6 +53,10 @@
             this.TxtNombre = new System.Windows.Forms.TextBox();
             this.PtbImagen = new Guna.UI2.WinForms.Guna2PictureBox();
             this.LblAdvertencia = new Guna.UI2.WinForms.Guna2HtmlLabel();
+<<<<<<< HEAD
+=======
+            this.LblFechaVencido = new Guna.UI2.WinForms.Guna2HtmlLabel();
+>>>>>>> e1888bfb7b92922b345264f6b469638968ed1985
             this.PnlBarraSuperior.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PtbImagen)).BeginInit();
@@ -107,6 +114,7 @@
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             // 
+<<<<<<< HEAD
             // LblFechaVencido
             // 
             this.LblFechaVencido.BackColor = System.Drawing.Color.Transparent;
@@ -119,6 +127,8 @@
             this.LblFechaVencido.Text = "...";
             this.LblFechaVencido.Visible = false;
             // 
+=======
+>>>>>>> e1888bfb7b92922b345264f6b469638968ed1985
             // LblDiasCantidad
             // 
             this.LblDiasCantidad.BackColor = System.Drawing.Color.Transparent;
@@ -144,7 +154,11 @@
             // guna2HtmlLabel7
             // 
             this.guna2HtmlLabel7.BackColor = System.Drawing.Color.Transparent;
+<<<<<<< HEAD
             this.guna2HtmlLabel7.Font = new System.Drawing.Font("Century Gothic", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+=======
+            this.guna2HtmlLabel7.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+>>>>>>> e1888bfb7b92922b345264f6b469638968ed1985
             this.guna2HtmlLabel7.Location = new System.Drawing.Point(10, 324);
             this.guna2HtmlLabel7.Name = "guna2HtmlLabel7";
             this.guna2HtmlLabel7.Size = new System.Drawing.Size(105, 18);
@@ -173,7 +187,11 @@
             // guna2HtmlLabel6
             // 
             this.guna2HtmlLabel6.BackColor = System.Drawing.Color.Transparent;
+<<<<<<< HEAD
             this.guna2HtmlLabel6.Font = new System.Drawing.Font("Century Gothic", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+=======
+            this.guna2HtmlLabel6.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+>>>>>>> e1888bfb7b92922b345264f6b469638968ed1985
             this.guna2HtmlLabel6.Location = new System.Drawing.Point(10, 271);
             this.guna2HtmlLabel6.Name = "guna2HtmlLabel6";
             this.guna2HtmlLabel6.Size = new System.Drawing.Size(69, 18);
@@ -183,7 +201,11 @@
             // guna2HtmlLabel5
             // 
             this.guna2HtmlLabel5.BackColor = System.Drawing.Color.Transparent;
+<<<<<<< HEAD
             this.guna2HtmlLabel5.Font = new System.Drawing.Font("Century Gothic", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+=======
+            this.guna2HtmlLabel5.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+>>>>>>> e1888bfb7b92922b345264f6b469638968ed1985
             this.guna2HtmlLabel5.Location = new System.Drawing.Point(10, 132);
             this.guna2HtmlLabel5.Name = "guna2HtmlLabel5";
             this.guna2HtmlLabel5.Size = new System.Drawing.Size(65, 18);
@@ -206,7 +228,11 @@
             // guna2HtmlLabel4
             // 
             this.guna2HtmlLabel4.BackColor = System.Drawing.Color.Transparent;
+<<<<<<< HEAD
             this.guna2HtmlLabel4.Font = new System.Drawing.Font("Century Gothic", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+=======
+            this.guna2HtmlLabel4.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+>>>>>>> e1888bfb7b92922b345264f6b469638968ed1985
             this.guna2HtmlLabel4.Location = new System.Drawing.Point(10, 97);
             this.guna2HtmlLabel4.Name = "guna2HtmlLabel4";
             this.guna2HtmlLabel4.Size = new System.Drawing.Size(29, 18);
@@ -229,7 +255,11 @@
             // guna2HtmlLabel3
             // 
             this.guna2HtmlLabel3.BackColor = System.Drawing.Color.Transparent;
+<<<<<<< HEAD
             this.guna2HtmlLabel3.Font = new System.Drawing.Font("Century Gothic", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+=======
+            this.guna2HtmlLabel3.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+>>>>>>> e1888bfb7b92922b345264f6b469638968ed1985
             this.guna2HtmlLabel3.Location = new System.Drawing.Point(10, 167);
             this.guna2HtmlLabel3.Name = "guna2HtmlLabel3";
             this.guna2HtmlLabel3.Size = new System.Drawing.Size(80, 18);
@@ -253,7 +283,11 @@
             // guna2HtmlLabel2
             // 
             this.guna2HtmlLabel2.BackColor = System.Drawing.Color.Transparent;
+<<<<<<< HEAD
             this.guna2HtmlLabel2.Font = new System.Drawing.Font("Century Gothic", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+=======
+            this.guna2HtmlLabel2.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+>>>>>>> e1888bfb7b92922b345264f6b469638968ed1985
             this.guna2HtmlLabel2.Location = new System.Drawing.Point(10, 63);
             this.guna2HtmlLabel2.Name = "guna2HtmlLabel2";
             this.guna2HtmlLabel2.Size = new System.Drawing.Size(46, 18);
@@ -276,7 +310,11 @@
             // guna2HtmlLabel1
             // 
             this.guna2HtmlLabel1.BackColor = System.Drawing.Color.Transparent;
+<<<<<<< HEAD
             this.guna2HtmlLabel1.Font = new System.Drawing.Font("Century Gothic", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+=======
+            this.guna2HtmlLabel1.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+>>>>>>> e1888bfb7b92922b345264f6b469638968ed1985
             this.guna2HtmlLabel1.Location = new System.Drawing.Point(10, 28);
             this.guna2HtmlLabel1.Name = "guna2HtmlLabel1";
             this.guna2HtmlLabel1.Size = new System.Drawing.Size(116, 18);
@@ -340,6 +378,21 @@
             this.LblAdvertencia.Text = "PRODUCTO VENCIDO:";
             this.LblAdvertencia.Visible = false;
             // 
+<<<<<<< HEAD
+=======
+            // LblFechaVencido
+            // 
+            this.LblFechaVencido.BackColor = System.Drawing.Color.Transparent;
+            this.LblFechaVencido.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblFechaVencido.ForeColor = System.Drawing.Color.Firebrick;
+            this.LblFechaVencido.Location = new System.Drawing.Point(372, 414);
+            this.LblFechaVencido.Name = "LblFechaVencido";
+            this.LblFechaVencido.Size = new System.Drawing.Size(18, 24);
+            this.LblFechaVencido.TabIndex = 126;
+            this.LblFechaVencido.Text = "...";
+            this.LblFechaVencido.Visible = false;
+            // 
+>>>>>>> e1888bfb7b92922b345264f6b469638968ed1985
             // FrmDetalleINVENTARIO
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
