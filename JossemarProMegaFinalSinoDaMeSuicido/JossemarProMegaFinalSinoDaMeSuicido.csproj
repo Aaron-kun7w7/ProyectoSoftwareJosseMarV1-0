@@ -237,6 +237,12 @@
     <Compile Include="FrmCancelarVenta.Designer.cs">
       <DependentUpon>FrmCancelarVenta.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmDetalleINVENTARIO.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmDetalleINVENTARIO.Designer.cs">
+      <DependentUpon>FrmDetalleINVENTARIO.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmDevolverProductocs.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -428,6 +434,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmCancelarVenta.resx">
       <DependentUpon>FrmCancelarVenta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmDetalleINVENTARIO.resx">
+      <DependentUpon>FrmDetalleINVENTARIO.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmDevolverProductocs.resx">
       <DependentUpon>FrmDevolverProductocs.cs</DependentUpon>

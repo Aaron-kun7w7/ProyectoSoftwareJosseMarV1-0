@@ -161,7 +161,7 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
             }
             else
                  BtnInventario.Location = new System.Drawing.Point(10, 2);
-            //MostrarMenu(PnlSubInventario);
+            MostrarMenu(PnlSubInventario);
         }
 
         private void BtnInventario_MouseEnter(object sender, EventArgs e)
@@ -393,7 +393,7 @@ namespace JossemarProMegaFinalSinoDaMeSuicido
 
         private void BtnMostarInventario_Click(object sender, EventArgs e)
         {
-            //ActivarFrm(new FrmInventario());
+            ActivarFrm(new FrmInventario());
         }
 
         private void BtnNuevaVenta_Click(object sender, EventArgs e)
